@@ -12,27 +12,608 @@ export function getStaticPaths() {
 
 const { locale } = Astro.props;
 
-const meta: Record<string, { title: string; description: string }> = {
-  es: { title: 'Insights - SABERO Consulting', description: 'Contenidos para lideres de negocio y equipos que buscan entender producto digital, automatizacion, escalabilidad y evolucion tecnologica.' },
-  en: { title: 'Insights - SABERO Consulting', description: 'Content for business leaders and teams looking to understand digital product, automation, scalability and technology evolution.' },
-  pt: { title: 'Insights - SABERO Consulting', description: 'Conteudo para lideres de negocios e equipes que buscam entender produto digital, automacao, escalabilidade e evolucao tecnologica.' },
-  fr: { title: 'Insights - SABERO Consulting', description: 'Contenus pour les dirigeants et les equipes qui cherchent a comprendre le produit numerique, l\'automatisation, l\'evolutivite et l\'evolution technologique.' },
+const content: Record<string, { title: string; description: string; featured: { title: string; category: string; desc: string; image: string; date: string }[]; topics: { title: string; icon: string; count: string }[] }> = {
+  es: {
+    title: 'Insights',
+    description: 'Contenidos para lideres de negocio y equipos que buscan entender producto digital, automatizacion, escalabilidad y evolucion tecnologica.',
+    featured: [
+      { title: 'Como validar un MVP sin gastar de mas', category: 'Producto', desc: 'Estrategias para validar tu producto minimo viable con presupuestos ajustados y maximo aprendizaje.', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80', date: 'Abr 2026' },
+      { title: 'Cuando modernizar una plataforma legacy', category: 'Arquitectura', desc: 'Senales de alerta y hojas de ruta para migrar sistemas legacy sin detener operaciones.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80', date: 'Mar 2026' },
+      { title: 'Integraciones de pago sin friccion', category: 'Fintech', desc: 'Como disenar integraciones de pago modulares que escalen con tu negocio.', image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80', date: 'Feb 2026' },
+      { title: 'Arquitectura para productos escalables', category: 'Arquitectura', desc: 'Principios de diseno que permiten que tu producto crezca sin reescribirse.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80', date: 'Ene 2026' },
+      { title: 'IA aplicada a procesos empresariales', category: 'AI', desc: 'Casos reales de inteligencia artificial aplicada a operaciones empresariales.', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80', date: 'Dic 2025' },
+      { title: 'SEO y rendimiento para plataformas', category: 'Performance', desc: 'Optimizacion tecnica para plataformas web que buscan visibilidad y velocidad.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', date: 'Nov 2025' },
+    ],
+    topics: [
+      { title: 'Producto & Estrategia', icon: '🎯', count: '12 articulos' },
+      { title: 'Arquitectura & Escalabilidad', icon: '🏗️', count: '8 articulos' },
+      { title: 'Fintech & Pagos', icon: '💳', count: '6 articulos' },
+      { title: 'AI & Automatizacion', icon: '🤖', count: '5 articulos' },
+      { title: 'Performance & SEO', icon: '⚡', count: '4 articulos' },
+      { title: 'Experiencia de usuario', icon: '🎨', count: '7 articulos' },
+    ],
+  },
+  en: {
+    title: 'Insights',
+    description: 'Content for business leaders and teams looking to understand digital product, automation, scalability and technology evolution.',
+    featured: [
+      { title: 'How to validate an MVP without overspending', category: 'Product', desc: 'Strategies to validate your minimum viable product on a budget.', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80', date: 'Apr 2026' },
+      { title: 'When to modernize a legacy platform', category: 'Architecture', desc: 'Warning signs and roadmaps for migrating legacy systems without downtime.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80', date: 'Mar 2026' },
+      { title: 'Frictionless payment integrations', category: 'Fintech', desc: 'How to design modular payment integrations that scale with your business.', image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80', date: 'Feb 2026' },
+      { title: 'Architecture for scalable products', category: 'Architecture', desc: 'Design principles that let your product grow without rewriting.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80', date: 'Jan 2026' },
+      { title: 'AI applied to business processes', category: 'AI', desc: 'Real cases of artificial intelligence applied to business operations.', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80', date: 'Dec 2025' },
+      { title: 'SEO and performance for platforms', category: 'Performance', desc: 'Technical optimization for web platforms seeking visibility and speed.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', date: 'Nov 2025' },
+    ],
+    topics: [
+      { title: 'Product & Strategy', icon: '🎯', count: '12 articles' },
+      { title: 'Architecture & Scalability', icon: '🏗️', count: '8 articles' },
+      { title: 'Fintech & Payments', icon: '💳', count: '6 articles' },
+      { title: 'AI & Automation', icon: '🤖', count: '5 articles' },
+      { title: 'Performance & SEO', icon: '⚡', count: '4 articles' },
+      { title: 'User Experience', icon: '🎨', count: '7 articles' },
+    ],
+  },
+  pt: {
+    title: 'Insights',
+    description: 'Conteudo para lideres de negocios e equipes que buscam entender produto digital, automacao, escalabilidade e evolucao tecnologica.',
+    featured: [
+      { title: 'Como validar um MVP sem gastar demais', category: 'Produto', desc: 'Estrategias para validar seu produto minimo viavel com orcamento limitado.', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80', date: 'Abr 2026' },
+      { title: 'Quando modernizar uma plataforma legada', category: 'Arquitetura', desc: 'Sinais de alerta e roteiros para migrar sistemas legados sem parar operacoes.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80', date: 'Mar 2026' },
+      { title: 'Integracoes de pagamento sem friccao', category: 'Fintech', desc: 'Como projetar integracoes modulares que escalam com seu negocio.', image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80', date: 'Fev 2026' },
+      { title: 'Arquitetura para produtos escalaiveis', category: 'Arquitetura', desc: 'Principios que permitem seu produto crescer sem reescrever.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80', date: 'Jan 2026' },
+      { title: 'IA aplicada a processos empresariais', category: 'AI', desc: 'Casos reais de inteligencia artificial aplicada a operacoes.', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80', date: 'Dez 2025' },
+      { title: 'SEO e desempenho para plataformas', category: 'Performance', desc: 'Otimizacao tecnica para plataformas web.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', date: 'Nov 2025' },
+    ],
+    topics: [
+      { title: 'Produto & Estrategia', icon: '🎯', count: '12 artigos' },
+      { title: 'Arquitetura & Escalabilidade', icon: '🏗️', count: '8 artigos' },
+      { title: 'Fintech & Pagamentos', icon: '💳', count: '6 artigos' },
+      { title: 'IA & Automacao', icon: '🤖', count: '5 artigos' },
+      { title: 'Performance & SEO', icon: '⚡', count: '4 artigos' },
+      { title: 'Experiencia do Usuario', icon: '🎨', count: '7 artigos' },
+    ],
+  },
+  fr: {
+    title: 'Insights',
+    description: 'Contenus pour les dirigeants et les equipes qui cherchent a comprendre le produit numerique, l\'automatisation, l\'evolutivite et l\'evolution technologique.',
+    featured: [
+      { title: 'Comment valider un MVP sans trop depenser', category: 'Produit', desc: 'Strategies pour valider votre produit minimum viable avec un budget limite.', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80', date: 'Avr 2026' },
+      { title: 'Quand moderniser une plateforme legacy', category: 'Architecture', desc: 'Signes d\'alerte pour migrer sans arreter les operations.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80', date: 'Mar 2026' },
+      { title: 'Integrations de paiement sans friction', category: 'Fintech', desc: 'Comment concevoir des integrations modulaires qui evoluent.', image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80', date: 'Fev 2026' },
+      { title: 'Architecture pour produits evolutifs', category: 'Architecture', desc: 'Principes de conception pour une croissance sans reecriture.', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80', date: 'Jan 2026' },
+      { title: 'IA appliquee aux processus d\'entreprise', category: 'IA', desc: 'Cas reels d\'intelligence artificielle appliquee aux operations.', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80', date: 'Dec 2025' },
+      { title: 'SEO et performance pour plateformes', category: 'Performance', desc: 'Optimisation technique pour la visibilite et la vitesse.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80', date: 'Nov 2025' },
+    ],
+    topics: [
+      { title: 'Produit & Strategie', icon: '🎯', count: '12 articles' },
+      { title: 'Architecture & Evolutivite', icon: '🏗️', count: '8 articles' },
+      { title: 'Fintech & Paiements', icon: '💳', count: '6 articles' },
+      { title: 'IA & Automatisation', icon: '🤖', count: '5 articles' },
+      { title: 'Performance & SEO', icon: '⚡', count: '4 articles' },
+      { title: 'Experience Utilisateur', icon: '🎨', count: '7 articles' },
+    ],
+  },
 };
 
-const pageMeta = meta[locale as string] || meta.es;
-const path = `/${locale}/insights`;
+const pageMeta = (content[locale as string] || content.es);
+const path = '/insights';
+const ui: Record<string, { featured: string; topics: string; coming: string }> = {
+  es: { featured: 'Articulos destacados', topics: 'Temas', coming: 'Proximamente nuevos contenidos' },
+  en: { featured: 'Featured articles', topics: 'Topics', coming: 'New content coming soon' },
+  pt: { featured: 'Artigos em destaque', topics: 'Topicos', coming: 'Novos conteudos em breve' },
+  fr: { featured: 'Articles a la une', topics: 'Sujets', coming: 'Nouveaux contenus a venir' },
+};
+const labels = ui[locale as string] || ui.es;
 ---
 
-<BaseLayout title={pageMeta.title} description={pageMeta.description} locale={locale as SupportedLocale} path={path}>
-  <section class="page-header section">
+<BaseLayout title={`${pageMeta.title}`} description={pageMeta.description} locale={locale as SupportedLocale} path={path}>
+  <section class="insights-hero">
+    <div class="insights-hero-bg-layer"></div>
+    <div class="insights-nebula" aria-hidden="true"></div>
+    <div class="insights-geo" aria-hidden="true">
+      <div class="insights-geo-shape insights-geo-hex"></div>
+      <div class="insights-geo-shape insights-geo-circle"></div>
+      <div class="insights-geo-shape insights-geo-tri"></div>
+      <div class="insights-geo-shape insights-geo-ring"></div>
+      <div class="insights-geo-shape insights-geo-dot"></div>
+      <div class="insights-geo-shape insights-geo-cross"></div>
+    </div>
+    <div class="insights-nodes" aria-hidden="true">
+      <div class="insights-node insights-node-1"></div>
+      <div class="insights-node insights-node-2"></div>
+      <div class="insights-node insights-node-3"></div>
+      <div class="insights-node insights-node-4"></div>
+      <div class="insights-node insights-node-5"></div>
+      <div class="insights-node insights-node-6"></div>
+      <svg class="insights-node-lines" viewBox="0 0 400 400" preserveAspectRatio="none">
+        <line x1="200" y1="50" x2="60" y2="180" stroke="rgba(0,200,255,0.06)" stroke-width="1"/>
+        <line x1="200" y1="50" x2="340" y2="180" stroke="rgba(0,200,255,0.06)" stroke-width="1"/>
+        <line x1="60" y1="180" x2="200" y2="320" stroke="rgba(0,200,255,0.06)" stroke-width="1"/>
+        <line x1="340" y1="180" x2="200" y2="320" stroke="rgba(0,200,255,0.06)" stroke-width="1"/>
+        <line x1="60" y1="180" x2="340" y2="180" stroke="rgba(0,200,255,0.04)" stroke-width="1"/>
+        <line x1="200" y1="50" x2="200" y2="320" stroke="rgba(0,200,255,0.04)" stroke-width="1"/>
+        <circle cx="200" cy="185" r="80" fill="none" stroke="rgba(0,200,255,0.03)" stroke-width="1"/>
+      </svg>
+    </div>
     <div class="container">
-      <h1>{locale === 'es' ? 'Insights' : locale === 'en' ? 'Insights' : locale === 'pt' ? 'Insights' : 'Insights'}</h1>
-      <p class="section-subtitle">{pageMeta.description}</p>
+      <div class="insights-hero-content">
+        <div class="insights-hero-badge-row">
+          <span class="insights-hero-badge">{locale === 'es' ? 'Contenido' : locale === 'en' ? 'Content' : locale === 'pt' ? 'Conteudo' : 'Contenu'}</span>
+          <span class="insights-hero-badge-pulse">{locale === 'es' ? 'Conocimiento' : locale === 'en' ? 'Knowledge' : locale === 'pt' ? 'Conhecimento' : 'Connaissance'}</span>
+        </div>
+        <h1 class="insights-hero-title">
+          <span class="insights-hero-title-line">Insights</span>
+          <span class="insights-hero-title-sub">{locale === 'es' ? 'para líderes digitales' : locale === 'en' ? 'for digital leaders' : locale === 'pt' ? 'para líderes digitais' : 'pour les leaders numériques'}</span>
+        </h1>
+        <p class="insights-hero-desc">{pageMeta.description}</p>
+        <div class="insights-hero-cta-row">
+          <a href="#topics" class="insights-hero-cta">
+            <span>{locale === 'es' ? 'Explorar temas' : locale === 'en' ? 'Explore topics' : locale === 'pt' ? 'Explorar tópicos' : 'Explorer sujets'}</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#articles" class="insights-hero-link">
+            {locale === 'es' ? 'Ver artículos' : locale === 'en' ? 'View articles' : locale === 'pt' ? 'Ver artigos' : 'Voir articles'}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="section">
+
+  <section class="insights-topics" id="topics">
     <div class="container">
-      <p class="text-tertiary">{locale === 'es' ? 'Proximamente: articulos, guias y recursos.' : locale === 'en' ? 'Coming soon: articles, guides and resources.' : locale === 'pt' ? 'Em breve: artigos, guias e recursos.' : 'Prochainement: articles, guides et ressources.'}</p>
+      <h2 class="insights-section-title">{labels.topics}</h2>
+      <div class="insights-topics-grid">
+        {pageMeta.topics.map((topic) => (
+          <article class="insights-topic-card">
+            <span class="insights-topic-icon">{topic.icon}</span>
+            <h3 class="insights-topic-title">{topic.title}</h3>
+            <span class="insights-topic-count">{topic.count}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="insights-featured" id="articles">
+    <div class="container">
+      <h2 class="insights-section-title">{labels.featured}</h2>
+      <div class="insights-grid">
+        {pageMeta.featured.map((article) => (
+          <article class="insights-card">
+            <div class="insights-card-image" style={`background-image: url(${article.image})`}>
+              <div class="insights-card-overlay"></div>
+              <span class="insights-card-category">{article.category}</span>
+            </div>
+            <div class="insights-card-body">
+              <time class="insights-card-date">{article.date}</time>
+              <h3 class="insights-card-title">{article.title}</h3>
+              <p class="insights-card-desc">{article.desc}</p>
+              <span class="insights-card-link">
+                {locale === 'es' ? 'Leer articulo' : locale === 'en' ? 'Read article' : locale === 'pt' ? 'Ler artigo' : 'Lire article'}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="insights-coming">{labels.coming}</p>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .insights-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #060d1a;
+  }
+
+  .insights-hero-bg-layer {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 50% at 30% 30%, rgba(100,0,255,0.1) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 70% 80%, rgba(0,200,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,0,150,0.03) 0%, transparent 50%),
+      linear-gradient(180deg, #060d1a 0%, #0a1628 30%, #060d1a 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .insights-nebula {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle 300px at 20% 30%, rgba(100,50,255,0.04) 0%, transparent 100%),
+      radial-gradient(circle 400px at 80% 60%, rgba(0,200,255,0.03) 0%, transparent 100%),
+      radial-gradient(circle 250px at 50% 80%, rgba(255,0,150,0.02) 0%, transparent 100%);
+    animation: nebula-drift 20s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes nebula-drift {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+    50% { transform: translate(20px, -10px) scale(1.05); opacity: 0.8; }
+    100% { transform: translate(-10px, 15px) scale(1.02); opacity: 0.6; }
+  }
+
+  .insights-geo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .insights-geo-shape {
+    position: absolute;
+    animation: geo-spin 20s linear infinite;
+  }
+
+  .insights-geo-hex { top: 12%; left: 8%; width: 60px; height: 60px; background: rgba(100,50,255,0.06); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); border: 1px solid rgba(100,50,255,0.08); animation-duration: 25s; }
+  .insights-geo-circle { top: 55%; right: 12%; width: 80px; height: 80px; border-radius: 50%; border: 1px solid rgba(0,200,255,0.08); background: rgba(0,200,255,0.03); animation-duration: 18s; animation-direction: reverse; }
+  .insights-geo-tri { top: 30%; right: 25%; width: 50px; height: 50px; background: rgba(255,0,150,0.04); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); border: 1px solid rgba(255,0,150,0.06); animation-duration: 30s; }
+  .insights-geo-ring { bottom: 15%; left: 20%; width: 100px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,200,0,0.06); transform: rotateX(60deg); animation: geo-rotate 15s ease-in-out infinite alternate; }
+  .insights-geo-dot { top: 70%; left: 10%; width: 12px; height: 12px; border-radius: 50%; background: rgba(0,200,255,0.08); box-shadow: 0 0 20px rgba(0,200,255,0.05); animation: dot-pulse 3s ease-in-out infinite; }
+  .insights-geo-cross { bottom: 25%; right: 18%; width: 40px; height: 40px; position: relative; animation-duration: 22s; animation-direction: reverse; }
+  .insights-geo-cross::before, .insights-geo-cross::after { content: ''; position: absolute; background: rgba(100,50,255,0.06); }
+  .insights-geo-cross::before { width: 100%; height: 1px; top: 50%; transform: translateY(-50%); }
+  .insights-geo-cross::after { width: 1px; height: 100%; left: 50%; transform: translateX(-50%); }
+
+  @keyframes geo-spin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  @keyframes geo-rotate {
+    0% { transform: rotateX(60deg) rotate(0deg); }
+    100% { transform: rotateX(60deg) rotate(360deg); }
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; box-shadow: 0 0 20px rgba(0,200,255,0.05); }
+    50% { transform: scale(1.5); opacity: 0.8; box-shadow: 0 0 40px rgba(0,200,255,0.15); }
+  }
+
+  .insights-nodes {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .insights-node-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .insights-node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: node-glow 4s ease-in-out infinite;
+  }
+
+  .insights-node-1 { top: 20%; left: 30%; background: rgba(0,200,255,0.3); box-shadow: 0 0 12px rgba(0,200,255,0.1); animation-delay: 0s; }
+  .insights-node-2 { top: 45%; left: 15%; background: rgba(100,50,255,0.3); box-shadow: 0 0 12px rgba(100,50,255,0.1); animation-delay: -1s; }
+  .insights-node-3 { top: 50%; left: 50%; background: rgba(255,0,150,0.3); box-shadow: 0 0 12px rgba(255,0,150,0.1); animation-delay: -2s; }
+  .insights-node-4 { top: 30%; left: 70%; background: rgba(255,200,0,0.3); box-shadow: 0 0 12px rgba(255,200,0,0.1); animation-delay: -0.5s; }
+  .insights-node-5 { top: 70%; left: 40%; background: rgba(0,255,150,0.3); box-shadow: 0 0 12px rgba(0,255,150,0.1); animation-delay: -1.5s; }
+  .insights-node-6 { top: 65%; left: 75%; background: rgba(0,200,255,0.3); box-shadow: 0 0 12px rgba(0,200,255,0.1); animation-delay: -3s; }
+
+  @keyframes node-glow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(2.5); opacity: 1; }
+  }
+
+  .insights-hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: var(--header-height);
+    max-width: 750px;
+  }
+
+  .insights-hero-badge-row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .insights-hero-badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-electric-blue);
+    padding: var(--space-1) var(--space-4);
+    border: 1px solid rgba(0,102,255,0.3);
+    border-radius: var(--radius-full);
+    background: rgba(0,102,255,0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .insights-hero-badge-pulse {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(200,150,255,0.6);
+    padding: var(--space-1) var(--space-4);
+    border: 1px solid rgba(200,150,255,0.1);
+    border-radius: var(--radius-full);
+    animation: badge-breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes badge-breathe {
+    0%, 100% { opacity: 0.4; border-color: rgba(200,150,255,0.1); }
+    50% { opacity: 1; border-color: rgba(200,150,255,0.3); }
+  }
+
+  .insights-hero-title { margin-bottom: var(--space-6); }
+
+  .insights-hero-title-line {
+    display: block;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--color-white);
+    text-shadow: 0 0 40px rgba(100,50,255,0.15), 0 0 80px rgba(100,50,255,0.05);
+  }
+
+  .insights-hero-title-sub {
+    display: block;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 300;
+    color: rgba(200,150,255,0.4);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: var(--space-4);
+  }
+
+  .insights-hero-desc {
+    font-size: clamp(var(--text-base), 1.3vw, var(--text-lg));
+    color: var(--color-gray-300);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: var(--space-10);
+    position: relative;
+    padding-left: var(--space-5);
+    border-left: 2px solid rgba(100,50,255,0.2);
+  }
+
+  .insights-hero-cta-row {
+    display: flex;
+    gap: var(--space-6);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .insights-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-white);
+    background: linear-gradient(135deg, #6633ff, #0066ff);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 25px rgba(100,50,255,0.3);
+  }
+
+  .insights-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(100,50,255,0.5); }
+  .insights-hero-cta svg { transition: transform 0.3s ease; }
+  .insights-hero-cta:hover svg { transform: translateX(4px); }
+
+  .insights-hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-gray-400);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .insights-hero-link:hover { color: var(--color-electric-blue); border-bottom-color: var(--color-electric-blue); }
+  .insights-hero-link svg { transition: transform 0.3s ease; }
+  .insights-hero-link:hover svg { transform: translateY(2px); }
+
+  .insights-topics {
+    padding: var(--space-16) 0;
+    background-color: var(--bg-primary);
+  }
+
+  .insights-section-title {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-8);
+    color: var(--color-white);
+  }
+
+  .insights-topics-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-4);
+  }
+
+  .insights-topic-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-6) var(--space-4);
+    background: linear-gradient(160deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .insights-topic-card:hover {
+    border-color: rgba(0,102,255,0.15);
+    transform: translateY(-3px);
+  }
+
+  .insights-topic-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .insights-topic-title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-white);
+  }
+
+  .insights-topic-count {
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+  }
+
+  .insights-featured {
+    padding: var(--space-20) 0 var(--space-24);
+    background-color: var(--bg-secondary);
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .insights-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .insights-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,102,255,0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+
+  .insights-card-image {
+    position: relative;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .insights-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10,22,40,0.8) 100%);
+  }
+
+  .insights-card-category {
+    position: absolute;
+    bottom: var(--space-3);
+    left: var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    background: rgba(0,102,255,0.12);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm);
+    backdrop-filter: blur(8px);
+  }
+
+  .insights-card-body {
+    padding: var(--space-5);
+  }
+
+  .insights-card-date {
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+    margin-bottom: var(--space-2);
+    display: block;
+  }
+
+  .insights-card-title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--space-3);
+    line-height: 1.3;
+  }
+
+  .insights-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-400);
+    line-height: 1.7;
+    margin-bottom: var(--space-4);
+  }
+
+  .insights-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    transition: gap 0.3s ease;
+  }
+
+  .insights-card:hover .insights-card-link {
+    gap: var(--space-3);
+  }
+
+  .insights-card-link svg {
+    transition: transform 0.3s ease;
+  }
+
+  .insights-card:hover .insights-card-link svg {
+    transform: translateX(3px);
+  }
+
+  .insights-coming {
+    text-align: center;
+    margin-top: var(--space-12);
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+  }
+
+  @media (max-width: 1100px) {
+    .insights-topics-grid { grid-template-columns: repeat(3, 1fr); }
+    .insights-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .insights-hero { min-height: 80vh; }
+    .insights-hero-content { padding-top: calc(var(--header-height) + var(--space-8)); }
+    .insights-hero-title-line { font-size: clamp(2rem, 10vw, 3.5rem); }
+    .insights-hero-title-sub { font-size: clamp(0.9rem, 2vw, 1.3rem); letter-spacing: 4px; }
+    .insights-geo-shape { display: none; }
+    .insights-nodes { display: none; }
+    .insights-hero-desc { padding-left: var(--space-3); }
+  }
+
+  @media (max-width: 640px) {
+    .insights-hero { min-height: 75vh; }
+    .insights-hero-title-sub { display: none; }
+    .insights-topics { padding: var(--space-10) 0; }
+    .insights-topics-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights-featured { padding: var(--space-12) 0 var(--space-16); }
+    .insights-grid { grid-template-columns: 1fr; }
+  }
+</style>

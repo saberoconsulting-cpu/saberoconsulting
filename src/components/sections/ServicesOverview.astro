@@ -7,137 +7,320 @@ const { locale } = Astro.props;
 
 const content = {
   es: {
-    title: 'Nuestra oferta',
-    subtitle: 'Disenamos, desarrollamos y evolucionamos plataformas digitales para empresas que necesitan escalar procesos, productos y operaciones.',
+    title: 'Nuestra',
+    titleAccent: 'oferta',
+    tag: 'Servicios',
     services: [
-      { title: 'Desarrollo de software a medida', desc: 'Construimos productos digitales desde cero con arquitectura escalable y enfoque en negocio.' },
-      { title: 'Plataformas web y marketplaces', desc: 'Creamos plataformas multi-usuario, marketplaces y portales B2B/B2C con experiencia de clase mundial.' },
-      { title: 'Modernizacion de sistemas', desc: 'Evolucionamos plataformas legacy hacia arquitecturas modernas sin interrumpir operaciones.' },
-      { title: 'Integraciones y automatizacion', desc: 'Conectamos sistemas, automatizamos flujos y eliminamos cuellos de botella operativos.' },
-      { title: 'Cloud y DevOps', desc: 'Implementamos infraestructura cloud, CI/CD y practicas DevOps para entrega continua.' },
-      { title: 'QA y evolucion continua', desc: 'Aseguramos calidad con testing automatizado, monitoreo y mejora continua de producto.' },
-      { title: 'Data, analitica y AI enablement', desc: 'Transformamos datos en decisiones con analitica, dashboards e inteligencia artificial aplicada.' },
-      { title: 'Arquitectura de producto', desc: 'Disenamos la columna vertebral tecnica de tu producto para que sea escalable, mantenible y seguro.' },
+      { title: 'Desarrollo de software a medida', desc: 'Productos digitales desde cero con arquitectura escalable y enfoque en negocio.' },
+      { title: 'Plataformas web y marketplaces', desc: 'Plataformas multi-usuario, marketplaces y portales B2B/B2C con experiencia de clase mundial.' },
+      { title: 'Modernización de sistemas', desc: 'Evolucionamos plataformas legacy hacia arquitecturas modernas sin interrumpir operaciones.' },
+      { title: 'Integraciones y automatización', desc: 'Conectamos sistemas, automatizamos flujos y eliminamos cuellos de botella operativos.' },
+      { title: 'Cloud y DevOps', desc: 'Infraestructura cloud, CI/CD y prácticas DevOps para entrega continua.' },
+      { title: 'QA y evolución continua', desc: 'Aseguramos calidad con testing automatizado, monitoreo y mejora continua.' },
+      { title: 'Data, analítica y AI enablement', desc: 'Transformamos datos en decisiones con analítica, dashboards e IA aplicada.' },
+      { title: 'Arquitectura de producto', desc: 'Diseñamos la columna vertebral técnica de tu producto: escalable, mantenible y segura.' },
     ],
   },
   en: {
-    title: 'Our offering',
-    subtitle: 'We design, develop and evolve digital platforms for companies that need to scale processes, products and operations.',
+    title: 'Our',
+    titleAccent: 'offering',
+    tag: 'Services',
     services: [
-      { title: 'Custom software development', desc: 'We build digital products from scratch with scalable architecture and business focus.' },
-      { title: 'Web platforms & marketplaces', desc: 'We create multi-user platforms, marketplaces and B2B/B2C portals with world-class experience.' },
+      { title: 'Custom software development', desc: 'Digital products from scratch with scalable architecture and business focus.' },
+      { title: 'Web platforms & marketplaces', desc: 'Multi-user platforms, marketplaces and B2B/B2C portals with world-class experience.' },
       { title: 'System modernization', desc: 'We evolve legacy platforms into modern architectures without disrupting operations.' },
       { title: 'Integrations & automation', desc: 'We connect systems, automate workflows and eliminate operational bottlenecks.' },
-      { title: 'Cloud & DevOps', desc: 'We implement cloud infrastructure, CI/CD and DevOps practices for continuous delivery.' },
-      { title: 'QA & continuous evolution', desc: 'We ensure quality with automated testing, monitoring and continuous product improvement.' },
-      { title: 'Data, analytics & AI enablement', desc: 'We transform data into decisions with analytics, dashboards and applied AI.' },
-      { title: 'Product architecture', desc: 'We design the technical backbone of your product to be scalable, maintainable and secure.' },
+      { title: 'Cloud & DevOps', desc: 'Cloud infrastructure, CI/CD and DevOps practices for continuous delivery.' },
+      { title: 'QA & continuous evolution', desc: 'Quality with automated testing, monitoring and continuous product improvement.' },
+      { title: 'Data, analytics & AI', desc: 'We transform data into decisions with analytics, dashboards and applied AI.' },
+      { title: 'Product architecture', desc: 'The technical backbone of your product: scalable, maintainable and secure.' },
     ],
   },
   pt: {
-    title: 'Nossa oferta',
-    subtitle: 'Projetamos, desenvolvemos e evoluimos plataformas digitais para empresas que precisam escalar processos, produtos e operacoes.',
+    title: 'Nossa',
+    titleAccent: 'oferta',
+    tag: 'Serviços',
     services: [
-      { title: 'Desenvolvimento de software sob medida', desc: 'Construimos produtos digitais do zero com arquitetura escalavel e foco em negocios.' },
-      { title: 'Plataformas web e marketplaces', desc: 'Criamos plataformas multi-usuario, marketplaces e portais B2B/B2C com experiencia de classe mundial.' },
-      { title: 'Modernizacao de sistemas', desc: 'Evoluimos plataformas legadas para arquiteturas modernas sem interromper operacoes.' },
-      { title: 'Integracoes e automacao', desc: 'Conectamos sistemas, automatizamos fluxos e eliminamos gargalos operacionais.' },
-      { title: 'Cloud e DevOps', desc: 'Implementamos infraestrutura cloud, CI/CD e praticas DevOps para entrega continua.' },
-      { title: 'QA e evolucao continua', desc: 'Garantimos qualidade com testes automatizados, monitoramento e melhoria continua do produto.' },
-      { title: 'Dados, analitica e AI enablement', desc: 'Transformamos dados em decisoes com analitica, dashboards e inteligencia artificial aplicada.' },
-      { title: 'Arquitetura de produto', desc: 'Projetamos a espinha dorsal tecnica do seu produto para ser escalavel, viavel e segura.' },
+      { title: 'Desenvolvimento sob medida', desc: 'Produtos digitais do zero com arquitetura escalável e foco em negócios.' },
+      { title: 'Plataformas web e marketplaces', desc: 'Plataformas multi-usuário e portais B2B/B2C com experiência mundial.' },
+      { title: 'Modernização de sistemas', desc: 'Evoluímos plataformas legadas para arquiteturas modernas.' },
+      { title: 'Integrações e automação', desc: 'Conectamos sistemas, automatizamos fluxos e eliminamos gargalos.' },
+      { title: 'Cloud e DevOps', desc: 'Infraestrutura cloud, CI/CD e práticas DevOps para entrega contínua.' },
+      { title: 'QA e evolução contínua', desc: 'Qualidade com testes automatizados e melhoria contínua do produto.' },
+      { title: 'Dados, analítica e IA', desc: 'Transformamos dados em decisões com analítica e IA aplicada.' },
+      { title: 'Arquitetura de produto', desc: 'A espinha dorsal técnica do seu produto: escalável, viável e segura.' },
     ],
   },
   fr: {
-    title: 'Notre offre',
-    subtitle: 'Nous concevons, developpons et faisons evoluer des plateformes numeriques pour les entreprises qui doivent passer a l\'echelle.',
+    title: 'Notre',
+    titleAccent: 'offre',
+    tag: 'Services',
     services: [
-      { title: 'Developpement logiciel sur mesure', desc: 'Nous construisons des produits numeriques desde zero avec une architecture evolutive.' },
-      { title: 'Plateformes web et marketplaces', desc: 'Nous creons des plateformes multi-utilisateurs, marketplaces et portails B2B/B2C.' },
-      { title: 'Modernisation de systemes', desc: 'Nous faisons evoluer les plateformes legacy vers des architectures modernes.' },
-      { title: 'Integrations et automatisation', desc: 'Nous connectons les systemes, automatisons les flux et eliminons les goulots.' },
-      { title: 'Cloud et DevOps', desc: 'Nous implementons l\'infrastructure cloud, CI/CD et les pratiques DevOps.' },
-      { title: 'QA et evolution continue', desc: 'Nous assurons la qualite avec des tests automatises et l\'amelioration continue.' },
-      { title: 'Donnees, analytique et IA', desc: 'Nous transformons les donnees en decisions avec l\'analytique et l\'IA appliquee.' },
-      { title: 'Architecture produit', desc: 'Nous concevons l\'epine dorsale technique de votre produit.' },
+      { title: 'Développement sur mesure', desc: 'Produits numériques desde zero avec architecture évolutive.' },
+      { title: 'Plateformes web et marketplaces', desc: 'Plateformes multi-utilisateurs et portails B2B/B2C.' },
+      { title: 'Modernisation de systèmes', desc: 'Faisons évoluer les plateformes legacy vers des architectures modernes.' },
+      { title: 'Intégrations et automatisation', desc: 'Connectons les systèmes, automatisons les flux.' },
+      { title: 'Cloud et DevOps', desc: 'Infrastructure cloud, CI/CD et pratiques DevOps.' },
+      { title: 'QA et évolution continue', desc: 'Qualité avec tests automatisés et amélioration continue.' },
+      { title: 'Données, analytique et IA', desc: 'Transformons les données en décisions avec l\'IA appliquée.' },
+      { title: 'Architecture produit', desc: 'L\'épine dorsale technique de votre produit.' },
     ],
   },
 }[locale] || {
-  title: 'Nuestra oferta',
-  subtitle: 'Disenamos, desarrollamos y evolucionamos plataformas digitales para empresas que necesitan escalar procesos, productos y operaciones.',
+  title: 'Nuestra',
+  titleAccent: 'oferta',
+  tag: 'Servicios',
   services: [],
 };
 ---
 
-<section class="services section" id="oferta" aria-label={content.title}>
+<section class="services" id="oferta" aria-label={content.tag}>
+  <div class="services-bg" aria-hidden="true">
+    <div class="services-noise"></div>
+  </div>
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">{content.title}</h2>
-      <p class="section-subtitle">{content.subtitle}</p>
+    <div class="services-header">
+      <span class="services-tag">{content.tag}</span>
+      <h2 class="services-title">
+        {content.title} <span class="services-title-accent">{content.titleAccent}</span>
+      </h2>
     </div>
-    <div class="services-grid">
-      {content.services.map((service) => (
-        <article class="service-card">
-          <h3 class="service-title">{service.title}</h3>
-          <p class="service-desc">{service.desc}</p>
-        </article>
-      ))}
+    <div class="services-marquee" data-marquee>
+      <div class="services-track">
+        {content.services.map((service, i) => (
+          <article class="service-card" style={`--i: ${i}; --accent: ${['#0066ff','#00c8ff','#6633ff','#ff0064','#00ff96','#ff8800','#ff3366','#6c5ce7'][i]}; --glow: ${['rgba(0,102,255,0.12)','rgba(0,200,255,0.1)','rgba(102,51,255,0.1)','rgba(255,0,100,0.1)','rgba(0,255,150,0.08)','rgba(255,136,0,0.08)','rgba(255,51,102,0.08)','rgba(108,92,231,0.1)'][i]}`}>
+            <div class="service-card-shape"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">0{i + 1}</div>
+              <h3 class="service-card-title">{service.title}</h3>
+              <p class="service-card-desc">{service.desc}</p>
+            </div>
+            <div class="service-card-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </article>
+        ))}
+        {content.services.map((service, i) => (
+          <article class="service-card" style={`--i: ${i}; --accent: ${['#0066ff','#00c8ff','#6633ff','#ff0064','#00ff96','#ff8800','#ff3366','#6c5ce7'][i]}; --glow: ${['rgba(0,102,255,0.12)','rgba(0,200,255,0.1)','rgba(102,51,255,0.1)','rgba(255,0,100,0.1)','rgba(0,255,150,0.08)','rgba(255,136,0,0.08)','rgba(255,51,102,0.08)','rgba(108,92,231,0.1)'][i]}`} aria-hidden="true">
+            <div class="service-card-shape"></div>
+            <div class="service-card-content">
+              <div class="service-card-tag">0{i + 1}</div>
+              <h3 class="service-card-title">{service.title}</h3>
+              <p class="service-card-desc">{service.desc}</p>
+            </div>
+            <div class="service-card-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .services {
-    background-color: var(--bg-secondary);
+    position: relative;
+    padding: var(--space-32) 0;
+    background-color: var(--bg-primary);
+    overflow: hidden;
   }
 
-  .section-header {
-    margin-bottom: var(--space-12);
+  .services-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-6);
+  .services-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .services-header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .services-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    letter-spacing: 1px;
+    margin-bottom: var(--space-4);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgba(0,102,255,0.15);
+    border-radius: var(--radius-sm);
+    background: rgba(0,102,255,0.04);
+  }
+
+  .services-title {
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+  }
+
+  .services-title-accent {
+    background: linear-gradient(135deg, #0066ff, #00c8ff, #6633ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(0,102,255,0.15));
+  }
+
+  .services-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .services-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  }
+
+  .services-track {
+    display: flex;
+    gap: var(--space-8);
+    width: max-content;
+    padding: var(--space-4) 0;
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  .services-marquee:hover .services-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   .service-card {
-    padding: var(--space-6);
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
+    position: relative;
+    flex: 0 0 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: default;
+    user-select: none;
+    background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    will-change: transform;
   }
 
   .service-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 102, 255, 0.08);
+    border-color: rgba(255,255,255,0.15);
   }
 
-  .service-title {
-    font-size: var(--text-base);
-    font-weight: 700;
-    margin-bottom: var(--space-3);
-    color: var(--text-primary);
+  .service-card-shape {
+    position: absolute;
+    top: -30%;
+    right: -20%;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 20%, var(--glow), transparent 70%);
+    filter: blur(40px);
+    opacity: 0.5;
+    transition: all 0.6s ease;
+    pointer-events: none;
   }
 
-  .service-desc {
+  .service-card:hover .service-card-shape {
+    transform: scale(1.4);
+    opacity: 0.8;
+  }
+
+  .service-card-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+  }
+
+  .service-card-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: 1.6;
-    margin-bottom: 0;
+    font-weight: 800;
+    margin-bottom: var(--space-5);
+    background: var(--glow);
+    color: var(--accent);
+    transition: all 0.4s ease;
   }
 
-  @media (max-width: 1024px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .service-card:hover .service-card-tag {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent);
+  }
+
+  .service-card-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--space-3);
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  .service-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-400);
+    line-height: 1.7;
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  .service-card-arrow {
+    position: absolute;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    opacity: 0;
+    transform: translateX(-8px);
+    color: var(--accent);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+  }
+
+  .service-card:hover .service-card-arrow {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   @media (max-width: 640px) {
-    .services-grid {
-      grid-template-columns: 1fr;
+    .services {
+      padding: var(--space-20) 0;
+    }
+
+    .service-card {
+      flex: 0 0 280px;
+    }
+
+    .service-card-content {
+      padding: var(--space-6);
     }
   }
 </style>

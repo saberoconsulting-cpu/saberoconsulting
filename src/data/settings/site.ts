@@ -39,7 +39,7 @@ function getWhatsApp(): string {
   if (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_WHATSAPP) {
     return `+${import.meta.env.PUBLIC_WHATSAPP}`;
   }
-  return '+51999999999';
+  return '+51925988211';
 }
 
 function getGaid(): string {

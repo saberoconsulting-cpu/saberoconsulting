@@ -5,7 +5,7 @@ export const contactEs: ContactData = {
   subtitle:
     'Cuentanos sobre tu iniciativa y te responderemos en menos de 24 horas. Sin compromisos, sin spam.',
   email: 'saberoconsulting@gmail.com',
-  whatsapp: '+51999999999',
+  whatsapp: '+51925988211',
   responseTime: 'Respuesta en menos de 24h',
   categoriesTitle: 'Sobre que te gustaria conversar?',
   categories: [

@@ -1,0 +1,384 @@
+---
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const content = {
+  es: {
+    eyebrow: 'Cloud engineering & experiencia digital',
+    title: 'Plataformas seguras, escalables y diseñadas para crecimiento real',
+    description: 'Creamos experiencias digitales con ingeniería cloud inteligente, claridad estratégica y un lenguaje visual profesional que fortalece tu marca.',
+    features: [
+      { title: 'Diseño de plataforma ágil', desc: 'Arquitecturas flexibles que escalan con tu negocio y mejoran la entrega continua.' },
+      { title: 'Automatización operativa', desc: 'Ciclos de desarrollo más rápidos con despliegues confiables y controlados.' },
+      { title: 'Seguridad desde el inicio', desc: 'Protección de datos y gobernanza integrada en cada capa del producto.' },
+      { title: 'Experiencia de usuario clara', desc: 'Interfaces profesionales y consistentes que generan confianza corporativa.' },
+    ],
+  },
+  en: {
+    eyebrow: 'Cloud engineering & digital experience',
+    title: 'Secure, scalable platforms built for real growth',
+    description: 'We create digital experiences with smart cloud engineering, strategic clarity and a professional visual language that strengthens your brand.',
+    features: [
+      { title: 'Agile platform design', desc: 'Flexible architectures that scale with your business and improve continuous delivery.' },
+      { title: 'Operational automation', desc: 'Faster development cycles with reliable, controlled deployments.' },
+      { title: 'Security by design', desc: 'Data protection and governance integrated across every product layer.' },
+      { title: 'Clear user experience', desc: 'Professional, consistent interfaces that build corporate trust.' },
+    ],
+  },
+  pt: {
+    eyebrow: 'Cloud engineering & experiência digital',
+    title: 'Plataformas seguras, escaláveis e projetadas para crescimento real',
+    description: 'Criamos experiências digitais com engenharia cloud inteligente, clareza estratégica e uma linguagem visual profissional que fortalece sua marca.',
+    features: [
+      { title: 'Design ágil de plataforma', desc: 'Arquiteturas flexíveis que escalam com seu negócio.' },
+      { title: 'Automação operacional', desc: 'Ciclos de desenvolvimento mais rápidos com implantações confiáveis.' },
+      { title: 'Segurança desde o início', desc: 'Proteção de dados integrada em cada camada do produto.' },
+      { title: 'Experiência de usuário clara', desc: 'Interfaces profissionais que geram confiança corporativa.' },
+    ],
+  },
+  fr: {
+    eyebrow: 'Cloud engineering & expérience digitale',
+    title: 'Plateformes sécurisées, évolutives conçues pour une croissance réelle',
+    description: 'Nous créons des expériences numériques avec une ingénierie cloud intelligente et un langage visuel professionnel qui renforce votre marque.',
+    features: [
+      { title: 'Conception agile de plateforme', desc: 'Des architectures flexibles qui évoluent avec votre entreprise.' },
+      { title: 'Automatisation opérationnelle', desc: 'Des cycles de développement plus rapides avec des déploiements fiables.' },
+      { title: 'Sécurité dès la conception', desc: 'Protection des données intégrée à chaque couche du produit.' },
+      { title: 'Expérience utilisateur claire', desc: 'Des interfaces professionnelles qui inspirent confiance.' },
+    ],
+  },
+}[locale] || {
+  eyebrow: 'Cloud engineering & experiencia digital',
+  title: 'Plataformas seguras, escalables y diseñadas para crecimiento real',
+  description: 'Creamos experiencias digitales con ingeniería cloud inteligente, claridad estratégica y un lenguaje visual profesional que fortalece tu marca.',
+  features: [],
+};
+---
+
+<section class="cloud-platform" aria-label="Cloud platform showcase">
+  <div class="cloud-bg" aria-hidden="true">
+    <div class="cloud-bg-gradient"></div>
+    <div class="cloud-particles">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="cloud-platform-header">
+      <div class="cloud-header-left">
+        <span class="cloud-eyebrow">{content.eyebrow}</span>
+        <h2 class="cloud-title">{content.title}</h2>
+        <p class="cloud-desc">{content.description}</p>
+      </div>
+      <div class="cloud-header-right">
+        <div class="cloud-header-bg" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="cloud-platform-grid">
+      {content.features.map((feature, i) => (
+        <article class="cloud-feature-card">
+          <div class="cloud-feature-number">0{i + 1}</div>
+            <div class="cloud-feature-icon" data-icon={i}>
+              <div class="cloud-icon-shape"></div>
+            </div>
+          <h3 class="cloud-feature-title">{feature.title}</h3>
+          <p class="cloud-feature-desc">{feature.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cloud-platform {
+    position: relative;
+    padding: var(--space-24) 0;
+    overflow: hidden;
+    background-color: var(--color-deep-blue);
+  }
+
+  .cloud-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .cloud-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(80% 60% at 10% 20%, rgba(0, 102, 255, 0.12) 0%, transparent 70%),
+      radial-gradient(70% 50% at 90% 80%, rgba(0, 102, 255, 0.08) 0%, transparent 70%),
+      radial-gradient(60% 60% at 50% 50%, rgba(10, 22, 40, 0.4) 0%, transparent 100%);
+  }
+
+  .cloud-particles {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cloud-particles span {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(0, 102, 255, 0.3);
+    border-radius: 50%;
+    animation: float-particle 8s infinite ease-in-out;
+  }
+
+  .cloud-particles span:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+  .cloud-particles span:nth-child(2) { top: 25%; left: 15%; width: 6px; height: 6px; animation-delay: 1s; background: rgba(0, 102, 255, 0.2); }
+  .cloud-particles span:nth-child(3) { top: 45%; left: 8%; animation-delay: 2s; }
+  .cloud-particles span:nth-child(4) { top: 70%; left: 12%; width: 5px; height: 5px; animation-delay: 0.5s; }
+  .cloud-particles span:nth-child(5) { top: 85%; left: 5%; animation-delay: 3s; background: rgba(0, 102, 255, 0.15); }
+  .cloud-particles span:nth-child(6) { top: 15%; right: 8%; animation-delay: 1.5s; }
+  .cloud-particles span:nth-child(7) { top: 40%; right: 5%; width: 5px; height: 5px; animation-delay: 0.8s; background: rgba(0, 102, 255, 0.25); }
+  .cloud-particles span:nth-child(8) { top: 60%; right: 15%; animation-delay: 2.5s; }
+  .cloud-particles span:nth-child(9) { top: 80%; right: 8%; width: 6px; height: 6px; animation-delay: 1.2s; }
+  .cloud-particles span:nth-child(10) { top: 90%; right: 3%; animation-delay: 3.5s; background: rgba(0, 102, 255, 0.15); }
+
+  @keyframes float-particle {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-30px) scale(1.5); opacity: 1; }
+  }
+
+  .cloud-platform-header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .cloud-header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cloud-header-right {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    min-height: 320px;
+  }
+
+  .cloud-header-bg {
+    position: absolute;
+    inset: -40px;
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: saturate(0.9) brightness(0.7);
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+
+  .cloud-header-right:hover .cloud-header-bg {
+    transform: scale(1.04);
+    filter: saturate(1) brightness(0.8);
+  }
+
+  .cloud-header-right::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to left, rgba(10, 22, 40, 0) 30%, rgba(10, 22, 40, 0.95) 70%),
+      linear-gradient(to top, rgba(10, 22, 40, 0.3) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .cloud-eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-electric-blue);
+    margin-bottom: var(--space-4);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    border-radius: var(--radius-full);
+    background: rgba(0, 102, 255, 0.06);
+  }
+
+  .cloud-title {
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 40%, rgba(0, 102, 255, 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cloud-desc {
+    font-size: var(--text-base);
+    color: var(--color-gray-400);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .cloud-platform-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+  }
+
+  .cloud-feature-card {
+    position: relative;
+    padding: var(--space-8) var(--space-6);
+    background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-xl);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .cloud-feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .cloud-feature-card:hover::before {
+    opacity: 1;
+  }
+
+  .cloud-feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 102, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 102, 255, 0.05);
+  }
+
+  .cloud-feature-number {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-4);
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    transition: color 0.5s ease;
+  }
+
+  .cloud-feature-card:hover .cloud-feature-number {
+    color: rgba(0, 102, 255, 0.08);
+  }
+
+  .cloud-feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-5);
+    color: var(--color-electric-blue);
+    background: rgba(0, 102, 255, 0.08);
+    border-radius: 16px;
+    transition: all 0.5s ease;
+  }
+
+  .cloud-icon-shape {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background: var(--color-electric-blue);
+    opacity: 0.6;
+    transition: all 0.5s ease;
+  }
+
+  .cloud-feature-icon[data-icon="0"] .cloud-icon-shape {
+    border-radius: 50% 50% 50% 0;
+  }
+  .cloud-feature-icon[data-icon="1"] .cloud-icon-shape {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--color-electric-blue);
+    background: transparent;
+    opacity: 1;
+  }
+  .cloud-feature-icon[data-icon="2"] .cloud-icon-shape {
+    border-radius: 4px 20px 4px 20px;
+  }
+  .cloud-feature-icon[data-icon="3"] .cloud-icon-shape {
+    border-radius: 50% 0 50% 0;
+  }
+
+  .cloud-feature-card:hover .cloud-feature-icon {
+    background: rgba(0, 102, 255, 0.2);
+    box-shadow: 0 0 30px rgba(0, 102, 255, 0.15);
+    transform: scale(1.05);
+  }
+
+  .cloud-feature-title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--space-2);
+    position: relative;
+  }
+
+  .cloud-feature-desc {
+    font-size: var(--text-xs);
+    color: var(--color-gray-400);
+    line-height: 1.7;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  @media (max-width: 1100px) {
+    .cloud-platform-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cloud-platform-header {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .cloud-header-right {
+      min-height: 180px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cloud-platform {
+      padding: var(--space-16) 0;
+    }
+
+    .cloud-platform-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .cloud-platform-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .cloud-feature-card {
+      padding: var(--space-6);
+    }
+
+    .cloud-header-right {
+      min-height: 160px;
+    }
+  }
+</style>

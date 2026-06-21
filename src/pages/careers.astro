@@ -1,115 +1,27 @@
 ---
-import type { SupportedLocale } from '../../i18n/utils/types';
-import { LOCALES } from '../../i18n/utils/types';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// Root route - Spanish default locale
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-export function getStaticPaths() {
-  return LOCALES.map((locale) => ({
-    params: { lang: locale },
-    props: { locale },
-  }));
-}
-
-const { locale } = Astro.props;
-
-const content: Record<string, { title: string; description: string; perks: { title: string; desc: string; icon: string }[]; teams: string[]; values: { title: string; desc: string }[] }> = {
-  es: {
-    title: 'Careers',
-    description: 'Sumate a un equipo que construye productos digitales con foco en ingenieria, negocio y evolucion continua.',
-    perks: [
-      { title: 'Trabajo remoto', desc: 'Operamos 100% remoto desde cualquier lugar de America Latina.', icon: '🌎' },
-      { title: 'Horario flexible', desc: 'Organiza tu dia con autonomia y foco en resultados.', icon: '⏰' },
-      { title: 'Crecimiento profesional', desc: 'Plan de carrera, certificaciones y presupuesto de aprendizaje.', icon: '📈' },
-      { title: 'Equipo multicultural', desc: 'Trabaja con profesionales de Peru, Latam y Europa.', icon: '🤝' },
-      { title: 'Proyectos desafiantes', desc: 'Productos reales con escala regional e internacional.', icon: '🚀' },
-      { title: 'Clima colaborativo', desc: 'Cultura abierta, feedback constante y sin burocracia.', icon: '💡' },
-    ],
-    teams: ['Engineering', 'Product', 'UX/UI', 'QA', 'DevOps', 'Business & Growth'],
-    values: [
-      { title: 'Excelencia sin ego', desc: 'Buscamos la mejor solucion, no tener la razon.' },
-      { title: 'Propiedad y autonomia', desc: 'Cada persona es duena de su trabajo y sus decisiones.' },
-      { title: 'Aprendizaje continuo', desc: 'La tecnologia cambia, nosotros tambien.' },
-      { title: 'Impacto primero', desc: 'Medimos exito por resultados de negocio, no por lineas de codigo.' },
-    ],
-  },
-  en: {
-    title: 'Careers',
-    description: 'Join a team that builds digital products with a focus on engineering, business and continuous evolution.',
-    perks: [
-      { title: 'Remote work', desc: 'We operate 100% remotely from anywhere in Latin America.', icon: '🌎' },
-      { title: 'Flexible hours', desc: 'Organize your day with autonomy and focus on results.', icon: '⏰' },
-      { title: 'Professional growth', desc: 'Career plan, certifications and learning budget.', icon: '📈' },
-      { title: 'Multicultural team', desc: 'Work with professionals from Peru, Latam and Europe.', icon: '🤝' },
-      { title: 'Challenging projects', desc: 'Real products with regional and international scale.', icon: '🚀' },
-      { title: 'Collaborative culture', desc: 'Open culture, constant feedback, no bureaucracy.', icon: '💡' },
-    ],
-    teams: ['Engineering', 'Product', 'UX/UI', 'QA', 'DevOps', 'Business & Growth'],
-    values: [
-      { title: 'Excellence without ego', desc: 'We seek the best solution, not being right.' },
-      { title: 'Ownership & autonomy', desc: 'Each person owns their work and decisions.' },
-      { title: 'Continuous learning', desc: 'Technology changes, so do we.' },
-      { title: 'Impact first', desc: 'We measure success by business results, not code lines.' },
-    ],
-  },
-  pt: {
-    title: 'Carreiras',
-    description: 'Junte-se a uma equipe que constroi produtos digitais com foco em engenharia, negocios e evolucao continua.',
-    perks: [
-      { title: 'Trabalho remoto', desc: 'Operamos 100% remoto de qualquer lugar da America Latina.', icon: '🌎' },
-      { title: 'Horario flexivel', desc: 'Organize seu dia com autonomia e foco em resultados.', icon: '⏰' },
-      { title: 'Crescimento profissional', desc: 'Plano de carreira, certificacoes e orcamento de aprendizado.', icon: '📈' },
-      { title: 'Equipe multicultural', desc: 'Trabalhe com profissionais do Peru, Latinoamerica e Europa.', icon: '🤝' },
-      { title: 'Projetos desafiadores', desc: 'Produtos reais com escala regional e internacional.', icon: '🚀' },
-      { title: 'Clima colaborativo', desc: 'Cultura aberta, feedback constante e sem burocracia.', icon: '💡' },
-    ],
-    teams: ['Engineering', 'Product', 'UX/UI', 'QA', 'DevOps', 'Business & Growth'],
-    values: [
-      { title: 'Excelencia sem ego', desc: 'Procuramos a melhor solucao, nao ter razao.' },
-      { title: 'Propriedade e autonomia', desc: 'Cada pessoa e dona do seu trabalho.' },
-      { title: 'Aprendizado continuo', desc: 'A tecnologia muda, nos tambem.' },
-      { title: 'Impacto primeiro', desc: 'Medimos sucesso por resultados de negocios.' },
-    ],
-  },
-  fr: {
-    title: 'Carrieres',
-    description: 'Rejoignez une equipe qui construit des produits numeriques axes sur l\'ingenierie, les affaires et l\'evolution continue.',
-    perks: [
-      { title: 'Travail a distance', desc: 'Nous operons 100% a distance depuis l\'Amerique latine.', icon: '🌎' },
-      { title: 'Horaires flexibles', desc: 'Organisez votre journee avec autonomie.', icon: '⏰' },
-      { title: 'Croissance professionnelle', desc: 'Plan de carriere, certifications et budget d\'apprentissage.', icon: '📈' },
-      { title: 'Equipe multiculturelle', desc: 'Travaillez avec des professionnels du Perou, d\'Amerique latine et d\'Europe.', icon: '🤝' },
-      { title: 'Projets stimulants', desc: 'Produits reels a l\'echelle regionale et internationale.', icon: '🚀' },
-      { title: 'Culture collaborative', desc: 'Culture ouverte, feedback constant, sans bureaucratie.', icon: '💡' },
-    ],
-    teams: ['Engineering', 'Product', 'UX/UI', 'QA', 'DevOps', 'Business & Growth'],
-    values: [
-      { title: 'Excellence sans ego', desc: 'Nous cherchons la meilleure solution.' },
-      { title: 'Autonomie et responsabilite', desc: 'Chacun est maitre de son travail.' },
-      { title: 'Apprentissage continu', desc: 'La technologie change, nous aussi.' },
-      { title: 'Impact d\'abord', desc: 'Nous mesurons le succes par les resultats metier.' },
-    ],
-  },
-};
-
-const pageMeta = (content[locale as string] || content.es);
 const path = '/careers';
-const ui: Record<string, { perks: string; teams: string; values: string; cta: string; noVacancies: string }> = {
-  es: { perks: 'Beneficios', teams: 'Equipos', values: 'Cultura y valores', cta: 'Postulate aqui', noVacancies: 'No hay vacantes activas en este momento. Siguenos en LinkedIn para futuras oportunidades.' },
-  en: { perks: 'Benefits', teams: 'Teams', values: 'Culture & values', cta: 'Apply here', noVacancies: 'No active vacancies at this time. Follow us on LinkedIn for future opportunities.' },
-  pt: { perks: 'Beneficios', teams: 'Equipes', values: 'Cultura e valores', cta: 'Candidate-se', noVacancies: 'Nao ha vagas ativas no momento. Siga-nos no LinkedIn.' },
-  fr: { perks: 'Avantages', teams: 'Equipes', values: 'Culture et valeurs', cta: 'Postulez ici', noVacancies: 'Pas d\'offres actives pour le moment. Suivez-nous sur LinkedIn.' },
-};
-const labels = ui[locale as string] || ui.es;
-const heroText: Record<string, { badge1: string; badge2: string; line1: string; line2: string; cta: string; link: string }> = {
-  es: { badge1: 'Talento', badge2: 'Únete', line1: 'Trabaja con', line2: 'nosotros', cta: 'Ver beneficios', link: 'Conoce la cultura' },
-  en: { badge1: 'Talent', badge2: 'Join us', line1: 'Work with', line2: 'us', cta: 'View benefits', link: 'About our culture' },
-  pt: { badge1: 'Talento', badge2: 'Junte-se', line1: 'Trabalhe com', line2: 'nós', cta: 'Ver benefícios', link: 'Conheça a cultura' },
-  fr: { badge1: 'Talent', badge2: 'Rejoignez', line1: 'Travaillez avec', line2: 'nous', cta: 'Voir avantages', link: 'Découvrez la culture' },
-};
-const hero = heroText[locale as string] || heroText.es;
+const description = 'Sumate a un equipo que construye productos digitales con foco en ingenieria, negocio y evolucion continua.';
+const perks = [
+  { title: 'Trabajo remoto', desc: 'Operamos 100% remoto desde cualquier lugar de America Latina.', icon: '🌎' },
+  { title: 'Horario flexible', desc: 'Organiza tu dia con autonomia y foco en resultados.', icon: '⏰' },
+  { title: 'Crecimiento profesional', desc: 'Plan de carrera, certificaciones y presupuesto de aprendizaje.', icon: '📈' },
+  { title: 'Equipo multicultural', desc: 'Trabaja con profesionales de Peru, Latam y Europa.', icon: '🤝' },
+  { title: 'Proyectos desafiantes', desc: 'Productos reales con escala regional e internacional.', icon: '🚀' },
+  { title: 'Clima colaborativo', desc: 'Cultura abierta, feedback constante y sin burocracia.', icon: '💡' },
+];
+const teams = ['Engineering', 'Product', 'UX/UI', 'QA', 'DevOps', 'Business & Growth'];
+const values = [
+  { title: 'Excelencia sin ego', desc: 'Buscamos la mejor solucion, no tener la razon.' },
+  { title: 'Propiedad y autonomia', desc: 'Cada persona es duena de su trabajo y sus decisiones.' },
+  { title: 'Aprendizaje continuo', desc: 'La tecnologia cambia, nosotros tambien.' },
+  { title: 'Impacto primero', desc: 'Medimos exito por resultados de negocio, no por lineas de codigo.' },
+];
 ---
 
-<BaseLayout title={`SABERO Consulting - ${pageMeta.title}`} description={pageMeta.description} locale={locale as SupportedLocale} path={path}>
+<BaseLayout title="Careers - SABERO Consulting" {description} locale="es" {path}>
   <section class="careers-hero">
     <div class="careers-hero-bg-layer"></div>
     <div class="careers-stars" aria-hidden="true">
@@ -154,77 +66,49 @@ const hero = heroText[locale as string] || heroText.es;
     <div class="container">
       <div class="careers-hero-content">
         <div class="careers-hero-badge-row">
-          <span class="careers-hero-badge">{hero.badge1}</span>
-          <span class="careers-hero-badge-orbit">{hero.badge2}</span>
+          <span class="careers-hero-badge">Talento</span>
+          <span class="careers-hero-badge-orbit">Únete</span>
         </div>
         <h1 class="careers-hero-title">
-          <span class="careers-hero-title-line">{hero.line1}</span>
-          <span class="careers-hero-title-line careers-hero-title-accent">{hero.line2}</span>
+          <span class="careers-hero-title-line">Trabaja con</span>
+          <span class="careers-hero-title-line careers-hero-title-accent">nosotros</span>
         </h1>
-        <p class="careers-hero-desc">{pageMeta.description}</p>
+        <p class="careers-hero-desc">{description}</p>
         <div class="careers-hero-cta-row">
           <a href="#perks" class="careers-hero-cta">
-            <span>{hero.cta}</span>
+            <span>Ver beneficios</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="#cultura" class="careers-hero-link">
-            {hero.link}
+            Conoce la cultura
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="careers-perks" id="perks">
-    <div class="container">
-      <h2 class="careers-section-title">{labels.perks}</h2>
-      <div class="careers-perks-grid">
-        {pageMeta.perks.map((perk) => (
-          <article class="careers-perk-card">
-            <span class="careers-perk-icon">{perk.icon}</span>
-            <h3 class="careers-perk-title">{perk.title}</h3>
-            <p class="careers-perk-desc">{perk.desc}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="careers-values" id="cultura">
-    <div class="container">
-      <h2 class="careers-section-title">{labels.values}</h2>
-      <div class="careers-values-grid">
-        {pageMeta.values.map((v, i) => (
-          <div class="careers-value-card">
-            <span class="careers-value-num">0{i + 1}</span>
-            <h3 class="careers-value-title">{v.title}</h3>
-            <p class="careers-value-desc">{v.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="careers-teams">
-    <div class="container">
-      <h2 class="careers-section-title">{labels.teams}</h2>
-      <div class="careers-teams-grid">
-        {pageMeta.teams.map((team) => (
-          <div class="careers-team-chip">{team}</div>
-        ))}
-      </div>
-    </div>
-  </section>
-
+  <section class="careers-perks" id="perks"><div class="container">
+    <h2 class="careers-section-title">Beneficios</h2>
+    <div class="careers-perks-grid">{perks.map((p) => (
+      <article class="careers-perk-card"><span class="careers-perk-icon">{p.icon}</span><h3 class="careers-perk-title">{p.title}</h3><p class="careers-perk-desc">{p.desc}</p></article>
+    ))}</div>
+  </div></section>
+  <section class="careers-values" id="cultura"><div class="container">
+    <h2 class="careers-section-title">Cultura y valores</h2>
+    <div class="careers-values-grid">{values.map((v, i) => (
+      <div class="careers-value-card"><span class="careers-value-num">0{i + 1}</span><h3 class="careers-value-title">{v.title}</h3><p class="careers-value-desc">{v.desc}</p></div>
+    ))}</div>
+  </div></section>
+  <section class="careers-teams"><div class="container">
+    <h2 class="careers-section-title">Equipos</h2>
+    <div class="careers-teams-grid">{teams.map((t) => <div class="careers-team-chip">{t}</div>)}</div>
+  </div></section>
   <section class="careers-cta">
-    <div class="careers-cta-bg" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80" alt="" loading="lazy" />
-    </div>
+    <div class="careers-cta-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80" alt="" loading="lazy" /></div>
     <div class="careers-cta-overlay"></div>
     <div class="container">
       <div class="careers-cta-content">
-        <p class="careers-no-vacancies">{labels.noVacancies}</p>
+        <p class="careers-no-vacancies">No hay vacantes activas en este momento. Siguenos en LinkedIn para futuras oportunidades.</p>
         <a href="https://www.linkedin.com/in/saberoconsulting-sabero-844767418" target="_blank" rel="noopener noreferrer" class="careers-cta-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn SABERO
