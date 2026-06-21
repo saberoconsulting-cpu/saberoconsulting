@@ -1,0 +1,19 @@
+---
+// Root route - redirects to Spanish default locale
+// Spanish is the default language, served at /contacto/
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/forms/ContactForm.astro';
+import { getContact } from '../data/contact/index';
+
+const contactData = getContact('es');
+const path = '/contacto';
+---
+
+<BaseLayout
+  title="Contacto - SABERO Consulting"
+  description="Conversemos sobre tu proximo proyecto. Contacta a SABERO Consulting para servicios de software, consultoria tecnologica y productos digitales."
+  locale="es"
+  path={path}
+>
+  <ContactForm data={contactData} locale="es" />
+</BaseLayout>

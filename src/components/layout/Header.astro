@@ -123,6 +123,8 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
   // Mobile menu toggle
   const toggleBtn = document.querySelector('[data-toggle-mobile]');
   const mobileMenu = document.querySelector('.mobile-menu');
+  const headerElement = document.querySelector('.site-header');
+  let lastScrollPosition = window.scrollY;
 
   toggleBtn?.addEventListener('click', () => {
     if (mobileMenu) {
@@ -131,6 +133,21 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     }
   });
+
+  const updateHeaderVisibility = () => {
+    const currentScroll = window.scrollY;
+    if (!headerElement) return;
+
+    if (currentScroll > lastScrollPosition && currentScroll > 120) {
+      headerElement.classList.add('header-hidden');
+    } else {
+      headerElement.classList.remove('header-hidden');
+    }
+
+    lastScrollPosition = Math.max(currentScroll, 0);
+  };
+
+  window.addEventListener('scroll', updateHeaderVisibility, { passive: true });
 
   // Close mega menus on escape
   document.addEventListener('keydown', (e) => {
@@ -169,6 +186,16 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
     background-color: #ffffff;
     border-bottom: 1px solid #eaeef2;
     z-index: 1000;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    will-change: transform, opacity;
+  }
+
+  .site-header.header-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
   }
 
   .header-container {
@@ -225,6 +252,7 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
   }
 
   .nav-link {
+    position: relative;
     display: inline-flex;
     align-items: center;
     padding: var(--space-2) var(--space-3);
@@ -237,6 +265,24 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
     transition: color 0.2s ease;
     white-space: nowrap;
     letter-spacing: 0.1px;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #0066ff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    width: calc(100% - var(--space-6));
   }
 
   .nav-link:hover,

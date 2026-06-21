@@ -1,88 +1,13 @@
 ---
-import type { SupportedLocale } from '../../i18n/utils/types';
-import { LOCALES } from '../../i18n/utils/types';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// Root route - Spanish default locale
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-export function getStaticPaths() {
-  return LOCALES.map((locale) => ({
-    params: { lang: locale },
-    props: { locale },
-  }));
-}
-
-const { locale } = Astro.props;
-
-const content: Record<string, { title: string; description: string; tagline: string; cases: { title: string; industry: string; desc: string; impact: string; image: string; tags: string[] }[] }> = {
-  es: {
-    title: 'Casos e impacto',
-    description: 'Conoce como transformamos retos de negocio en productos, plataformas y operaciones digitales medibles.',
-    tagline: 'Resultados que hablan por si solos',
-    cases: [
-      { title: 'Marketplace inmobiliario', industry: 'PropTech', desc: 'Plataforma multi-vendedor con matching inteligente, booking y gestión de activos para el mercado latinoamericano.', impact: '+240% leads calificados', image: '/images/imagen.png', tags: ['Marketplace', 'Matching', 'Booking'] },
-      { title: 'Plataforma freelancer-empresa', industry: 'Marketplace', desc: 'Ecosistema digital conectando talento independiente con empresas en toda la region.', impact: '+15K usuarios activos', image: '/images/imagen1.png', tags: ['Plataforma', 'B2B', 'Ecosistema'] },
-      { title: 'Solucion de pagos e integraciones', industry: 'Fintech', desc: 'Sistema modular de procesamiento de pagos con integraciones a multiples pasarelas.', impact: '99.9% uptime', image: '/images/imagen2.png', tags: ['Pagos', 'Integracion', 'Fintech'] },
-      { title: 'Plataforma social de matching', industry: 'Marketplace', desc: 'Red de interaccion con sistema de matching por perfiles, intereses y geolocalizacion.', impact: '+50K matches/mes', image: '/images/imagen3.png', tags: ['Social', 'Matching', 'Red'] },
-      { title: 'Sistemas internos y automatizacion', industry: 'Enterprise', desc: 'Suite de herramientas internas para gestion operativa, reporting y automatizacion de procesos.', impact: '70% menos tareas manuales', image: '/images/imagen4.png', tags: ['Automation', 'Internal', 'ERP'] },
-      { title: 'MVP y evolucion continua', industry: 'Product', desc: 'Acompanamos productos desde idea zero hasta escala, con ciclos agiles y validacion continua.', impact: '3x velocidad de entrega', image: '/images/saberologo.png', tags: ['MVP', 'Agile', 'Scale'] },
-    ],
-  },
-  en: {
-    title: 'Cases & Impact',
-    description: 'See how we transform business challenges into measurable digital products, platforms and operations.',
-    tagline: 'Results that speak for themselves',
-    cases: [
-      { title: 'Real Estate Marketplace', industry: 'PropTech', desc: 'Multi-vendor platform with smart matching, booking and asset management for the Latin American market.', impact: '+240% qualified leads', image: '/images/imagen.png', tags: ['Marketplace', 'Matching', 'Booking'] },
-      { title: 'Freelancer-Company Platform', industry: 'Marketplace', desc: 'Digital ecosystem connecting independent talent with companies across the region.', impact: '+15K active users', image: '/images/imagen1.png', tags: ['Platform', 'B2B', 'Ecosystem'] },
-      { title: 'Payment Solution & Integrations', industry: 'Fintech', desc: 'Modular payment processing system with multiple gateway integrations.', impact: '99.9% uptime', image: '/images/imagen2.png', tags: ['Payments', 'Integration', 'Fintech'] },
-      { title: 'Social Matching Platform', industry: 'Marketplace', desc: 'Interaction network with profile, interest and geolocation-based matching.', impact: '+50K matches/month', image: '/images/imagen3.png', tags: ['Social', 'Matching', 'Network'] },
-      { title: 'Internal Systems & Automation', industry: 'Enterprise', desc: 'Suite of internal tools for operational management, reporting and process automation.', impact: '70% fewer manual tasks', image: '/images/imagen4.png', tags: ['Automation', 'Internal', 'ERP'] },
-      { title: 'MVP & Continuous Evolution', industry: 'Product', desc: 'We accompany products from zero idea to scale, with agile cycles and continuous validation.', impact: '3x delivery speed', image: '/images/saberologo.png', tags: ['MVP', 'Agile', 'Scale'] },
-    ],
-  },
-  pt: {
-    title: 'Casos e impacto',
-    description: 'Veja como transformamos desafios de negocios em produtos, plataformas e operacoes digitais viaveis.',
-    tagline: 'Resultados que falam por si',
-    cases: [
-      { title: 'Marketplace imobiliario', industry: 'PropTech', desc: 'Plataforma multi-vendedor com matching inteligente, booking e gestao de ativos.', impact: '+240% leads qualificados', image: '/images/imagen.png', tags: ['Marketplace', 'Matching', 'Booking'] },
-      { title: 'Plataforma freelancer-empresa', industry: 'Marketplace', desc: 'Ecosystema digital conectando talento independente com empresas.', impact: '+15K usuarios ativos', image: '/images/imagen1.png', tags: ['Plataforma', 'B2B', 'Ecossistema'] },
-      { title: 'Solucao de pagamentos', industry: 'Fintech', desc: 'Sistema modular de processamento de pagamentos com multiplas integracoes.', impact: '99.9% uptime', image: '/images/imagen2.png', tags: ['Pagamentos', 'Integracao', 'Fintech'] },
-      { title: 'Plataforma social de matching', industry: 'Marketplace', desc: 'Rede de interacao com matching por perfis, interesses e geolocalizacao.', impact: '+50K matches/mes', image: '/images/imagen3.png', tags: ['Social', 'Matching', 'Rede'] },
-      { title: 'Sistemas internos e automacao', industry: 'Enterprise', desc: 'Suite de ferramentas internas para gestao operacional e automacao.', impact: '70% menos tarefas manuais', image: '/images/imagen4.png', tags: ['Automacao', 'Internal', 'ERP'] },
-      { title: 'MVP e evolucao continua', industry: 'Product', desc: 'Acompanhamos produtos da ideia a escala com ciclos ageis.', impact: '3x velocidade de entrega', image: '/images/saberologo.png', tags: ['MVP', 'Agil', 'Scale'] },
-    ],
-  },
-  fr: {
-    title: 'Cas et impact',
-    description: 'Decouvrez comment nous transformons les defis commerciaux en produits, plateformes et operations numeriques mesurables.',
-    tagline: 'Des resultats qui parlent deux-memes',
-    cases: [
-      { title: 'Marketplace immobilier', industry: 'PropTech', desc: 'Plateforme multi-vendeur avec matching intelligent, booking et gestion d\'actifs.', impact: '+240% leads qualifies', image: '/images/imagen.png', tags: ['Marketplace', 'Matching', 'Booking'] },
-      { title: 'Plateforme freelancer-entreprise', industry: 'Marketplace', desc: 'Ecosysteme numerique connectant talents independants et entreprises.', impact: '+15K utilisateurs actifs', image: '/images/imagen1.png', tags: ['Plateforme', 'B2B', 'Ecosysteme'] },
-      { title: 'Solution de paiements', industry: 'Fintech', desc: 'Systeme modulaire de traitement des paiements avec multiples integrations.', impact: '99.9% disponibilite', image: '/images/imagen2.png', tags: ['Paiements', 'Integration', 'Fintech'] },
-      { title: 'Plateforme sociale de matching', industry: 'Marketplace', desc: 'Reseau d\'interaction avec matching par profils et geolocalisation.', impact: '+50K matches/mois', image: '/images/imagen3.png', tags: ['Social', 'Matching', 'Reseau'] },
-      { title: 'Systemes internes et automatisation', industry: 'Enterprise', desc: 'Suite d\'outils internes pour la gestion operationnelle et l\'automatisation.', impact: '70% moins de taches manuelles', image: '/images/imagen4.png', tags: ['Automatisation', 'Interne', 'ERP'] },
-      { title: 'MVP et evolution continue', industry: 'Product', desc: 'Nous accompagnons les produits de l\'idee a l\'echelle avec des cycles agiles.', impact: '3x vitesse de livraison', image: '/images/saberologo.png', tags: ['MVP', 'Agile', 'Echelle'] },
-    ],
-  },
-};
-
-const pageMeta = (content[locale as string] || content.es);
-const data = pageMeta.cases;
 const path = '/casos';
-const isEs = locale === 'es';
-const langText: Record<string, { all: string; filter: string; cta: string }> = {
-  es: { all: 'Todas las industrias', filter: 'Filtrar por', cta: 'Conversemos sobre tu proyecto' },
-  en: { all: 'All industries', filter: 'Filter by', cta: 'Let\'s talk about your project' },
-  pt: { all: 'Todas as industrias', filter: 'Filtrar por', cta: 'Vamos conversar sobre seu projeto' },
-  fr: { all: 'Toutes les industries', filter: 'Filtrer par', cta: 'Parlons de votre projet' },
-};
-const ui = langText[locale as string] || langText.es;
-
-const industries = [...new Set(data.map((c) => c.industry))];
+const title = 'Casos e impacto - SABERO Consulting';
+const description = 'Conoce como transformamos retos de negocio en productos, plataformas y operaciones digitales medibles.';
 ---
 
-<BaseLayout title={`${pageMeta.title}`} description={pageMeta.description} locale={locale as SupportedLocale} path={path}>
+<BaseLayout {title} {description} locale="es" {path}>
   <section class="casos-hero">
     <div class="casos-hero-bg-layer"></div>
     <div class="casos-data-stream" aria-hidden="true">
@@ -104,22 +29,22 @@ const industries = [...new Set(data.map((c) => c.industry))];
     <div class="container">
       <div class="casos-hero-content">
         <div class="casos-hero-badge-row">
-          <span class="casos-hero-badge">{locale === 'es' ? 'Portafolio' : locale === 'en' ? 'Portfolio' : locale === 'pt' ? 'Portfolio' : 'Portfolio'}</span>
-          <span class="casos-hero-badge-outline">{locale === 'es' ? 'Resultados' : locale === 'en' ? 'Results' : locale === 'pt' ? 'Resultados' : 'Résultats'}</span>
+          <span class="casos-hero-badge">Portafolio</span>
+          <span class="casos-hero-badge-outline">Resultados</span>
         </div>
         <h1 class="casos-hero-title">
-          <span class="casos-hero-title-line">{locale === 'es' ? 'Casos e' : locale === 'en' ? 'Cases &' : locale === 'pt' ? 'Casos e' : 'Cas et'}</span>
-          <span class="casos-hero-title-line casos-hero-title-accent">{locale === 'es' ? 'Impacto' : locale === 'en' ? 'Impact' : locale === 'pt' ? 'Impacto' : 'Impact'}</span>
+          <span class="casos-hero-title-line">Casos e</span>
+          <span class="casos-hero-title-line casos-hero-title-accent">Impacto</span>
         </h1>
-        <p class="casos-hero-desc">{pageMeta.description}</p>
+        <p class="casos-hero-desc">{description}</p>
         <div class="casos-hero-cta-row">
           <a href="#casos" class="casos-hero-cta">
-            <span>{locale === 'es' ? 'Ver proyectos' : locale === 'en' ? 'View projects' : locale === 'pt' ? 'Ver projetos' : 'Voir projets'}</span>
+            <span>Ver proyectos</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <span class="casos-hero-counter">
-            <span class="casos-hero-counter-num">{data.length}</span>
-            <span class="casos-hero-counter-label">{locale === 'es' ? 'proyectos entregados' : locale === 'en' ? 'projects delivered' : locale === 'pt' ? 'projetos entregues' : 'projets livrés'}</span>
+            <span class="casos-hero-counter-num">6</span>
+            <span class="casos-hero-counter-label">proyectos entregados</span>
           </span>
         </div>
       </div>
@@ -129,7 +54,14 @@ const industries = [...new Set(data.map((c) => c.industry))];
   <section class="casos-grid-section" id="casos">
     <div class="container">
       <div class="casos-grid">
-        {data.map((c) => (
+        {[
+          { title: 'Marketplace inmobiliario', industry: 'PropTech', desc: 'Plataforma multi-vendedor con matching inteligente, booking y gestión de activos para el mercado latinoamericano.', impact: '+240% leads calificados', image: '/images/imagen.png', tags: ['Marketplace', 'Matching', 'Booking'] },
+          { title: 'Plataforma freelancer-empresa', industry: 'Marketplace', desc: 'Ecosistema digital conectando talento independiente con empresas en toda la región.', impact: '+15K usuarios activos', image: '/images/imagen1.png', tags: ['Plataforma', 'B2B', 'Ecosistema'] },
+          { title: 'Solución de pagos e integraciones', industry: 'Fintech', desc: 'Sistema modular de procesamiento de pagos con integraciones a múltiples pasarelas.', impact: '99.9% uptime', image: '/images/imagen2.png', tags: ['Pagos', 'Integración', 'Fintech'] },
+          { title: 'Plataforma social de matching', industry: 'Marketplace', desc: 'Red de interacción con sistema de matching por perfiles, intereses y geolocalización.', impact: '+50K matches/mes', image: '/images/imagen3.png', tags: ['Social', 'Matching', 'Red'] },
+          { title: 'Sistemas internos y automatización', industry: 'Enterprise', desc: 'Suite de herramientas internas para gestión operativa, reporting y automatización de procesos.', impact: '70% menos tareas manuales', image: '/images/imagen4.png', tags: ['Automation', 'Internal', 'ERP'] },
+          { title: 'MVP y evolución continua', industry: 'Product', desc: 'Acompañamos productos desde idea zero hasta escala, con ciclos ágiles y validación continua.', impact: '3x velocidad de entrega', image: '/images/saberologo.png', tags: ['MVP', 'Agile', 'Scale'] },
+        ].map((c) => (
           <article class="caso-card">
             <div class="caso-card-image" style={`background-image: url(${c.image})`}>
               <div class="caso-card-overlay"></div>
@@ -139,7 +71,7 @@ const industries = [...new Set(data.map((c) => c.industry))];
               <h3 class="caso-card-title">{c.title}</h3>
               <p class="caso-card-desc">{c.desc}</p>
               <div class="caso-card-impact">
-                <span class="caso-impact-label">{locale === 'es' ? 'Impacto' : locale === 'en' ? 'Impact' : locale === 'pt' ? 'Impacto' : 'Impact'}</span>
+                <span class="caso-impact-label">Impacto</span>
                 <span class="caso-impact-value">{c.impact}</span>
               </div>
               <div class="caso-card-tags">
@@ -159,9 +91,9 @@ const industries = [...new Set(data.map((c) => c.industry))];
     <div class="casos-cta-overlay"></div>
     <div class="container">
       <div class="casos-cta-content">
-        <h2 class="casos-cta-title">{ui.cta}</h2>
-        <a href={isEs ? '/contacto' : `/${locale}/contacto`} class="casos-cta-btn">
-          {locale === 'es' ? 'Contactanos' : locale === 'en' ? 'Contact us' : locale === 'pt' ? 'Fale conosco' : 'Contactez-nous'}
+        <h2 class="casos-cta-title">Conversemos sobre tu proyecto</h2>
+        <a href="/contacto/" class="casos-cta-btn">
+          Contáctanos
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -309,12 +241,66 @@ const industries = [...new Set(data.map((c) => c.industry))];
   }
 
   .casos-orb span { position: relative; z-index: 1; }
-  .casos-orb-1 { top: 15%; left: 65%; width: 120px; height: 120px; background: radial-gradient(circle, rgba(0,102,255,0.2) 0%, rgba(0,102,255,0.05) 60%, transparent 100%); border: 1px solid rgba(0,102,255,0.15); animation-delay: 0s; font-size: 1.4rem; }
-  .casos-orb-2 { top: 60%; left: 75%; width: 90px; height: 90px; background: radial-gradient(circle, rgba(255,0,100,0.15) 0%, rgba(255,0,100,0.03) 60%, transparent 100%); border: 1px solid rgba(255,0,100,0.1); animation-delay: -2s; font-size: 1.1rem; }
-  .casos-orb-3 { top: 30%; right: 10%; width: 80px; height: 80px; background: radial-gradient(circle, rgba(0,200,255,0.18) 0%, rgba(0,200,255,0.04) 60%, transparent 100%); border: 1px solid rgba(0,200,255,0.12); animation-delay: -4s; font-size: 1rem; }
-  .casos-orb-4 { top: 70%; left: 60%; width: 70px; height: 70px; background: radial-gradient(circle, rgba(255,200,0,0.12) 0%, rgba(255,200,0,0.03) 60%, transparent 100%); border: 1px solid rgba(255,200,0,0.08); animation-delay: -6s; font-size: 0.95rem; }
-  .casos-orb-5 { top: 10%; left: 80%; width: 85px; height: 85px; background: radial-gradient(circle, rgba(0,255,150,0.14) 0%, rgba(0,255,150,0.03) 60%, transparent 100%); border: 1px solid rgba(0,255,150,0.1); animation-delay: -8s; font-size: 1rem; }
-  .casos-orb-6 { top: 45%; left: 88%; width: 75px; height: 75px; background: radial-gradient(circle, rgba(150,50,255,0.15) 0%, rgba(150,50,255,0.03) 60%, transparent 100%); border: 1px solid rgba(150,50,255,0.1); animation-delay: -10s; font-size: 0.9rem; }
+  .casos-orb-1 {
+    top: 15%;
+    left: 65%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(0,102,255,0.2) 0%, rgba(0,102,255,0.05) 60%, transparent 100%);
+    border: 1px solid rgba(0,102,255,0.15);
+    animation-delay: 0s;
+    font-size: 1.4rem;
+  }
+  .casos-orb-2 {
+    top: 60%;
+    left: 75%;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(255,0,100,0.15) 0%, rgba(255,0,100,0.03) 60%, transparent 100%);
+    border: 1px solid rgba(255,0,100,0.1);
+    animation-delay: -2s;
+    font-size: 1.1rem;
+  }
+  .casos-orb-3 {
+    top: 30%;
+    right: 10%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(0,200,255,0.18) 0%, rgba(0,200,255,0.04) 60%, transparent 100%);
+    border: 1px solid rgba(0,200,255,0.12);
+    animation-delay: -4s;
+    font-size: 1rem;
+  }
+  .casos-orb-4 {
+    top: 70%;
+    left: 60%;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, rgba(255,200,0,0.12) 0%, rgba(255,200,0,0.03) 60%, transparent 100%);
+    border: 1px solid rgba(255,200,0,0.08);
+    animation-delay: -6s;
+    font-size: 0.95rem;
+  }
+  .casos-orb-5 {
+    top: 10%;
+    left: 80%;
+    width: 85px;
+    height: 85px;
+    background: radial-gradient(circle, rgba(0,255,150,0.14) 0%, rgba(0,255,150,0.03) 60%, transparent 100%);
+    border: 1px solid rgba(0,255,150,0.1);
+    animation-delay: -8s;
+    font-size: 1rem;
+  }
+  .casos-orb-6 {
+    top: 45%;
+    left: 88%;
+    width: 75px;
+    height: 75px;
+    background: radial-gradient(circle, rgba(150,50,255,0.15) 0%, rgba(150,50,255,0.03) 60%, transparent 100%);
+    border: 1px solid rgba(150,50,255,0.1);
+    animation-delay: -10s;
+    font-size: 0.9rem;
+  }
 
   @keyframes orb-float {
     0%, 100% { transform: translate(0, 0) scale(1); }
@@ -436,7 +422,11 @@ const industries = [...new Set(data.map((c) => c.industry))];
     50% { box-shadow: 0 4px 40px rgba(255,0,100,0.4); }
   }
 
-  .casos-hero-cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 40px rgba(255,0,100,0.5); }
+  .casos-hero-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 40px rgba(255,0,100,0.5);
+  }
+
   .casos-hero-cta svg { transition: transform 0.3s ease; }
   .casos-hero-cta:hover svg { transform: translateX(4px); }
 
@@ -463,6 +453,18 @@ const industries = [...new Set(data.map((c) => c.industry))];
     font-size: var(--text-sm);
     color: var(--color-gray-500);
     font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .casos-hero { min-height: 80vh; }
+    .casos-hero-content { padding-top: calc(var(--header-height) + var(--space-8)); }
+    .casos-hero-title-line { font-size: clamp(2rem, 10vw, 3.5rem); }
+    .casos-orb { display: none; }
+    .casos-hero-desc { padding-left: var(--space-3); }
+  }
+
+  @media (max-width: 640px) {
+    .casos-hero { min-height: 75vh; }
   }
 
   .casos-grid-section {
@@ -646,16 +648,8 @@ const industries = [...new Set(data.map((c) => c.industry))];
     .casos-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (max-width: 768px) {
-    .casos-hero { min-height: 80vh; }
-    .casos-hero-content { padding-top: calc(var(--header-height) + var(--space-8)); }
-    .casos-hero-title-line { font-size: clamp(2rem, 10vw, 3.5rem); }
-    .casos-orb { display: none; }
-    .casos-hero-desc { padding-left: var(--space-3); }
-  }
-
   @media (max-width: 640px) {
-    .casos-hero { min-height: 75vh; }
+    .casos-hero { padding: var(--space-16) 0 var(--space-10); }
     .casos-grid-section { padding: var(--space-12) 0; }
     .casos-grid { grid-template-columns: 1fr; }
     .casos-cta { padding: var(--space-12) 0; }

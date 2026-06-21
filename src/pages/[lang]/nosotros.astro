@@ -1,0 +1,611 @@
+---
+import type { SupportedLocale } from '../../i18n/utils/types';
+import { LOCALES } from '../../i18n/utils/types';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+
+const content: Record<string, { title: string; description: string; story: string; mision: string; vision: string; stats: { number: string; label: string }[]; values: { title: string; desc: string }[]; approach: string[] }> = {
+  es: {
+    title: 'Nosotros',
+    description: 'SABERO Consulting es una software factory nacida en Peru, con enfoque en construir productos y plataformas digitales para organizaciones con vision de crecimiento en America y Europa.',
+    story: 'Fundada en 2018, SABERO Consulting nacio con la conviccion de que el talento latinoamericano puede competir al mas alto nivel global. Desde Lima, Peru, comenzamos construyendo productos digitales para startups locales que necesitaban escalar. Con los anos, nuestros proyectos crecieron en complejidad y alcance: hoy trabajamos con empresas en America y Europa, entregando plataformas que procesan pagos, conectan personas, automatizan operaciones y transforman industrias enteras. No somos una fabrica de software tradicional. Somos un partner de producto que combina ingenieria solida, diseno estrategico y comprension profunda del negocio. Cada proyecto es una relacion de largo plazo. Cada linea de codigo responde a un objetivo de negocio medible.',
+    mision: 'Convertir el talento latinoamericano en el motor de innovacion digital global. Disenamos, desarrollamos y evolucionamos plataformas que resuelven problemas reales de negocio, con la misma calidad, compromiso y excelencia que cualquier hub tecnologico del mundo.',
+    vision: 'Ser el partner de referencia para empresas que buscan escalar sus productos digitales desde America hacia el mundo, reconociendo que el talento y la cercania cultural son ventajas competitivas invencibles.',
+    stats: [
+      { number: '2018', label: 'Fundacion' },
+      { number: '+40', label: 'Profesionales' },
+      { number: '+30', label: 'Proyectos entregados' },
+      { number: '3', label: 'Continentes' },
+    ],
+    values: [
+      { title: 'Excelencia tecnica', desc: 'Seleccionamos la tecnologia correcta para cada problema, sin modas ni sobreingenieria. Codigo limpio, arquitectura solida, decisiones con criterio.' },
+      { title: 'Diseno orientado a negocio', desc: 'Cada decision tecnica responde a un objetivo de negocio medible. No construimos por construir: construimos para generar impacto real.' },
+      { title: 'Relaciones de largo plazo', desc: 'Buscamos ser partners, no proveedores. Construimos relaciones que evolucionan con el tiempo, basadas en confianza y resultados.' },
+      { title: 'Cercania cultural', desc: 'Nuestra ubicacion en Peru nos da ventaja de costo, talento y zona horaria. Operamos para America y Europa con comprension cultural unica.' },
+    ],
+    approach: [
+      'Descubrimiento y estrategia: entendemos el negocio, el usuario y el contexto antes de escribir una linea de codigo.',
+      'Arquitectura y diseno: definimos la columna vertebral tecnica del producto para que sea escalable, mantenible y segura.',
+      'Desarrollo agil: trabajamos en ciclos cortos con equipos integrados, transparencia total y entregas continuas.',
+      'Evolucion y mejora continua: medimos, aprendemos y evolucionamos el producto con cada iteracion.',
+    ],
+  },
+  en: {
+    title: 'About us',
+    description: 'SABERO Consulting is a software factory born in Peru, focused on building digital products and platforms for organizations with growth ambitions in America and Europe.',
+    story: 'Founded in 2018, SABERO Consulting was born with the conviction that Latin American talent can compete at the highest global level. From Lima, Peru, we started building digital products for local startups that needed to scale. Over the years, our projects grew in complexity and reach: today we work with companies in America and Europe, delivering platforms that process payments, connect people, automate operations and transform entire industries. We are not a traditional software factory. We are a product partner that combines solid engineering, strategic design and deep business understanding. Every project is a long-term relationship. Every line of code responds to a measurable business objective.',
+    mision: 'To turn Latin American talent into the engine of global digital innovation. We design, develop and evolve platforms that solve real business problems with the same quality, commitment and excellence as any world-class tech hub.',
+    vision: 'To be the go-to partner for companies looking to scale their digital products from the Americas to the world, recognizing that talent and cultural proximity are unbeatable competitive advantages.',
+    stats: [
+      { number: '2018', label: 'Founded' },
+      { number: '+40', label: 'Professionals' },
+      { number: '+30', label: 'Projects delivered' },
+      { number: '3', label: 'Continents' },
+    ],
+    values: [
+      { title: 'Technical excellence', desc: 'We select the right technology for each problem, without trends or overengineering.' },
+      { title: 'Business-driven design', desc: 'Every technical decision responds to a measurable business objective.' },
+      { title: 'Long-term relationships', desc: 'We seek to be partners, not vendors. Built on trust and results.' },
+      { title: 'Cultural proximity', desc: 'Our location in Peru gives us cost, talent and timezone advantages.' },
+    ],
+    approach: [
+      'Discovery and strategy: we understand the business, user and context before writing a line of code.',
+      'Architecture and design: we define the technical backbone for scalability, maintainability and security.',
+      'Agile development: short cycles, integrated teams, total transparency and continuous delivery.',
+      'Continuous evolution: we measure, learn and evolve the product with each iteration.',
+    ],
+  },
+  pt: {
+    title: 'Nos',
+    description: 'A SABERO Consulting e uma fabrica de software nascida no Peru, focada em construir produtos e plataformas digitais para organizacoes com visao de crescimento na America e Europa.',
+    story: 'Fundada em 2018, a SABERO Consulting nasceu com a conviccao de que o talento latino-americano pode competir no mais alto nivel global. De Lima, Peru, comecamos construindo produtos digitais para startups locais. Hoje trabalhamos com empresas na America e Europa, entregando plataformas que processam pagamentos, conectam pessoas, automatizam operacoes e transformam industrias inteiras.',
+    mision: 'Transformar o talento latino-americano no motor da inovacao digital global. Projetamos, desenvolvemos e evoluimos plataformas que resolvem problemas reais de negocios com a mesma qualidade, compromisso e excelencia de qualquer hub tecnologico mundial.',
+    vision: 'Ser o parceiro de referencia para empresas que buscam escalar seus produtos digitais desde a America para o mundo, reconhecendo que o talento e a proximidade cultural sao vantagens competitivas invenciveis.',
+    stats: [
+      { number: '2018', label: 'Fundacao' },
+      { number: '+40', label: 'Profissionais' },
+      { number: '+30', label: 'Projetos entregues' },
+      { number: '3', label: 'Continentes' },
+    ],
+    values: [
+      { title: 'Excelencia tecnica', desc: 'Selecionamos a tecnologia certa para cada problema.' },
+      { title: 'Design orientado a negocios', desc: 'Cada decisao tecnica responde a um objetivo mensuravel.' },
+      { title: 'Relacoes de longo prazo', desc: 'Parceiros, nao fornecedores. Confianca e resultados.' },
+      { title: 'Proximidade cultural', desc: 'Localizacao no Peru com vantagem de custo, talento e fuso.' },
+    ],
+    approach: [
+      'Descoberta e estrategia: entendemos o negocio antes de escrever codigo.',
+      'Arquitetura e design: base tecnica para escalabilidade e seguranca.',
+      'Desenvolvimento agil: ciclos curtos, equipes integradas e entregas continuas.',
+      'Evolucao continua: medimos, aprendemos e evoluimos o produto.',
+    ],
+  },
+  fr: {
+    title: 'Nous',
+    description: 'SABERO Consulting est une fabrique de logiciels nee au Perou, axee sur la construction de produits et plateformes numeriques pour les organisations ayant une vision de croissance en Amerique et en Europe.',
+    story: 'Fondee en 2018, SABERO Consulting est nee avec la conviction que le talent latino-americain peut concourir au plus haut niveau mondial. De Lima, Perou, nous avons commence par construire des produits numeriques pour des startups locales. Aujourd\'hui, nous travaillons avec des entreprises en Amerique et en Europe.',
+    mision: 'Faire du talent latino-americain le moteur de l\'innovation numerique mondiale. Nous concevons, developpons et faisons evoluer des plateformes qui resolvent de veritables problemes commerciaux avec la meme qualite, le meme engagement et la meme excellence que n\'importe quel hub technologique mondial.',
+    vision: 'Etre le partenaire de reference pour les entreprises qui cherchent a passer a l\'echelle leurs produits numeriques depuis l\'Amerique vers le monde, en reconnaissant que le talent et la proximite culturelle sont des avantages concurrentiels invincibles.',
+    stats: [
+      { number: '2018', label: 'Fondee' },
+      { number: '+40', label: 'Professionnels' },
+      { number: '+30', label: 'Projets livrees' },
+      { number: '3', label: 'Continents' },
+    ],
+    values: [
+      { title: 'Excellence technique', desc: 'La bonne technologie pour chaque probleme.' },
+      { title: 'Design oriente metier', desc: 'Chaque decision technique repond a un objectif metier.' },
+      { title: 'Relations a long terme', desc: 'Partenaires, pas fournisseurs. Confiance et resultats.' },
+      { title: 'Proximite culturelle', desc: 'Localisation au Perou avec avantages de cout et de fuseau.' },
+    ],
+    approach: [
+      'Decouverte et strategie: comprendre le metier avant d\'ecrire du code.',
+      'Architecture et conception: base technique pour l\'evolutivite et la securite.',
+      'Developpement agile: cycles courts, equipes integrees et livraisons continues.',
+      'Evolution continue: mesurer, apprendre et faire evoluer le produit.',
+    ],
+  },
+};
+
+const pageMeta = (content[locale as string] || content.es);
+const path = '/nosotros';
+const isEs = locale === 'es';
+const ui: Record<string, { story: string; values: string; approach: string; cta: string; mision: string; vision: string }> = {
+  es: { story: 'Nuestra historia', values: 'Nuestros valores', approach: 'Nuestro enfoque', cta: 'Conversemos', mision: 'Misión', vision: 'Visión' },
+  en: { story: 'Our story', values: 'Our values', approach: 'Our approach', cta: "Let's talk", mision: 'Mission', vision: 'Vision' },
+  pt: { story: 'Nossa historia', values: 'Nossos valores', approach: 'Nossa abordagem', cta: 'Vamos conversar', mision: 'Missão', vision: 'Visão' },
+  fr: { story: 'Notre histoire', values: 'Nos valeurs', approach: 'Notre approche', cta: 'Parlons-en', mision: 'Mission', vision: 'Vision' },
+};
+const labels = ui[locale as string] || ui.es;
+---
+
+<BaseLayout title={`SABERO Consulting - ${pageMeta.title}`} description={pageMeta.description} locale={locale as SupportedLocale} path={path}>
+  <section class="about-hero">
+    <div class="about-hero-bg" aria-hidden="true">
+      <div class="about-hero-image"></div>
+      <div class="about-hero-gradient"></div>
+      <div class="about-hero-grid"></div>
+      <div class="about-hero-glitch-line"></div>
+      <div class="about-hero-particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="about-hero-content">
+      <div class="about-hero-badge-group">
+        <span class="about-hero-badge">SABERO</span>
+        <span class="about-hero-badge-outline">Est. 2018</span>
+      </div>
+      <h1 class="about-hero-title">
+        <span class="about-hero-title-line">{locale === 'es' ? 'Ingeniería de producto' : locale === 'en' ? 'Product engineering' : locale === 'pt' ? 'Engenharia de produto' : 'Ingénierie de produit'}</span>
+        <span class="about-hero-title-line about-hero-title-accent">{locale === 'es' ? 'con ADN latinoamericano' : locale === 'en' ? 'with Latin American DNA' : locale === 'pt' ? 'com DNA latino-americano' : 'avec ADN latino-américain'}</span>
+      </h1>
+      <p class="about-hero-text">{pageMeta.description}</p>
+      <div class="about-hero-actions">
+        <a href={isEs ? '/contacto' : `/${locale}/contacto`} class="about-hero-cta">
+          <span>{labels.cta}</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#historia" class="about-hero-link">
+          {locale === 'es' ? 'Conoce nuestra historia' : locale === 'en' ? 'Our story' : locale === 'pt' ? 'Nossa história' : 'Notre histoire'}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v12M1 7l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="about-hero-scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <section class="about-stats">
+    <div class="container">
+      <div class="about-stats-grid">
+        {pageMeta.stats.map((s) => (
+          <div class="about-stat-card">
+            <span class="about-stat-number">{s.number}</span>
+            <span class="about-stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="container">
+      <div class="about-story-grid">
+        <div class="about-story-image">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+          <div class="about-story-image-badge">{locale === 'es' ? 'Lima, Peru' : 'Lima, Peru'}</div>
+        </div>
+        <div class="about-story-text">
+          <h2 class="about-section-title">{labels.story}</h2>
+          <p class="about-story-paragraph">{pageMeta.story}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-mv" id="mision-vision"><div class="container">
+    <div class="about-mv-grid">
+      <div class="about-mv-card about-mv-mision">
+        <div class="about-mv-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="about-mv-title">{labels.mision}</h2>
+        <p class="about-mv-text">{pageMeta.mision}</p>
+      </div>
+      <div class="about-mv-card about-mv-vision">
+        <div class="about-mv-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h2 class="about-mv-title">{labels.vision}</h2>
+        <p class="about-mv-text">{pageMeta.vision}</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="about-values">
+    <div class="container">
+      <h2 class="about-section-title">{labels.values}</h2>
+      <div class="about-values-grid">
+        {pageMeta.values.map((v, i) => (
+          <article class="about-value-card">
+            <div class="about-value-header">
+              <span class="about-value-num">0{i + 1}</span>
+              <h3 class="about-value-title">{v.title}</h3>
+            </div>
+            <p class="about-value-desc">{v.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-approach">
+    <div class="container">
+      <h2 class="about-section-title">{labels.approach}</h2>
+      <div class="about-approach-timeline">
+        {pageMeta.approach.map((step, i) => (
+          <div class="about-approach-step">
+            <div class="about-approach-step-num">
+              <span>{i + 1}</span>
+            </div>
+            <p class="about-approach-step-text">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta">
+    <div class="about-cta-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80" alt="" loading="lazy" />
+    </div>
+    <div class="about-cta-overlay"></div>
+    <div class="container">
+      <div class="about-cta-content">
+        <h2 class="about-cta-title">{locale === 'es' ? 'Construyamos algo grande juntos' : locale === 'en' ? 'Let\'s build something great together' : locale === 'pt' ? 'Vamos construir algo grande juntos' : 'Construisons quelque chose de grand ensemble'}</h2>
+        <a href={isEs ? '/contacto' : `/${locale}/contacto`} class="about-cta-btn">
+          {labels.cta}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    position: relative;
+    padding: var(--space-24) 0 var(--space-16);
+    overflow: hidden;
+    background-color: var(--color-deep-blue);
+  }
+
+  .about-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 30%, rgba(0,102,255,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 70% at 80% 80%, rgba(0,102,255,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .about-hero-badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-electric-blue);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid rgba(0,102,255,0.3);
+    border-radius: var(--radius-full);
+    background: rgba(0,102,255,0.06);
+    margin-bottom: var(--space-6);
+  }
+
+  .about-hero-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 800px;
+    color: var(--color-gray-100);
+    letter-spacing: -0.02em;
+  }
+
+  .about-stats {
+    padding: var(--space-10) 0;
+    background-color: var(--bg-primary);
+  }
+
+  .about-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-8);
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-xl);
+  }
+
+  .about-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .about-stat-number {
+    font-size: var(--text-5xl);
+    font-weight: 900;
+    color: var(--color-electric-blue);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .about-stat-label {
+    font-size: var(--text-sm);
+    color: var(--color-gray-400);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .about-story {
+    padding: var(--space-20) 0;
+    background-color: var(--bg-secondary);
+  }
+
+  .about-story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .about-story-image {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .about-story-image img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .about-story-image:hover img {
+    transform: scale(1.03);
+  }
+
+  .about-story-image-badge {
+    position: absolute;
+    bottom: var(--space-4);
+    left: var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-white);
+    background: rgba(10,22,40,0.7);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+  }
+
+  .about-section-title {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-6);
+    color: var(--color-white);
+  }
+
+  .about-story-paragraph {
+    font-size: var(--text-base);
+    color: var(--color-gray-300);
+    line-height: 1.9;
+    margin-bottom: 0;
+  }
+
+  .about-values {
+    padding: var(--space-20) 0;
+    background-color: var(--bg-primary);
+  }
+
+  .about-values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .about-value-card {
+    padding: var(--space-6);
+    background: linear-gradient(160deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-xl);
+    transition: all 0.3s ease;
+  }
+
+  .about-value-card:hover {
+    border-color: rgba(0,102,255,0.15);
+    transform: translateY(-3px);
+  }
+
+  .about-value-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .about-value-num {
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    color: rgba(0,102,255,0.1);
+    line-height: 1;
+  }
+
+  .about-value-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 0;
+  }
+
+  .about-value-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-400);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .about-approach {
+    padding: var(--space-20) 0;
+    background-color: var(--bg-secondary);
+  }
+
+  .about-approach-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    position: relative;
+  }
+
+  .about-approach-timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(12.5% + 24px);
+    right: calc(12.5% + 24px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-electric-blue), rgba(0,102,255,0.1));
+    border-radius: 1px;
+  }
+
+  .about-approach-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .about-approach-step-num {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-lg);
+    font-weight: 800;
+    color: var(--color-electric-blue);
+    background: rgba(0,102,255,0.1);
+    border: 2px solid rgba(0,102,255,0.2);
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  .about-approach-step:hover .about-approach-step-num {
+    background: rgba(0,102,255,0.2);
+    border-color: var(--color-electric-blue);
+    transform: scale(1.1);
+  }
+
+  .about-approach-step-text {
+    font-size: var(--text-sm);
+    color: var(--color-gray-300);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .about-cta {
+    position: relative;
+    padding: var(--space-20) 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .about-cta-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .about-cta-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.5) contrast(1.1);
+  }
+
+  .about-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.7) 100%);
+  }
+
+  .about-cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-cta-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: var(--space-8);
+    color: var(--color-white);
+  }
+
+  .about-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-electric-blue), var(--color-electric-blue-hover));
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,102,255,0.3);
+  }
+
+  .about-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,102,255,0.4);
+  }
+
+  .about-cta-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .about-cta-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  .about-mv { padding: var(--space-20) 0; background-color: var(--bg-primary); }
+  .about-mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .about-mv-card { padding: var(--space-10) var(--space-8); border-radius: var(--radius-xl); position: relative; overflow: hidden; }
+  .about-mv-mision { background: linear-gradient(160deg, rgba(0,102,255,0.08) 0%, rgba(0,102,255,0.02) 100%); border: 1px solid rgba(0,102,255,0.1); }
+  .about-mv-vision { background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255,255,255,0.06); }
+  .about-mv-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-lg); margin-bottom: var(--space-5); }
+  .about-mv-mision .about-mv-icon { background: rgba(0,102,255,0.12); color: var(--color-electric-blue); }
+  .about-mv-vision .about-mv-icon { background: rgba(255,255,255,0.05); color: var(--color-gray-200); }
+  .about-mv-title { font-size: var(--text-xl); font-weight: 800; margin-bottom: var(--space-4); color: var(--color-white); }
+  .about-mv-text { font-size: var(--text-sm); color: var(--color-gray-300); line-height: 1.9; margin-bottom: 0; }
+
+  @media (max-width: 1024px) {
+    .about-story-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+    .about-story-image img { height: 320px; }
+    .about-mv-grid { grid-template-columns: 1fr; }
+    .about-approach-timeline { grid-template-columns: repeat(2, 1fr); }
+    .about-approach-timeline::before { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .about-hero { padding: var(--space-16) 0 var(--space-10); }
+    .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-stat-number { font-size: var(--text-4xl); }
+    .about-story { padding: var(--space-12) 0; }
+    .about-mv { padding: var(--space-12) 0; }
+    .about-mv-grid { grid-template-columns: 1fr; }
+    .about-values { padding: var(--space-12) 0; }
+    .about-values-grid { grid-template-columns: 1fr; }
+    .about-approach { padding: var(--space-12) 0; }
+    .about-approach-timeline { grid-template-columns: 1fr; gap: var(--space-8); }
+    .about-cta { padding: var(--space-12) 0; }
+  }
+</style>

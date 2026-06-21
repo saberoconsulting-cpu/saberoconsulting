@@ -6,7 +6,7 @@ export const navEs: NavigationData = {
     { label: 'Industrias', href: '/#industrias' },
     { label: 'Casos e impacto', href: '/#casos' },
     { label: 'Insights', href: '/insights' },
-    { label: 'Nosotros', href: '/#nosotros' },
+    { label: 'Nosotros', href: '/nosotros' },
     { label: 'Careers', href: '/careers' },
   ],
   megaMenus: {

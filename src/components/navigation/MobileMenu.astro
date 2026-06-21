@@ -91,8 +91,9 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
 <script>
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (target.hasAttribute('data-close-mobile')) {
-      const menu = target.closest('.mobile-menu');
+    const closeTrigger = target.closest('[data-close-mobile]') as HTMLElement | null;
+    if (closeTrigger) {
+      const menu = closeTrigger.closest('.mobile-menu');
       if (menu) {
         menu.classList.remove('open');
         menu.setAttribute('aria-hidden', 'true');
@@ -116,7 +117,7 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    z-index: 1500;
   }
 
   .mobile-menu.open {
@@ -137,9 +138,13 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
     bottom: 0;
     width: 100%;
     max-width: 400px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-primary);
-    overflow-y: auto;
     box-shadow: var(--shadow-xl);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-menu-header {

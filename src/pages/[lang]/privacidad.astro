@@ -20,7 +20,7 @@ const meta: Record<string, { title: string; description: string }> = {
 };
 
 const pageMeta = meta[locale as string] || meta.es;
-const path = `/${locale}/privacidad`;
+const path = '/privacidad';
 ---
 
 <BaseLayout title={pageMeta.title} description={pageMeta.description} locale={locale as SupportedLocale} path={path}>

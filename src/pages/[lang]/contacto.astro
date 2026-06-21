@@ -35,7 +35,7 @@ const meta: Record<string, { title: string; description: string }> = {
 
 const pageMeta = meta[locale as string] || meta.es;
 const contactData = getContact(locale as SupportedLocale);
-const path = `/${locale}/contacto`;
+const path = '/contacto';
 ---
 
 <BaseLayout
