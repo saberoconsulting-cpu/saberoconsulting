@@ -9,125 +9,181 @@ interface Props {
 const { data, locale } = Astro.props;
 ---
 
-<section class="contact-page section" aria-label="Contact form">
+<section class="contact-page" aria-label="Contact form">
   <div class="container">
+    <!-- Header editorial -->
     <div class="contact-header">
-      <h1 class="contact-title">{data.title}</h1>
-      <p class="contact-subtitle">{data.subtitle}</p>
-      <div class="contact-info">
-        <a href={`mailto:${data.email}`} class="contact-email">{data.email}</a>
-        <span class="contact-response">{data.responseTime}</span>
+      <span class="contact-number">01</span>
+      <div class="contact-header-text">
+        <h1 class="contact-title" id="contact-title">{data.title}</h1>
+        <p class="contact-subtitle">{data.subtitle}</p>
+      </div>
+      <div class="contact-header-contact">
+        <a href={`mailto:${data.email}`} class="contact-header-email">{data.email}</a>
+        <span class="contact-header-response">{data.responseTime}</span>
       </div>
     </div>
 
-    <div class="contact-layout">
+    <!-- Grid: Categories + Form -->
+    <div class="contact-main">
+      <!-- Categories como tabs editoriales -->
       <div class="contact-categories">
-        <h3 class="categories-title">{data.categoriesTitle}</h3>
-        <div class="categories-grid">
+        <span class="contact-categories-label">{data.categoriesTitle}</span>
+        <div class="contact-categories-list">
           {data.categories.map((cat) => (
-            <label class="category-option">
-              <input type="radio" name="category" value={cat.value} class="category-input" />
-              <span class="category-label">{cat.label}</span>
+            <label class="contact-cat-item">
+              <input type="radio" name="category" value={cat.value} class="contact-cat-input" />
+              <span class="contact-cat-label">{cat.label}</span>
             </label>
           ))}
         </div>
       </div>
 
-      <form class="contact-form" action="https://formsubmit.co/saberoconsulting@gmail.com" method="POST" data-form>
-        <input type="hidden" name="_subject" value="Nuevo contacto SABERO Consulting" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value={locale === 'es' ? '/gracias' : `/${locale}/gracias`} />
-        <input type="hidden" name="idioma" value={locale} />
+      <!-- Form -->
+      <div class="contact-form-wrapper">
+        <div class="contact-form-led" aria-hidden="true"></div>
+        <div class="contact-form-accent" aria-hidden="true"></div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name" class="form-label">{data.form.name}</label>
-            <input type="text" id="name" name="nombre" required class="form-input" placeholder={data.form.name} />
-          </div>
-          <div class="form-group">
-            <label for="lastName" class="form-label">{data.form.lastName}</label>
-            <input type="text" id="lastName" name="apellido" required class="form-input" placeholder={data.form.lastName} />
-          </div>
-        </div>
+        <form class="contact-form" action="https://formsubmit.co/saberoconsulting@gmail.com" method="POST" data-form>
+          <input type="hidden" name="_subject" value="Nuevo contacto SABERO Consulting" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value={locale === 'es' ? '/gracias' : `/${locale}/gracias`} />
+          <input type="hidden" name="idioma" value={locale} />
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email" class="form-label">{data.form.email}</label>
-            <input type="email" id="email" name="email" required class="form-input" placeholder={data.form.email} />
-          </div>
-          <div class="form-group">
-            <label for="company" class="form-label">{data.form.company}</label>
-            <input type="text" id="company" name="empresa" class="form-input" placeholder={data.form.company} />
-          </div>
-        </div>
+          <div class="form-body">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name" class="form-label">{data.form.name}</label>
+                <input type="text" id="name" name="nombre" required class="form-input" placeholder={`Ej: Carlos`} />
+                <span class="form-line"></span>
+              </div>
+              <div class="form-field">
+                <label for="lastName" class="form-label">{data.form.lastName}</label>
+                <input type="text" id="lastName" name="apellido" required class="form-input" placeholder={`Ej: García`} />
+                <span class="form-line"></span>
+              </div>
+            </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="country" class="form-label">{data.form.country}</label>
-            <input type="text" id="country" name="pais" class="form-input" placeholder={data.form.country} />
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email" class="form-label">{data.form.email}</label>
+                <input type="email" id="email" name="email" required class="form-input" placeholder={`ej: carlos@empresa.com`} />
+                <span class="form-line"></span>
+              </div>
+              <div class="form-field">
+                <label for="company" class="form-label">{data.form.company}</label>
+                <input type="text" id="company" name="empresa" class="form-input" placeholder={`Ej: Mi Empresa S.A.C.`} />
+                <span class="form-line"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="country" class="form-label">{data.form.country}</label>
+                <input type="text" id="country" name="pais" class="form-input" placeholder={`Ej: Perú`} />
+                <span class="form-line"></span>
+              </div>
+              <div class="form-field">
+                <label for="position" class="form-label">{data.form.position}</label>
+                <input type="text" id="position" name="cargo" class="form-input" placeholder={`Ej: CEO`} />
+                <span class="form-line"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="companySize" class="form-label">{data.form.companySize}</label>
+                <div class="form-select-wrap">
+                  <select id="companySize" name="tamano_empresa" class="form-input form-select">
+                    <option value="">Seleccionar</option>
+                    {data.companySizes.map((size) => (
+                      <option value={size.value}>{size.label}</option>
+                    ))}
+                  </select>
+                  <svg class="form-select-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+                </div>
+                <span class="form-line"></span>
+              </div>
+              <div class="form-field">
+                <label for="industry" class="form-label">{data.form.industry}</label>
+                <div class="form-select-wrap">
+                  <select id="industry" name="industria" class="form-input form-select">
+                    <option value="">Seleccionar</option>
+                    {data.industries.map((ind) => (
+                      <option value={ind.value}>{ind.label}</option>
+                    ))}
+                  </select>
+                  <svg class="form-select-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+                </div>
+                <span class="form-line"></span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="whatsapp" class="form-label">{data.form.whatsapp}</label>
+              <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder={`+51 999 888 777`} />
+              <span class="form-line"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="message" class="form-label">{data.form.message}</label>
+              <textarea id="message" name="mensaje" rows="4" class="form-input form-textarea" placeholder={data.form.message}></textarea>
+              <span class="form-line"></span>
+            </div>
+
+            <div class="form-checkboxes">
+              <label class="form-checkbox">
+                <input type="checkbox" name="privacidad" required class="checkbox-input" />
+                <span class="checkbox-box">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                </span>
+                <span class="checkbox-text">{data.form.privacy}</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" name="newsletter" class="checkbox-input" />
+                <span class="checkbox-box">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                </span>
+                <span class="checkbox-text">{data.form.newsletter}</span>
+              </label>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="position" class="form-label">{data.form.position}</label>
-            <input type="text" id="position" name="cargo" class="form-input" placeholder={data.form.position} />
-          </div>
-        </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="companySize" class="form-label">{data.form.companySize}</label>
-            <select id="companySize" name="tamano_empresa" class="form-input form-select">
-              <option value="">{data.form.companySize}</option>
-              {data.companySizes.map((size) => (
-                <option value={size.value}>{size.label}</option>
-              ))}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="industry" class="form-label">{data.form.industry}</label>
-            <select id="industry" name="industria" class="form-input form-select">
-              <option value="">{data.form.industry}</option>
-              {data.industries.map((ind) => (
-                <option value={ind.value}>{ind.label}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+          <button type="submit" class="form-btn">
+            <span>{data.form.submit}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
 
-        <div class="form-group">
-          <label for="whatsapp" class="form-label">{data.form.whatsapp}</label>
-          <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder={data.form.whatsapp} />
-        </div>
-
-        <div class="form-group">
-          <label for="message" class="form-label">{data.form.message}</label>
-          <textarea id="message" name="mensaje" rows="5" class="form-input form-textarea" placeholder={data.form.message}></textarea>
-        </div>
-
-        <div class="form-checkboxes">
-          <label class="checkbox-label">
-            <input type="checkbox" name="privacidad" required class="checkbox-input" />
-            <span class="checkbox-text">{data.form.privacy}</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" name="newsletter" class="checkbox-input" />
-            <span class="checkbox-text">{data.form.newsletter}</span>
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary form-submit">{data.form.submit}</button>
-      </form>
+    <!-- Footer badges -->
+    <div class="contact-footer">
+      <div class="contact-footer-item">
+        <div class="contact-footer-dot" style="background: #0B2F7D;"></div>
+        <span>Email: <a href={`mailto:${data.email}`}>{data.email}</a></span>
+      </div>
+      <div class="contact-footer-item">
+        <div class="contact-footer-dot" style="background: #E53935;"></div>
+        <span>WhatsApp: <a href={`https://wa.me/${data.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">{data.whatsapp}</a></span>
+      </div>
+      <div class="contact-footer-item">
+        <div class="contact-footer-dot" style="background: #2F80FF;"></div>
+        <span>{data.responseTime}</span>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  document.querySelectorAll('.category-input').forEach((el) => {
-    const input = el as HTMLInputElement;
-    input.addEventListener('change', () => {
-      if (input.checked) {
+  document.querySelectorAll('.contact-cat-input').forEach((el: HTMLInputElement) => {
+    el.addEventListener('change', () => {
+      if (el.checked) {
         const hiddenCat = document.querySelector('input[name="categoria"]') as HTMLInputElement | null;
-        if (hiddenCat) hiddenCat.value = input.value;
+        if (hiddenCat) hiddenCat.value = el.value;
       }
     });
   });
@@ -143,202 +199,520 @@ const { data, locale } = Astro.props;
 </script>
 
 <style>
+  /* ============================================
+     CONTACT PAGE — Editorial Premium
+     Fondo crema + numeración + acentos azul/rojo
+  ============================================ */
   .contact-page {
-    padding-top: var(--space-16);
+    background: #FAF9F5;
+    padding: 80px 0;
+    position: relative;
   }
 
+  /* ===== HEADER EDITORIAL ===== */
   .contact-header {
     text-align: center;
-    margin-bottom: var(--space-12);
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E0D8CC;
+  }
+
+  .contact-number {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #2F80FF;
+    letter-spacing: 2px;
+    background: #E8F0FF;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
   }
 
   .contact-title {
-    font-size: var(--text-4xl);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 800;
-    margin-bottom: var(--space-4);
+    color: #0A1628;
+    margin: 0 auto 12px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    max-width: 720px;
   }
 
   .contact-subtitle {
-    font-size: var(--text-lg);
-    color: var(--text-tertiary);
-    max-width: 500px;
-    margin: 0 auto var(--space-6);
-  }
-
-  .contact-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-6);
-    flex-wrap: wrap;
-  }
-
-  .contact-email {
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: var(--accent-color);
-  }
-
-  .contact-response {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-  }
-
-  .contact-layout {
-    max-width: 800px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5E6472;
     margin: 0 auto;
+    max-width: 560px;
   }
 
-  .contact-categories {
-    margin-bottom: var(--space-10);
-  }
-
-  .categories-title {
-    font-size: var(--text-lg);
-    font-weight: 700;
-    margin-bottom: var(--space-4);
-  }
-
-  .categories-grid {
+  .contact-header-contact {
     display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
     flex-wrap: wrap;
-    gap: var(--space-2);
   }
 
-  .category-option {
+  .contact-header-email {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0B2F7D;
+    text-decoration: none;
+  }
+
+  .contact-header-email:hover {
+    color: #E53935;
+  }
+
+  .contact-header-response {
+    font-size: 0.75rem;
+    color: #7A8290;
+  }
+
+  .contact-header-email {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0B2F7D;
+    text-decoration: none;
+    margin-bottom: 4px;
+  }
+
+  .contact-header-email:hover {
+    color: #E53935;
+  }
+
+  .contact-header-response {
+    font-size: 0.75rem;
+    color: #7A8290;
+  }
+
+  /* ===== MAIN GRID ===== */
+  .contact-main {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ===== CATEGORÍAS ===== */
+  .contact-categories {
+    position: sticky;
+    top: 120px;
+  }
+
+  .contact-categories-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7A8290;
+    margin-bottom: 20px;
+  }
+
+  .contact-categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-cat-item {
     cursor: pointer;
+    display: block;
   }
 
-  .category-input {
+  .contact-cat-input {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
   }
 
-  .category-label {
-    display: inline-block;
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-full);
-    transition: all var(--transition-fast);
-    cursor: pointer;
+  .contact-cat-label {
+    display: block;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5E6472;
+    border-left: 2px solid transparent;
+    transition: all 250ms ease;
+    border-radius: 0 6px 6px 0;
   }
 
-  .category-input:checked + .category-label {
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-    background-color: rgba(0, 102, 255, 0.1);
+  .contact-cat-label:hover {
+    color: #0A1628;
+    background: #F0EDE6;
+    border-left-color: #B8C4D4;
   }
 
-  .category-label:hover {
-    border-color: var(--accent-color);
+  .contact-cat-input:checked + .contact-cat-label {
+    color: #0B2F7D;
+    font-weight: 700;
+    background: #E8F0FF;
+    border-left-color: #0B2F7D;
   }
 
+  /* ===== FORM WRAPPER ===== */
+  .contact-form-wrapper {
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid #E0D8CC;
+    border-radius: 16px;
+    padding: 40px 40px 48px;
+    overflow: hidden;
+  }
+
+  .contact-form-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0B2F7D, #E53935, #0B2F7D);
+    background-size: 200% 100%;
+    animation: contactAccentMove 3s ease-in-out infinite;
+  }
+
+  @keyframes contactAccentMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .contact-form-led {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(11, 47, 125, 0.03), rgba(229, 57, 53, 0.03), transparent);
+    animation: contactLedSweep 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes contactLedSweep {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* ===== FORM ===== */
   .contact-form {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    align-items: center;
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
   }
 
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-5);
+    gap: 20px;
   }
 
-  .form-group {
+  .form-field {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: 6px;
+    position: relative;
   }
 
   .form-label {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #3A4050;
   }
 
   .form-input {
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--text-sm);
-    color: var(--text-primary);
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    transition: border-color var(--transition-fast);
+    padding: 12px 0;
+    font-size: 0.95rem;
+    color: #0A1628;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #D8D0C4;
+    transition: border-color 250ms ease;
     font-family: inherit;
-  }
-
-  .form-input:focus {
+    width: 100%;
     outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    border-radius: 0;
   }
 
   .form-input::placeholder {
-    color: var(--text-tertiary);
+    color: #B8B0A4;
+    font-weight: 400;
+  }
+
+  .form-input:hover {
+    border-color: #B8B0A4;
+  }
+
+  .form-input:focus {
+    border-color: #0B2F7D;
+  }
+
+  .form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #0B2F7D;
+    transition: width 350ms ease;
+  }
+
+  .form-input:focus ~ .form-line {
+    width: 100%;
+  }
+
+  .form-select-wrap {
+    position: relative;
   }
 
   .form-select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237B8291' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 36px;
+    padding-right: 28px;
+    cursor: pointer;
+  }
+
+  .form-select-icon {
+    position: absolute;
+    right: 0;
+    bottom: 14px;
+    color: #7A8290;
+    pointer-events: none;
+    transition: transform 250ms ease;
+  }
+
+  .form-input:focus ~ .form-select-icon {
+    transform: rotate(180deg);
+    color: #0B2F7D;
   }
 
   .form-textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 80px;
+    line-height: 1.6;
   }
 
+  /* Checkboxes */
   .form-checkboxes {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: 12px;
+    padding-top: 4px;
   }
 
-  .checkbox-label {
+  .form-checkbox {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-3);
+    gap: 10px;
     cursor: pointer;
   }
 
   .checkbox-input {
-    margin-top: 4px;
-    width: 16px;
-    height: 16px;
-    accent-color: var(--accent-color);
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .checkbox-box {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #C8C0B4;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease;
+    margin-top: 2px;
+  }
+
+  .checkbox-box svg {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 200ms ease;
+    color: #FFFFFF;
+  }
+
+  .checkbox-input:checked + .checkbox-box {
+    background: #0B2F7D;
+    border-color: #0B2F7D;
+  }
+
+  .checkbox-input:checked + .checkbox-box svg {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .checkbox-text {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
+    font-size: 0.82rem;
+    color: #5E6472;
+    line-height: 1.5;
   }
 
-  .form-submit {
-    align-self: flex-start;
-    padding: var(--space-3) var(--space-8);
-    font-size: var(--text-base);
+  /* Submit button */
+  .form-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding: 16px 40px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: #0B2F7D;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 300ms ease;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 500ms ease;
+  }
+
+  .form-btn:hover::before {
+    transform: translateX(100%);
+  }
+
+  .form-btn:hover {
+    background: #0A2566;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(11, 47, 125, 0.2);
+  }
+
+  .form-btn svg {
+    transition: transform 300ms ease;
+  }
+
+  .form-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ===== FOOTER CONTACT ===== */
+  .contact-footer {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E0D8CC;
+    flex-wrap: wrap;
+  }
+
+  .contact-footer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: #5E6472;
+  }
+
+  .contact-footer-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .contact-footer-item a {
+    color: #0B2F7D;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .contact-footer-item a:hover {
+    color: #E53935;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .contact-main {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .contact-categories {
+      position: static;
+    }
   }
 
   @media (max-width: 640px) {
+    .contact-page {
+      padding: 48px 0 60px;
+    }
+
+    .contact-header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+    }
+
+    .contact-title {
+      font-size: 1.6rem;
+    }
+
+    .contact-form-wrapper {
+      padding: 28px 20px 36px;
+      border-radius: 12px;
+    }
+
     .form-row {
       grid-template-columns: 1fr;
     }
 
-    .contact-title {
-      font-size: var(--text-3xl);
+    .contact-footer {
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .form-submit {
+    .form-btn {
       width: 100%;
-      text-align: center;
+      justify-content: center;
+    }
+
+    .contact-categories {
+      margin-bottom: 8px;
+    }
+
+    .contact-categories-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .contact-cat-label {
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+
+    .contact-cat-input:checked + .contact-cat-label {
+      border-left-color: transparent;
+      border-bottom-color: #0B2F7D;
     }
   }
 </style>
