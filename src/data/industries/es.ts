@@ -114,6 +114,7 @@ export const industriesEs: IndustriesData = {
     {
       id: 'logistica',
       title: 'Logística y operaciones',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxA40Gtz5h0HkpD6otEEv2_S-QgnHR-44Bt1nkdl2aXQ&s=10',
       context: 'La logística moderna exige visibilidad en tiempo real, coordinación entre actores y eficiencia operativa. Las empresas necesitan sistemas que integren tracking, gestión de flotas, almacenes y procesos para operar sin fricción.',
       challenges: [
         'Trazabilidad y visibilidad en tiempo real de operaciones',

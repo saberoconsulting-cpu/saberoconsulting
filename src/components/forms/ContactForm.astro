@@ -1,3 +1,4 @@
+
 ---
 import type { ContactData } from '../../i18n/utils/types';
 
@@ -13,7 +14,6 @@ const { data, locale } = Astro.props;
   <div class="container">
     <!-- Header editorial -->
     <div class="contact-header">
-      <span class="contact-number">01</span>
       <div class="contact-header-text">
         <h1 class="contact-title" id="contact-title">{data.title}</h1>
         <p class="contact-subtitle">{data.subtitle}</p>
@@ -47,9 +47,10 @@ const { data, locale } = Astro.props;
         <form class="contact-form" action="https://formsubmit.co/saberoconsulting@gmail.com" method="POST" data-form>
           <input type="hidden" name="_subject" value="Nuevo contacto SABERO Consulting" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_captcha" value="true" />
           <input type="hidden" name="_next" value={locale === 'es' ? '/gracias' : `/${locale}/gracias`} />
-          <input type="hidden" name="idioma" value={locale} />
+          <input type="hidden" name="_autoresponse" value="Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos en menos de 24 horas." />
+          <input type="hidden" name="_idioma" value={locale} />
 
           <div class="form-body">
             <div class="form-row">
@@ -179,10 +180,10 @@ const { data, locale } = Astro.props;
 </section>
 
 <script>
-  document.querySelectorAll('.contact-cat-input').forEach((el: HTMLInputElement) => {
+  document.querySelectorAll<HTMLInputElement>('.contact-cat-input').forEach((el) => {
     el.addEventListener('change', () => {
       if (el.checked) {
-        const hiddenCat = document.querySelector('input[name="categoria"]') as HTMLInputElement | null;
+        const hiddenCat = document.querySelector<HTMLInputElement>('input[name="categoria"]');
         if (hiddenCat) hiddenCat.value = el.value;
       }
     });
@@ -217,22 +218,13 @@ const { data, locale } = Astro.props;
     border-bottom: 1px solid #E0D8CC;
   }
 
-  .contact-number {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #2F80FF;
-    letter-spacing: 2px;
-    background: #E8F0FF;
-    padding: 5px 14px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-  }
-
   .contact-title {
     font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 800;
-    color: #0A1628;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0 auto 12px;
     letter-spacing: -0.03em;
     line-height: 1.1;
@@ -258,35 +250,49 @@ const { data, locale } = Astro.props;
   .contact-header-email {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #0B2F7D;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-decoration: none;
   }
 
   .contact-header-email:hover {
-    color: #E53935;
+    opacity: 0.8;
   }
 
   .contact-header-response {
     font-size: 0.75rem;
-    color: #7A8290;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
   }
 
   .contact-header-email {
     display: block;
     font-size: 0.9rem;
     font-weight: 700;
-    color: #0B2F7D;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-decoration: none;
     margin-bottom: 4px;
   }
 
   .contact-header-email:hover {
-    color: #E53935;
+    opacity: 0.8;
   }
 
   .contact-header-response {
     font-size: 0.75rem;
-    color: #7A8290;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
   }
 
   /* ===== MAIN GRID ===== */
@@ -482,8 +488,17 @@ const { data, locale } = Astro.props;
 
   .form-select {
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     padding-right: 28px;
     cursor: pointer;
+    background: transparent;
+  }
+
+  .form-select option {
+    background: #FFFFFF;
+    color: #0A1628;
+    padding: 8px 12px;
   }
 
   .form-select-icon {

@@ -1,0 +1,481 @@
+---
+// ============================================
+// SABERO Consulting - Industry Cards
+// 5 cards en una sola fila con hover
+// ============================================
+
+const cards = [
+  {
+    id: 'fintech',
+    number: '02',
+    title: 'Fintech y pagos',
+    context: 'El ecosistema financiero digital requiere soluciones seguras, trazables y escalables. Procesar pagos, gestionar wallets, integrar pasarelas y mantener la confianza del usuario son desafíos constantes que definen la calidad del servicio financiero.',
+    challenges: [
+      'Seguridad, cumplimiento y trazabilidad de transacciones',
+      'Experiencia de checkout sin fricción',
+      'Conciliación y reporting financiero',
+      'Integración con múltiples pasarelas y proveedores',
+    ],
+    solutions: [
+      'Procesamiento de pagos con integración modular',
+      'Dashboards operativos para monitoreo y conciliación',
+      'Wallets y soluciones de banking digital',
+      'Sistemas de trazabilidad y reporting financiero',
+    ],
+    capabilities: ['Integraciones y automatización', 'Cloud y DevOps', 'Data y analítica', 'Arquitectura de producto'],
+    cta: 'Ver casos Fintech',
+    ctaHref: '#',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKaYh2HX6ygKHCL49k2De4fH6qN1j8eBgMzL66Kz_Oww&s=10',
+  },
+  {
+    id: 'marketplaces',
+    number: '03',
+    title: 'Marketplaces y plataformas',
+    context: 'Las plataformas multiusuario conectan oferta, demanda y operación en un solo ecosistema digital. Desde marketplaces B2B hasta plataformas de servicios, la clave está en orquestar roles, transacciones y experiencia de usuario a escala.',
+    challenges: [
+      'Onboarding y gestión de múltiples perfiles de usuario',
+      'Catálogo, búsqueda y operación a escala',
+      'Flujos de transacción, comisiones y pagos',
+      'Escalabilidad técnica para picos de demanda',
+    ],
+    solutions: [
+      'Portales B2B y B2C con experiencia unificada',
+      'Marketplaces multi-vendedor con gestión de catálogo',
+      'Paneles de administración y flujos de operación',
+      'Sistemas de matching, booking y reservas',
+    ],
+    capabilities: ['Desarrollo de software a medida', 'UX y diseño de producto', 'Arquitectura de producto', 'Evolución continua'],
+    cta: 'Ver casos Marketplaces',
+    ctaHref: '#',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtQ0y3v4hJXwW4zxUmUizz8UG3C3sqE4H6-JxLJ0JpDA&s=10',
+  },
+  {
+    id: 'edtech',
+    number: '04',
+    title: 'Educación y EdTech',
+    context: 'La educación digital ha pasado de ser complemento a ser eje central de la experiencia formativa. Las instituciones necesitan plataformas que integren contenido, gestión académica, seguimiento de estudiantes y experiencias de aprendizaje efectivas.',
+    challenges: [
+      'Acceso y experiencia de usuario en entornos educativos',
+      'Seguimiento de progreso y rendimiento académico',
+      'Gestión de contenido, cursos y evaluaciones',
+      'Integración con sistemas académicos existentes',
+    ],
+    solutions: [
+      'Experiencias digitales de aprendizaje y campus virtuales',
+      'Portales de gestión académica y dashboards',
+      'Sistemas de seguimiento y reporting educativo',
+      'Plataformas de contenido y evaluación',
+    ],
+    capabilities: ['Producto digital', 'Data y analítica', 'Modernización de sistemas', 'Plataformas web'],
+    cta: 'Ver casos EdTech',
+    ctaHref: '#',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrWYGiS4pujuoUoMhCNfo3xgZxfqTrmY2Q_ES4L_5Lhw&s=10',
+  },
+  {
+    id: 'logistica',
+    number: '05',
+    title: 'Logística y operaciones',
+    context: 'La logística moderna exige visibilidad en tiempo real, coordinación entre actores y eficiencia operativa. Las empresas necesitan sistemas que integren tracking, gestión de flotas, almacenes y procesos para operar sin fricción.',
+    challenges: [
+      'Trazabilidad y visibilidad en tiempo real de operaciones',
+      'Eficiencia en rutas, flotas y almacenes',
+      'Coordinación entre múltiples actores logísticos',
+      'Automatización de procesos operativos repetitivos',
+    ],
+    solutions: [
+      'Gestión operativa y dashboards de control logístico',
+      'Automatización de procesos y flujos operativos',
+      'Sistemas de tracking y visibilidad en tiempo real',
+      'Plataformas de coordinación entre actores',
+    ],
+    capabilities: ['Automatización', 'Cloud y DevOps', 'Data y analítica', 'Sistemas internos'],
+    cta: 'Ver casos Logística',
+    ctaHref: '#',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEOH5FrdOAp5vOwqRKkGtkrr_CCtomOrPaH1QHZxd27g&s=10',
+  },
+  {
+    id: 'internas',
+    number: '06',
+    title: 'Soluciones internas empresariales',
+    context: 'La digitalización interna es uno de los mayores generadores de eficiencia en las organizaciones. Sistemas desconectados, procesos manuales y poca visibilidad operativa frenan la capacidad de crecimiento y respuesta del negocio.',
+    challenges: [
+      'Integración de sistemas legacy con nuevas plataformas',
+      'Automatización de procesos manuales internos',
+      'Visibilidad y control de operaciones en tiempo real',
+      'Escalabilidad y seguridad en entornos corporativos',
+    ],
+    solutions: [
+      'Plataformas internas de gestión empresarial',
+      'Automatización de flujos de trabajo y procesos',
+      'Dashboards de control y reporting ejecutivo',
+      'Modernización de sistemas legacy',
+    ],
+    capabilities: ['Automatización', 'Cloud y DevOps', 'Data y analítica', 'Sistemas internos'],
+    cta: 'Ver casos Internas',
+    ctaHref: '#',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlEJmWluUNfneHhSU9oBii_prJePYV-ORma-DjhZewDw&s=10',
+  },
+];
+---
+
+<section class="industry-cards-section" id="industry-cards">
+  <div class="container">
+    <div class="industry-cards-heading">
+      <h2 class="industry-cards-title">Trabajamos cerca de ti</h2>
+      <p class="industry-cards-subtitle">Cada industria tiene procesos, métricas y retos distintos. SABERO adapta producto, arquitectura y experiencia según ese contexto.</p>
+    </div>
+    <div class="industry-cards-row">
+      {cards.map((card) => (
+        <article class="industry-card" id={card.id}>
+          <!-- Imagen de fondo -->
+          <div class="industry-card-bg">
+            <img src={card.image} alt="" class="industry-card-bg-img" loading="lazy" />
+          </div>
+
+          <!-- Overlay oscuro -->
+          <div class="industry-card-overlay"></div>
+
+          <!-- Contenido visible siempre -->
+          <div class="industry-card-content">
+            <div class="industry-card-header">
+              <span class="industry-card-number">{card.number}</span>
+              <h3 class="industry-card-title">{card.title}</h3>
+            </div>
+            <p class="industry-card-context">{card.context}</p>
+          </div>
+
+          <!-- Contenido hover -->
+          <div class="industry-card-hover">
+            <div class="industry-card-hover-inner">
+              <div class="industry-card-hover-col">
+                <h4 class="industry-card-hover-title">Retos del sector</h4>
+                <ul class="industry-card-hover-list">
+                  {card.challenges.map((ch) => (
+                    <li class="industry-card-hover-item">{ch}</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="industry-card-hover-col">
+                <h4 class="industry-card-hover-title">Soluciones SABERO</h4>
+                <ul class="industry-card-hover-list">
+                  {card.solutions.map((sol) => (
+                    <li class="industry-card-hover-item">{sol}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="industry-card-capabilities">
+              <span class="industry-card-capabilities-label">Capacidades relacionadas</span>
+              <div class="industry-card-capabilities-tags">
+                {card.capabilities.map((cap) => (
+                  <span class="industry-card-capabilities-tag">{cap}</span>
+                ))}
+              </div>
+            </div>
+
+            <a href={card.ctaHref} class="industry-card-cta">
+              {card.cta}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .industry-cards-section {
+    padding: 40px 0 60px;
+    background: #FFFFFF;
+  }
+
+  .industry-cards-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .industry-cards-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #E62325 0%, #1D5BF1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .industry-cards-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #3A4050;
+    margin: 0 auto;
+    max-width: 640px;
+  }
+
+  .industry-cards-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .industry-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 380px;
+    cursor: pointer;
+    border: 1px solid #E8ECF2;
+    transition: all 400ms ease;
+  }
+
+  .industry-card:hover {
+    border-color: #E62325;
+    box-shadow: 0 8px 32px rgba(230, 35, 37, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .industry-card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .industry-card-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .industry-card:hover .industry-card-bg-img {
+    transform: scale(1.08);
+  }
+
+  .industry-card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.7) 100%);
+    transition: opacity 400ms ease;
+  }
+
+  .industry-card:hover .industry-card-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+  }
+
+  /* === Contenido visible siempre === */
+  .industry-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 380px;
+    transition: opacity 300ms ease;
+  }
+
+  .industry-card:hover .industry-card-content {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .industry-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .industry-card-number {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: rgba(230, 35, 37, 0.8);
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .industry-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .industry-card-context {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* === Contenido hover === */
+  .industry-card-hover {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    opacity: 0;
+    transition: opacity 400ms ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.3) transparent;
+  }
+
+  .industry-card-hover::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .industry-card-hover::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+  }
+
+  .industry-card:hover .industry-card-hover {
+    opacity: 1;
+  }
+
+  .industry-card-hover-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .industry-card-hover-col {
+    flex: 1;
+  }
+
+  .industry-card-hover-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #E62325;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .industry-card-hover-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .industry-card-hover-item {
+    font-size: 0.65rem;
+    line-height: 1.35;
+    color: rgba(255,255,255,0.9);
+    padding-left: 10px;
+    position: relative;
+  }
+
+  .industry-card-hover-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #E62325;
+  }
+
+  .industry-card-capabilities {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .industry-card-capabilities-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .industry-card-capabilities-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+
+  .industry-card-capabilities-tag {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .industry-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    background: #E62325;
+    text-decoration: none;
+    padding: 3px 8px;
+    border-radius: 4px;
+    transition: all 300ms ease;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+
+  .industry-card-cta:hover {
+    background: #C41E20;
+    box-shadow: 0 4px 12px rgba(230, 35, 37, 0.25);
+  }
+
+  .industry-card-cta svg {
+    width: 8px;
+    height: 8px;
+    transition: transform 300ms ease;
+  }
+
+  .industry-card-cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 1200px) {
+    .industry-cards-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .industry-cards-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .industry-cards-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

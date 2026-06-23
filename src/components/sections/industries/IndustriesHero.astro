@@ -14,32 +14,35 @@ const { sectors } = content;
 ---
 
 <section class="industries-hero" id="industrias" aria-label={content.title}>
+  <!-- Background image -->
+  <div class="industries-hero-bg">
+    <div class="industries-hero-image"></div>
+  </div>
+
   <div class="container">
-    <!-- Intro -->
-    <div class="industries-hero-intro">
-      <div class="industries-hero-intro-grid">
-        <div class="industries-hero-intro-left">
-          <span class="industries-hero-eyebrow">Expertise sectorial</span>
+    <div class="industries-hero-content">
+      <!-- Intro -->
+      <div class="industries-hero-intro">
+        <div class="industries-hero-intro-centered">
           <h2 class="industries-hero-title">{content.title}</h2>
-        </div>
-        <div class="industries-hero-intro-right">
-          <p class="industries-hero-subtitle">{content.subtitle}</p>
+          <p class="industries-hero-subtitle" id="typewriter-text"></p>
         </div>
       </div>
-    </div>
 
-    <!-- Índice visual -->
-    <div class="industries-hero-index">
-      <div class="industries-hero-index-grid">
-        {sectors.map((sector, i) => (
-          <a href={`#${sector.id}`} class="industries-hero-index-item">
-            <span class="industries-hero-index-num">0{i + 1}</span>
-            <span class="industries-hero-index-label">{sector.title}</span>
-            <svg class="industries-hero-index-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        ))}
+      <!-- Índice visual -->
+      <div class="industries-hero-index">
+        <div class="industries-hero-index-grid">
+          {sectors.map((sector, i) => (
+            <a href={`#${sector.id}`} class="industries-hero-index-item">
+              <div class="industries-hero-index-item-bg"></div>
+              <span class="industries-hero-index-num">0{i + 1}</span>
+              <span class="industries-hero-index-label">{sector.title}</span>
+              <svg class="industries-hero-index-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -47,53 +50,94 @@ const { sectors } = content;
 
 <style>
   .industries-hero {
-    background: #FFFFFF;
-    padding: 120px 0 0;
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .industries-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #E62325 0%, #753AA6 45%, #1D5BF1 100%);
+    z-index: 2;
+  }
+
+  .industries-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .industries-hero-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQSHuipJ6_cKGXotozTdjmv7fVWMyk0z06M0CIf_fXww&s=10');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .industries-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 80px 0;
   }
 
   .industries-hero-intro {
-    padding-bottom: 80px;
+    padding-bottom: 60px;
   }
 
-  .industries-hero-intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
-    align-items: start;
-  }
-
-  .industries-hero-eyebrow {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #2F80FF;
-    background: #F0F5FF;
-    padding: 4px 12px;
-    border-radius: 4px;
-    margin-bottom: 20px;
+  .industries-hero-intro-centered {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .industries-hero-title {
     font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 800;
-    color: #0A1628;
-    margin: 0;
+    background: linear-gradient(135deg, #E62325 0%, #1D5BF1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 24px 0;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
 
   .industries-hero-subtitle {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #5E6472;
-    margin: 0;
-    max-width: 540px;
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    line-height: 1.5;
+    color: #FFFFFF;
+    margin: 0 auto;
+    max-width: 800px;
+    min-height: 2.8em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 10px rgba(230, 35, 37, 0.5), 0 0 20px rgba(230, 35, 37, 0.3);
   }
 
+  .industries-hero-subtitle::after {
+    content: '|';
+    display: inline-block;
+    margin-left: 2px;
+    color: #E62325;
+    animation: blink 0.7s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+
   .industries-hero-index {
-    padding-bottom: 80px;
+    padding-bottom: 0;
   }
 
   .industries-hero-index-grid {
@@ -103,28 +147,47 @@ const { sectors } = content;
   }
 
   .industries-hero-index-item {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 14px;
     padding: 16px 20px;
-    border: 1px solid #E8ECF2;
+    border: 1px solid #E0E4EC;
     border-radius: 10px;
     text-decoration: none;
     transition: all 300ms ease;
     background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  .industries-hero-index-item-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEQtbvgKqsXdGDdRH8UkmqqsS3wdPge_--VBSe5U5F6Q&s=10');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
   }
 
   .industries-hero-index-item:hover {
     border-color: #2F80FF;
-    background: #F8FAFF;
-    box-shadow: 0 4px 16px rgba(47, 128, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(47, 128, 255, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .industries-hero-index-item:hover .industries-hero-index-item-bg {
+    opacity: 0.25;
   }
 
   .industries-hero-index-num {
+    position: relative;
+    z-index: 1;
     font-size: 0.7rem;
     font-weight: 700;
-    color: #2F80FF;
-    background: #F0F5FF;
+    color: #E62325;
+    background: rgba(230, 35, 37, 0.08);
     padding: 3px 8px;
     border-radius: 4px;
     letter-spacing: 1px;
@@ -132,6 +195,8 @@ const { sectors } = content;
   }
 
   .industries-hero-index-label {
+    position: relative;
+    z-index: 1;
     font-size: 0.85rem;
     font-weight: 600;
     color: #0A1628;
@@ -139,7 +204,9 @@ const { sectors } = content;
   }
 
   .industries-hero-index-arrow {
-    color: #C8D0DC;
+    position: relative;
+    z-index: 1;
+    color: #C0C8D4;
     flex-shrink: 0;
     transition: transform 300ms ease, color 300ms ease;
   }
@@ -150,19 +217,38 @@ const { sectors } = content;
   }
 
   @media (max-width: 1024px) {
-    .industries-hero-intro-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
     .industries-hero-index-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 640px) {
-    .industries-hero { padding: 80px 0 0; }
-    .industries-hero-intro { padding-bottom: 48px; }
-    .industries-hero-index { padding-bottom: 48px; }
+    .industries-hero { min-height: 400px; }
+    .industries-hero-content { padding: 60px 0; }
+    .industries-hero-intro { padding-bottom: 40px; }
     .industries-hero-index-grid { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('typewriter-text');
+    if (!el) return;
+
+    const text = "Cada industria tiene procesos, métricas y retos distintos. Adaptamos producto, arquitectura y experiencia según tu contexto.";
+    let index = 0;
+    el.textContent = '';
+
+    function type() {
+      if (index < text.length) {
+        el.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 35);
+      }
+    }
+
+    // Pequeña pausa antes de empezar
+    setTimeout(type, 500);
+  });
+</script>

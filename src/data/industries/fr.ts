@@ -114,6 +114,7 @@ export const industriesFr: IndustriesData = {
     {
       id: 'logistica',
       title: 'Logistique et opérations',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxA40Gtz5h0HkpD6otEEv2_S-QgnHR-44Bt1nkdl2aXQ&s=10',
       context: 'La logistique moderne exige une visibilité en temps réel, une coordination entre acteurs et une efficacité opérationnelle. Les entreprises ont besoin de systèmes intégrant tracking, gestion de flotte, entrepôts et processus.',
       challenges: [
         'Traçabilité et visibilité en temps réel des opérations',

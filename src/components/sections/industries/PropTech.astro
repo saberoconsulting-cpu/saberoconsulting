@@ -15,69 +15,80 @@ const { sector, index, isLast } = Astro.props;
 
 <article class="industry-block" id={sector.id}>
   <div class="container">
-    <!-- Header -->
-    <div class="industry-block-header">
-      <span class="industry-block-number">0{index + 1}</span>
-      <h3 class="industry-block-title">{sector.title}</h3>
-    </div>
 
-    <!-- Contexto -->
-    <div class="industry-block-context">
-      <p class="industry-block-context-text">{sector.context}</p>
-    </div>
-
-    <!-- Grid: Retos + Soluciones -->
-    <div class="industry-block-grid">
-      <div class="industry-block-col">
-        <div class="industry-block-col-header">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="7" stroke="#2F80FF" stroke-width="1.2"/>
-            <path d="M8 5v3.5M8 11v.5" stroke="#2F80FF" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <h4 class="industry-block-col-title">Retos del sector</h4>
+    <!-- Carrusel automático con iconos reales -->
+    <div class="industry-block-carousel">
+      <div class="industry-block-carousel-track">
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/1055/1055666.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">Plataformas web</span>
         </div>
-        <ul class="industry-block-list">
-          {sector.challenges.map((ch) => (
-            <li class="industry-block-list-item">{ch}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="industry-block-col">
-        <div class="industry-block-col-header">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 1v14M1 8h14" stroke="#2F80FF" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="8" cy="8" r="3" fill="#2F80FF" opacity="0.2"/>
-          </svg>
-          <h4 class="industry-block-col-title">Soluciones SABERO</h4>
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/2285/2285611.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">Arquitectura de producto</span>
         </div>
-        <ul class="industry-block-list">
-          {sector.solutions.map((sol) => (
-            <li class="industry-block-list-item">{sol}</li>
-          ))}
-        </ul>
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/10308/10308682.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">Integraciones</span>
+        </div>
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/1903/1903162.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">QA y evolución continua</span>
+        </div>
+        <!-- Duplicados para efecto infinito -->
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/1055/1055666.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">Plataformas web</span>
+        </div>
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/2285/2285611.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">Arquitectura de producto</span>
+        </div>
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/10308/10308682.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">Integraciones</span>
+        </div>
+        <div class="industry-block-carousel-item">
+          <img src="https://cdn-icons-png.flaticon.com/128/1903/1903162.png" alt="" class="industry-block-carousel-icon" width="32" height="32" loading="lazy" />
+          <span class="industry-block-carousel-label">QA y evolución continua</span>
+        </div>
       </div>
     </div>
 
-    <!-- Capacidades relacionadas -->
-    <div class="industry-block-capabilities">
-      <span class="industry-block-capabilities-label">Capacidades relacionadas</span>
-      <div class="industry-block-capabilities-tags">
-        {sector.capabilities.map((cap) => (
-          <span class="industry-block-capabilities-tag">{cap}</span>
-        ))}
+    <!-- Sección Soluciones internas empresariales (imagen izq + texto der) -->
+    <div class="industry-block-internas">
+      <div class="industry-block-internas-image">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfQJTkVkZFcP4zpHSwb0Da0ipAzuCQYhAI2Fft3q4W5w&s=10" alt="Soluciones internas empresariales" loading="lazy" />
+      </div>
+      <div class="industry-block-internas-content">
+        <div class="industry-block-internas-header">
+          <h3 class="industry-block-internas-title">Soluciones internas empresariales</h3>
+        </div>
+        <p class="industry-block-internas-context">La digitalización interna es uno de los mayores generadores de eficiencia en las organizaciones. Sistemas desconectados, procesos manuales y poca visibilidad operativa frenan la capacidad de crecimiento y respuesta del negocio.</p>
+
+        <div class="industry-block-internas-grid">
+          <div class="industry-block-internas-col">
+            <h4 class="industry-block-internas-col-title">Retos del sector</h4>
+            <ul class="industry-block-internas-list">
+              <li>Procesos manuales que consumen tiempo y recursos</li>
+              <li>Sistemas desconectados que generan silos de información</li>
+              <li>Poca visibilidad de métricas y resultados operativos</li>
+              <li>Dificultad para escalar procesos con herramientas genéricas</li>
+            </ul>
+          </div>
+          <div class="industry-block-internas-col">
+            <h4 class="industry-block-internas-col-title">Soluciones SABERO</h4>
+            <ul class="industry-block-internas-list">
+              <li>Automatización de procesos y flujos de trabajo internos</li>
+              <li>Portales internos y herramientas operativas a medida</li>
+              <li>Dashboards de gestión y reporting ejecutivo</li>
+              <li>Sistemas de integración entre herramientas existentes</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- CTA -->
-    <div class="industry-block-cta">
-      <a href={sector.ctaHref} class="industry-block-cta-link">
-        {sector.cta}
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
   </div>
 
   {!isLast && (
@@ -93,6 +104,218 @@ const { sector, index, isLast } = Astro.props;
   .industry-block {
     padding: 0;
     background: #FFFFFF;
+  }
+
+  /* === Cinta delgada color crema con letra gamer === */
+  .industry-block-ribbon {
+    background: #FFF8F0;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #E62325;
+    border-top: 1px solid #F0E0D0;
+  }
+
+  .industry-block-ribbon-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .industry-block-ribbon-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    text-shadow: 0 0 10px rgba(230, 35, 37, 0.5), 0 0 20px rgba(230, 35, 37, 0.3);
+    background: linear-gradient(135deg, #E62325 0%, #1D5BF1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .industry-block-ribbon-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #0A1628;
+    margin: 0;
+    flex: 1;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(230, 35, 37, 0.15), 0 0 16px rgba(230, 35, 37, 0.08);
+  }
+
+  /* === Carrusel automático con iconos reales === */
+  .industry-block-carousel {
+    overflow: hidden;
+    margin-bottom: 16px;
+    padding: 12px 0;
+    border-top: 1px solid #F0E0D0;
+    border-bottom: 1px solid #F0E0D0;
+  }
+
+  .industry-block-carousel-track {
+    display: flex;
+    gap: 60px;
+    animation: scrollCarousel 18s linear infinite;
+    width: max-content;
+  }
+
+  .industry-block-carousel-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .industry-block-carousel-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .industry-block-carousel-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0A1628;
+  }
+
+  @keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* === Sección Soluciones internas empresariales === */
+  .industry-block-internas {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 16px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #E8ECF2;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  }
+
+  .industry-block-internas-image {
+    flex: 0 0 380px;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .industry-block-internas-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .industry-block-internas:hover .industry-block-internas-image img {
+    transform: scale(1.05);
+  }
+
+  .industry-block-internas-content {
+    flex: 1;
+    padding: 40px 40px 40px 0;
+  }
+
+  .industry-block-internas-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .industry-block-internas-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: #E62325;
+    padding: 4px 12px;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+  }
+
+  .industry-block-internas-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0A1628;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .industry-block-internas-context {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #3A4050;
+    margin: 0 0 24px 0;
+    max-width: 600px;
+  }
+
+  .industry-block-internas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .industry-block-internas-col-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #E62325;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .industry-block-internas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .industry-block-internas-list li {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #3A4050;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .industry-block-internas-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #E62325;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 1024px) {
+    .industry-block-internas {
+      flex-direction: column;
+      gap: 0;
+    }
+    .industry-block-internas-image {
+      flex: none;
+      width: 100%;
+      height: 240px;
+    }
+    .industry-block-internas-content {
+      padding: 32px 24px;
+    }
+    .industry-block-internas-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .industry-block-header {
@@ -275,7 +498,7 @@ const { sector, index, isLast } = Astro.props;
   }
 
   .industry-block-divider {
-    padding: 80px 0;
+    padding: 24px 0;
   }
 
   .industry-block-divider-line {

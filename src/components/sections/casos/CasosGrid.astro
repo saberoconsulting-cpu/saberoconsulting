@@ -1,0 +1,393 @@
+---
+// ============================================
+// SABERO Consulting - Casos Grid
+// Grid de proyectos con efecto flip y stack tecnológico
+// ============================================
+
+interface TechItem {
+  name: string;
+  desc: string;
+  icon: string;
+}
+
+interface CasoItem {
+  title: string;
+  industry: string;
+  desc: string;
+  impact: string;
+  image: string;
+  tags: string[];
+  techs: TechItem[];
+}
+
+const casos: CasoItem[] = [
+  { title: 'Marketplace inmobiliario', industry: 'PropTech', desc: 'Plataforma multi-vendedor con matching inteligente, booking y gestión de activos para el mercado latinoamericano.', impact: '+240% leads calificados', image: '/images/card1.jpg', tags: ['Marketplace', 'Matching', 'Booking'], techs: [
+    { name: 'React', desc: 'UI interactiva y componentes reutilizables', icon: 'react' },
+    { name: 'Node.js', desc: 'API escalable y tiempo real', icon: 'nodejs' },
+    { name: 'PostgreSQL', desc: 'Datos relacionales y geoespaciales', icon: 'postgresql' },
+    { name: 'AWS', desc: 'Infraestructura cloud elástica', icon: 'aws' },
+  ]},
+  { title: 'Plataforma freelancer-empresa', industry: 'Marketplace', desc: 'Ecosistema digital conectando talento independiente con empresas en toda la región.', impact: '+15K usuarios activos', image: '/images/card2.jpg', tags: ['Plataforma', 'B2B', 'Ecosistema'], techs: [
+    { name: 'Next.js', desc: 'SSR y rendimiento frontend', icon: 'nextjs' },
+    { name: 'TypeScript', desc: 'Tipado seguro y escalable', icon: 'typescript' },
+    { name: 'MongoDB', desc: 'Flexibilidad en datos de usuarios', icon: 'mongodb' },
+    { name: 'Docker', desc: 'Contenedores y entornos portables', icon: 'docker' },
+  ]},
+  { title: 'Solución de pagos e integraciones', industry: 'Fintech', desc: 'Sistema modular de procesamiento de pagos con integraciones a múltiples pasarelas.', impact: '99.9% uptime', image: '/images/card3.jpg', tags: ['Pagos', 'Integración', 'Fintech'], techs: [
+    { name: 'Python', desc: 'Lógica financiera y automatización', icon: 'python' },
+    { name: 'FastAPI', desc: 'APIs rápidas y documentadas', icon: 'fastapi' },
+    { name: 'Redis', desc: 'Caché y colas en tiempo real', icon: 'redis' },
+    { name: 'Kubernetes', desc: 'Orquestación de microservicios', icon: 'kubernetes' },
+  ]},
+  { title: 'Plataforma social de matching', industry: 'Marketplace', desc: 'Red de interacción con sistema de matching por perfiles, intereses y geolocalización.', impact: '+50K matches/mes', image: '/images/card4.jpg', tags: ['Social', 'Matching', 'Red'], techs: [
+    { name: 'React Native', desc: 'Apps nativas iOS y Android', icon: 'react' },
+    { name: 'GraphQL', desc: 'Consultas flexibles y eficientes', icon: 'graphql' },
+    { name: 'Elasticsearch', desc: 'Búsqueda y matching inteligente', icon: 'elasticsearch' },
+    { name: 'GCP', desc: 'Cloud nativo y machine learning', icon: 'gcp' },
+  ]},
+  { title: 'Sistemas internos y automatización', industry: 'Enterprise', desc: 'Suite de herramientas internas para gestión operativa, reporting y automatización de procesos.', impact: '70% menos tareas manuales', image: '/images/card5.jpg', tags: ['Automation', 'Internal', 'ERP'], techs: [
+    { name: 'Angular', desc: 'Dashboards empresariales robustos', icon: 'angular' },
+    { name: 'C#', desc: 'Lógica de negocio y servicios', icon: 'csharp' },
+    { name: 'SQL Server', desc: 'Reporting y datos corporativos', icon: 'sqlserver' },
+    { name: 'Azure', desc: 'Infraestructura enterprise cloud', icon: 'azure' },
+  ]},
+  { title: 'MVP y evolución continua', industry: 'Product', desc: 'Acompañamos productos desde idea zero hasta escala, con ciclos ágiles y validación continua.', impact: '3x velocidad de entrega', image: '/images/card6.jpg', tags: ['MVP', 'Agile', 'Scale'], techs: [
+    { name: 'Vue.js', desc: 'Prototipado rápido y reactivo', icon: 'vuejs' },
+    { name: 'Firebase', desc: 'Backend serverless y auth', icon: 'firebase' },
+    { name: 'Tailwind', desc: 'UI utility-first y responsive', icon: 'tailwind' },
+    { name: 'Vercel', desc: 'Deploy continuo y edge functions', icon: 'vercel' },
+  ]},
+];
+
+function getSvgIcon(icon: string): string {
+  const icons: Record<string, string> = {
+    react: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.5" fill="#61DAFB"/><ellipse cx="12" cy="12" rx="10" ry="3.5" stroke="#61DAFB" stroke-width="1.2" fill="none"/><ellipse cx="12" cy="12" rx="3.5" ry="10" stroke="#61DAFB" stroke-width="1.2" fill="none" transform="rotate(30,12,12)"/><ellipse cx="12" cy="12" rx="3.5" ry="10" stroke="#61DAFB" stroke-width="1.2" fill="none" transform="rotate(-30,12,12)"/></svg>',
+    nodejs: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#339933"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">N</text></svg>',
+    postgresql: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#336791"/><path d="M7.5 17l1-4 3-1 2.5-3.5 2 1-1 3-3 2-2.5 2.5H7.5z" fill="white" opacity="0.9"/><circle cx="15" cy="9" r="1.5" fill="#FFD43B"/></svg>',
+    aws: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" fill="#FF9900"/><path d="M7 10h10M7 14h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    nextjs: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="9" font-weight="bold">N</text></svg>',
+    typescript: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" fill="#3178C6"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">TS</text></svg>',
+    mongodb: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L8 12l4 10 4-10-4-10z" fill="#47A248"/><path d="M12 2v20" stroke="#47A248" stroke-width="1.5"/></svg>',
+    docker: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="8" width="20" height="14" rx="3" fill="#2496ED"/><path d="M6 12h2v2H6v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z" fill="white"/></svg>',
+    python: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 7 4 7 6v2h5v1H6C4 9 2 10 2 14s2 5 4 5h2v-3c0-2 2-4 4-4h4c2 0 3-1 3-3V6c0-2-1-4-5-4z" fill="#3776AB"/><path d="M17 9v3c0 2-2 4-4 4H9c-2 0-3 1-3 3v2c0 2 2 4 5 4s5-2 5-4v-2h-2c-2 0-4-2-4-4" fill="#FFD43B"/></svg>',
+    fastapi: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 22h20L12 2z" fill="#009688"/><path d="M12 6l-4 10h3v4l5-10h-3V6z" fill="white"/></svg>',
+    redis: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#DC382D"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">R</text></svg>',
+    kubernetes: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#326CE5"/><path d="M12 6l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4z" fill="white"/></svg>',
+    graphql: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#E10098"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="7" font-weight="bold">GQL</text></svg>',
+    elasticsearch: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#005571"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="7" font-weight="bold">ES</text></svg>',
+    gcp: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#4285F4"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="7" font-weight="bold">GCP</text></svg>',
+    angular: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 5l2 14 8 3 8-3 2-14-10-3z" fill="#DD0031"/><path d="M12 2v20" stroke="#C3002F" stroke-width="1"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">A</text></svg>',
+    csharp: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#68217A"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">C#</text></svg>',
+    sqlserver: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#CC2927"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="7" font-weight="bold">SQL</text></svg>',
+    azure: '<svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0078D4"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="7" font-weight="bold">AZ</text></svg>',
+    vuejs: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 20h6l4-8 4 8h6L12 2z" fill="#4FC08D"/><path d="M12 2L2 20h4l6-10 6 10h4L12 2z" fill="#35495E"/></svg>',
+    firebase: '<svg viewBox="0 0 24 24" fill="none"><path d="M4 20l4-16 4 6-4 10h-4z" fill="#FFCA28"/><path d="M8 4l4 6 8 10-4-16-8 0z" fill="#FFA000"/><path d="M12 10l4 10H8l4-10z" fill="#F57C00"/></svg>',
+    tailwind: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 6 5 6 8c0 3 2 5 6 5 4 0 6-2 6-5 0-3-2-6-6-6z" fill="#06B6D4"/><path d="M6 14c-4 0-6 3-6 6 0 3 2 5 6 5s6-2 6-5c0-3-2-5-6-5z" fill="#06B6D4" opacity="0.8"/></svg>',
+    vercel: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 22h20L12 2z" fill="#000"/></svg>',
+  };
+  return icons[icon] || '';
+}
+---
+
+<section class="casos-grid-section" id="casos">
+  <div class="container">
+    <div class="casos-grid">
+      {casos.map((c, i) => (
+        <article class="caso-card" id={`caso-card-${i}`}>
+          <div class="caso-card-inner">
+            <div class="caso-card-front">
+              <div class="caso-card-image" style={`background-image: url(${c.image})`}>
+                <div class="caso-card-overlay"></div>
+                <div class="caso-card-industry">{c.industry}</div>
+              </div>
+              <div class="caso-card-body">
+                <h3 class="caso-card-title">{c.title}</h3>
+                <p class="caso-card-desc">{c.desc}</p>
+                <div class="caso-card-impact">
+                  <span class="caso-impact-label">Impacto</span>
+                  <span class="caso-impact-value">{c.impact}</span>
+                </div>
+                <div class="caso-card-tags">
+                  {c.tags.map((tag) => <span class="caso-tag">{tag}</span>)}
+                </div>
+              </div>
+            </div>
+            <div class="caso-card-back">
+              <div class="caso-card-back-content">
+                <h4 class="caso-card-back-title">Stack tecnológico</h4>
+                <div class="caso-card-back-techs">
+                  {c.techs.map((tech) => (
+                    <div class="caso-tech-item">
+                      <span class="caso-tech-icon" set:html={getSvgIcon(tech.icon)}></span>
+                      <div class="caso-tech-info">
+                        <span class="caso-tech-name">{tech.name}</span>
+                        <span class="caso-tech-desc">{tech.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p class="caso-card-back-hint">Haz clic para volver</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.caso-card');
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+  });
+</script>
+
+<style>
+  .casos-grid-section {
+    padding: 0 0 var(--space-12);
+    background-color: var(--bg-secondary);
+  }
+
+  .casos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .caso-card {
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-xl);
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .caso-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+  }
+
+  .caso-card.flipped .caso-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .caso-card-front,
+  .caso-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .caso-card-front {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    z-index: 2;
+  }
+
+  .caso-card-front:hover {
+    border-color: rgba(0,102,255,0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+
+  .caso-card-back {
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFFDF5 50%, #F5F0EB 100%);
+    border: 1px solid rgba(200,180,160,0.3);
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .caso-card-back-content {
+    text-align: center;
+    padding: var(--space-6);
+  }
+
+  .caso-card-back-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: var(--space-6);
+    letter-spacing: -0.02em;
+  }
+
+  .caso-card-back-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .caso-tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+  }
+
+  .caso-tech-item:hover {
+    background: rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.15);
+    transform: translateX(4px);
+  }
+
+  .caso-tech-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .caso-tech-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .caso-tech-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .caso-tech-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.2;
+  }
+
+  .caso-tech-desc {
+    font-size: 0.65rem;
+    color: #666;
+    line-height: 1.3;
+    opacity: 0.8;
+  }
+
+  .caso-card-back-hint {
+    font-size: var(--text-xs);
+    color: #999;
+    opacity: 0.6;
+  }
+
+  .caso-card-image {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .caso-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(10,22,40,0.8) 100%);
+  }
+
+  .caso-card-industry {
+    position: absolute;
+    bottom: var(--space-4);
+    left: var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-electric-blue);
+    background: rgba(0,102,255,0.1);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+  }
+
+  .caso-card-body {
+    padding: var(--space-5);
+  }
+
+  .caso-card-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    color: var(--color-white);
+  }
+
+  .caso-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-gray-400);
+    line-height: 1.7;
+    margin-bottom: var(--space-4);
+  }
+
+  .caso-card-impact {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    background: linear-gradient(135deg, rgba(230,35,37,0.15) 0%, rgba(29,91,241,0.15) 100%);
+    border: 1px solid rgba(230,35,37,0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .caso-impact-label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #E62325;
+    background: rgba(230,35,37,0.12);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .caso-impact-value {
+    font-size: var(--text-base);
+    font-weight: 900;
+    color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(230,35,37,0.3);
+  }
+
+  .caso-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .caso-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #4A9EFF;
+    padding: var(--space-1) var(--space-2);
+    background: rgba(74,158,255,0.08);
+    border: 1px solid rgba(74,158,255,0.15);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 1100px) {
+    .casos-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .casos-grid-section { padding: 0 0 var(--space-8); }
+    .casos-grid { grid-template-columns: 1fr; }
+  }
+</style>

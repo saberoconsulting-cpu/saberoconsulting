@@ -7,11 +7,7 @@ import { getIndustriesData } from '../../../data/industries';
 import type { SupportedLocale } from '../../../i18n/utils/types';
 import IndustriesHero from './IndustriesHero.astro';
 import PropTech from './PropTech.astro';
-import Fintech from './Fintech.astro';
-import Marketplaces from './Marketplaces.astro';
-import EdTech from './EdTech.astro';
-import Logistica from './Logistica.astro';
-import Internas from './Internas.astro';
+import IndustriesCards from './IndustriesCards.astro';
 
 interface Props {
   locale: SupportedLocale;
@@ -26,16 +22,330 @@ const { sectors } = content;
   <IndustriesHero content={content} />
 
   <PropTech sector={sectors[0]} index={0} isLast={false} />
-  <Fintech sector={sectors[1]} index={1} isLast={false} />
-  <Marketplaces sector={sectors[2]} index={2} isLast={false} />
-  <EdTech sector={sectors[3]} index={3} isLast={false} />
-  <Logistica sector={sectors[4]} index={4} isLast={false} />
-  <Internas sector={sectors[5]} index={5} isLast={true} />
+
+  <!-- ============================================
+       Soluciones por industria - Cards en fila
+       ============================================ -->
+  <section class="solutions-cards-section" id="soluciones-industria">
+    <div class="container">
+      <div class="solutions-cards-row">
+        <!-- Plataformas inmobiliarias -->
+        <article class="solution-card" id="inmobiliarias">
+          <div class="solution-card-accent"></div>
+          <div class="solution-card-body">
+            <span class="solution-card-number">01</span>
+            <h3 class="solution-card-title">Plataformas inmobiliarias</h3>
+            <p class="solution-card-text">
+              Desarrollamos plataformas que conectan propiedades, compradores, vendedores y operaciones en una experiencia fluida. Desde portales de búsqueda hasta sistemas de gestión de activos, la tecnología es el nuevo pilar del negocio inmobiliario.
+            </p>
+            <a href={sectors[0] ? `#${sectors[0].id}` : '#proptech'} class="solution-card-link">
+              Ver detalle del sector &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- Procesamiento de pagos -->
+        <article class="solution-card" id="pagos">
+          <div class="solution-card-accent"></div>
+          <div class="solution-card-body">
+            <span class="solution-card-number">02</span>
+            <h3 class="solution-card-title">Procesamiento de pagos</h3>
+            <p class="solution-card-text">
+              Procesamos pagos, gestionamos wallets, integramos pasarelas y mantenemos la confianza del usuario con soluciones seguras, trazables y escalables para el ecosistema financiero digital.
+            </p>
+            <a href={sectors[1] ? `#${sectors[1].id}` : '#fintech'} class="solution-card-link">
+              Ver detalle del sector &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- Portales B2B y B2C -->
+        <article class="solution-card" id="portales">
+          <div class="solution-card-accent"></div>
+          <div class="solution-card-body">
+            <span class="solution-card-number">03</span>
+            <h3 class="solution-card-title">Portales B2B y B2C</h3>
+            <p class="solution-card-text">
+              Creamos portales multiusuario que conectan oferta, demanda y operación en un solo ecosistema digital. Orquestamos roles, transacciones y experiencia de usuario a escala.
+            </p>
+            <a href={sectors[2] ? `#${sectors[2].id}` : '#marketplaces'} class="solution-card-link">
+              Ver detalle del sector &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- Gestión operativa y dashboards -->
+        <article class="solution-card" id="gestion">
+          <div class="solution-card-accent"></div>
+          <div class="solution-card-body">
+            <span class="solution-card-number">04</span>
+            <h3 class="solution-card-title">Gestión operativa y dashboards</h3>
+            <p class="solution-card-text">
+              Implementamos sistemas de gestión operativa con dashboards de control en tiempo real, automatización de procesos y visibilidad total de métricas y resultados.
+            </p>
+            <a href={sectors[4] ? `#${sectors[4].id}` : '#logistica'} class="solution-card-link">
+              Ver detalle del sector &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- Automatización de procesos -->
+        <article class="solution-card" id="automatizacion">
+          <div class="solution-card-accent"></div>
+          <div class="solution-card-body">
+            <span class="solution-card-number">05</span>
+            <h3 class="solution-card-title">Automatización de procesos</h3>
+            <p class="solution-card-text">
+              Automatizamos procesos repetitivos y flujos de trabajo internos para eliminar silos de información, reducir costos operativos y escalar operaciones sin fricción.
+            </p>
+            <a href={sectors[5] ? `#${sectors[5].id}` : '#internas'} class="solution-card-link">
+              Ver detalle del sector &rarr;
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <IndustriesCards />
+
+  <!-- ============================================
+       CTA Final - Construyamos algo grande juntos
+       ============================================ -->
+  <section class="industries-cta-final">
+    <div class="industries-cta-final-bg">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9l4RyZEgtZ6elPe8CzAFFDTlmEpCBN7fU9a0Q0oob1A&s=10" alt="" class="industries-cta-final-img" loading="lazy" />
+    </div>
+    <div class="industries-cta-final-overlay"></div>
+    <div class="container">
+      <div class="industries-cta-final-content">
+        <h2 class="industries-cta-final-title">Construyamos algo grande juntos</h2>
+        <p class="industries-cta-final-text">Conversa con nuestro equipo y descubre cómo podemos impulsar tu próximo proyecto.</p>
+        <div class="industries-cta-final-buttons">
+          <a href="/contacto/" class="industries-cta-final-btn industries-cta-final-btn-primary">Conversemos</a>
+          <a href="/contacto/" class="industries-cta-final-btn industries-cta-final-btn-secondary">Ver capacidades</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
+
+<style>
+  .solutions-cards-section {
+    padding: 40px 0 60px;
+    background: #FFFFFF;
+  }
+
+  .solutions-cards-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .solution-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 1px solid #E8ECF2;
+    transition: all 400ms ease;
+    display: flex;
+    flex-direction: column;
+    scroll-margin-top: 100px;
+  }
+
+  .solution-card:hover {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(230, 35, 37, 0.12), 0 0 0 2px #E62325;
+    transform: translateY(-4px);
+  }
+
+  .solution-card-accent {
+    height: 4px;
+    background: linear-gradient(90deg, #E62325 0%, #1D5BF1 100%);
+    flex-shrink: 0;
+  }
+
+  .solution-card-body {
+    padding: 20px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .solution-card-number {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #E62325 0%, #1D5BF1 100%);
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 12px;
+  }
+
+  .solution-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0A1628;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .solution-card-text {
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: #3A4050;
+    margin: 0 0 16px 0;
+    flex: 1;
+  }
+
+  .solution-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #1D5BF1;
+    text-decoration: none;
+    transition: all 300ms ease;
+    align-self: flex-start;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  .solution-card-link:hover {
+    color: #E62325;
+    border-bottom-color: #E62325;
+  }
+
+  @media (max-width: 1200px) {
+    .solutions-cards-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .solutions-cards-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .solutions-cards-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 
 <style>
   .industries-section {
     background: #FFFFFF;
     padding: 0;
+  }
+
+  /* === CTA Final - Construyamos algo grande juntos === */
+  .industries-cta-final {
+    position: relative;
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .industries-cta-final-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .industries-cta-final-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .industries-cta-final-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, rgba(10, 22, 40, 0.85) 0%, rgba(230, 35, 37, 0.4) 100%);
+  }
+
+  .industries-cta-final-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .industries-cta-final-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+
+  .industries-cta-final-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 36px 0;
+  }
+
+  .industries-cta-final-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .industries-cta-final-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    transition: all 300ms ease;
+  }
+
+  .industries-cta-final-btn-primary {
+    background: #E62325;
+    color: #FFFFFF;
+    border: 2px solid #E62325;
+  }
+
+  .industries-cta-final-btn-primary:hover {
+    background: #C41E20;
+    border-color: #C41E20;
+    box-shadow: 0 6px 24px rgba(230, 35, 37, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .industries-cta-final-btn-secondary {
+    background: transparent;
+    color: #FFFFFF;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+
+  .industries-cta-final-btn-secondary:hover {
+    border-color: #FFFFFF;
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 640px) {
+    .industries-cta-final { padding: 60px 0; }
+    .industries-cta-final-title { font-size: 1.8rem; }
+    .industries-cta-final-buttons { flex-direction: column; }
+    .industries-cta-final-btn { width: 100%; justify-content: center; }
   }
 </style>

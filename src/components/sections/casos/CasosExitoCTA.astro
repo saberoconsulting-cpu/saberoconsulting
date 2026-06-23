@@ -1,0 +1,115 @@
+---
+// ============================================
+// SABERO Consulting - Hero Principal
+// "Queremos que seas nuestro próximo éxito"
+// ============================================
+---
+
+<section class="casos-hero-principal">
+  <div class="casos-hero-principal-bg" aria-hidden="true">
+    <img src="/images/exito-bg.jpg" alt="" loading="lazy" />
+  </div>
+  <div class="casos-hero-principal-overlay"></div>
+  <div class="container">
+    <div class="casos-hero-principal-content">
+      <h1 class="casos-hero-principal-title">Queremos que seas nuestro próximo éxito</h1>
+      <p class="casos-hero-principal-text">Cada proyecto que emprendemos es una oportunidad para transformar una visión en resultados reales. Si tu empresa busca un socio tecnológico que entienda tus retos y los convierta en soluciones medibles, este es el momento. Únete a las organizaciones que ya confían en SABERO y sé parte de nuestra próxima historia de impacto.</p>
+      <a href="/contacto/" class="casos-hero-principal-btn">
+        Quiero ser el próximo éxito
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M1 8h14M8 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .casos-hero-principal {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .casos-hero-principal-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .casos-hero-principal-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.6) contrast(1.1);
+  }
+
+  .casos-hero-principal-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,22,40,0.88) 0%, rgba(230,35,37,0.25) 100%);
+  }
+
+  .casos-hero-principal-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: var(--header-height);
+  }
+
+  .casos-hero-principal-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    margin-bottom: var(--space-4);
+    color: var(--color-white);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+
+  .casos-hero-principal-text {
+    font-size: clamp(var(--text-sm), 1vw, var(--text-base));
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .casos-hero-principal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-white);
+    background: linear-gradient(135deg, #E62325, #C41E20);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 25px rgba(230,35,37,0.3);
+  }
+
+  .casos-hero-principal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 35px rgba(230,35,37,0.5);
+  }
+
+  .casos-hero-principal-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  .casos-hero-principal-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 768px) {
+    .casos-hero-principal { min-height: 50vh; }
+    .casos-hero-principal-content { padding-top: calc(var(--header-height) + var(--space-4)); }
+  }
+</style>

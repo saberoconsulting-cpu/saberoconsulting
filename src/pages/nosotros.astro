@@ -173,7 +173,7 @@ const team = [
             <p>{mision}</p>
           </div>
         </div>
-        <div class="ns-mv-card ns-mv-card--dark">
+        <div class="ns-mv-card">
           <div class="ns-mv-accent"></div>
           <div class="ns-mv-body">
             <h3 class="ns-mv-cardtitle">
@@ -222,8 +222,8 @@ const team = [
   <section class="ns-team" id="equipo" data-reveal>
     <div class="container">
       <div class="ns-team-header">
-        <div class="ns-team-tag">Nuestro equipo</div>
-        <h2 class="ns-team-title">Fundadores</h2>
+        <div class="ns-team-tag">Fundadores</div>
+        <h2 class="ns-team-title">Nuestro equipo</h2>
       </div>
       <div class="ns-team-grid">
         {team.map((m) => (
@@ -319,11 +319,17 @@ const team = [
     font-weight: 800;
     line-height: 1.08;
     letter-spacing: -0.03em;
-    color: var(--color-gray-900);
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0 0 22px;
   }
   .ns-hero-accent {
-    color: var(--color-gray-900);
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     display: block;
   }
   .ns-hero-desc {
@@ -771,7 +777,7 @@ const team = [
 
   /* ----- MISSION / VISION ----- */
   .ns-mv {
-    padding: 110px 0;
+    padding: 60px 0;
     background: var(--color-off-white);
     position: relative;
   }
@@ -819,6 +825,21 @@ const team = [
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
     transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .ns-mv-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
   .ns-mv-card:hover {
     transform: translateY(-4px);
@@ -827,13 +848,13 @@ const team = [
   .ns-mv-accent {
     width: 6px;
     flex-shrink: 0;
-    background: var(--color-electric-blue);
+    background: linear-gradient(180deg, #E62325, #1D5BF1);
   }
   .ns-mv-card--dark {
     background: var(--color-deep-blue);
   }
   .ns-mv-card--dark .ns-mv-accent {
-    background: var(--color-electric-blue-light);
+    background: linear-gradient(180deg, #E62325, #1D5BF1);
   }
   .ns-mv-body {
     padding: 40px 36px;
@@ -875,7 +896,7 @@ const team = [
 
   /* ----- VALUES ----- */
   .ns-vals {
-    padding: 110px 0;
+    padding: 60px 0;
     background: var(--color-white);
     position: relative;
     overflow: hidden;
@@ -1033,7 +1054,7 @@ const team = [
 
   /* ----- TEAM ----- */
   .ns-team {
-    padding: 110px 0;
+    padding: 60px 0;
     background: var(--color-white);
   }
   .ns-team-header {
@@ -1072,14 +1093,27 @@ const team = [
     text-align: center;
     padding: 40px 24px 32px;
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
     border-radius: var(--radius-xl);
     transition: all var(--transition-base);
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .ns-team-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
   .ns-team-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 32px rgba(230, 57, 70, 0.2);
-    border-color: var(--color-red);
   }
   .ns-team-imgwrap {
     width: 120px;
@@ -1131,7 +1165,7 @@ const team = [
 
   /* ----- APPROACH ----- */
   .ns-app {
-    padding: 110px 0;
+    padding: 60px 0;
     background: var(--color-white);
     position: relative;
   }
@@ -1305,7 +1339,7 @@ const team = [
   /* ----- CTA ----- */
   .ns-cta {
     position: relative;
-    padding: 110px 0;
+    padding: 60px 0;
     text-align: center;
     overflow: hidden;
     background: var(--color-deep-blue);

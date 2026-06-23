@@ -114,6 +114,7 @@ export const industriesEn: IndustriesData = {
     {
       id: 'logistica',
       title: 'Logistics & operations',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxA40Gtz5h0HkpD6otEEv2_S-QgnHR-44Bt1nkdl2aXQ&s=10',
       context: 'Modern logistics demands real-time visibility, coordination between actors and operational efficiency. Companies need systems that integrate tracking, fleet management, warehouses and processes to operate without friction.',
       challenges: [
         'Real-time traceability and operational visibility',
