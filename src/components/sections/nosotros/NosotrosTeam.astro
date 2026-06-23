@@ -1,6 +1,7 @@
 ---
 // ============================================
 // SABERO Consulting - Nosotros Team
+// Layout: Izquierda 3 fundadores (columna) | Derecha foto equipo
 // ============================================
 const team = [
   { name: 'Roberto Carlos López', role: 'CEO & Fundador', image: 'https://media.licdn.com/dms/image/v2/D4E03AQHxQwKjH95FnQ/profile-displayphoto-scale_400_400/B4EZmtVHEMIwAg-/0/1759549622234?e=1783555200&v=beta&t=fqj5e4RFTLMBWXRNSQMWq14MlUTlYldfeAryFLS1wGo', desc: 'Lidera la visión y estrategia de SABERO Consulting.', linkedin: '#' },
@@ -15,19 +16,39 @@ const team = [
       <div class="ns-team-tag">Fundadores</div>
       <h2 class="ns-team-title">Nuestro equipo</h2>
     </div>
-    <div class="ns-team-grid">
-      {team.map((m) => (
-        <a href={m.linkedin || '#'} target="_blank" rel="noopener noreferrer" class="ns-team-link">
-          <article class="ns-team-card">
-            <div class="ns-team-imgwrap">
-              <img src={m.image} alt={m.name} loading="lazy" />
-            </div>
-            <h3 class="ns-team-name">{m.name}</h3>
-            <span class="ns-team-role">{m.role}</span>
-            <p class="ns-team-desc">{m.desc}</p>
-          </article>
-        </a>
-      ))}
+    <div class="ns-team-layout">
+      <div class="ns-team-founders">
+        {team.map((m) => (
+          <a href={m.linkedin || '#'} target="_blank" rel="noopener noreferrer" class="ns-team-link">
+            <article class="ns-team-card">
+              <div class="ns-team-card-inner">
+                <div class="ns-team-imgwrap">
+                  <img src={m.image} alt={m.name} loading="lazy" />
+                </div>
+                <div class="ns-team-info">
+                  <h3 class="ns-team-name">{m.name}</h3>
+                  <span class="ns-team-role">{m.role}</span>
+                  <p class="ns-team-desc">{m.desc}</p>
+                </div>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+      <div class="ns-team-photo">
+        <div class="ns-team-photo-frame">
+          <img src="https://i.postimg.cc/gk9BTr4J/Chat-GPT-Image-23-jun-2026-01-10-42-p-m.png" alt="Equipo SABERO Consulting" loading="lazy" />
+          <div class="ns-team-photo-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>+40 profesionales</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -39,12 +60,7 @@ const team = [
   }
   .ns-team-header {
     text-align: center;
-    margin-bottom: 60px;
-  }
-  .ns-team-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    margin-bottom: 48px;
   }
   .ns-team-tag {
     display: inline-block;
@@ -63,15 +79,32 @@ const team = [
     font-weight: 800;
     color: var(--color-deep-blue);
     letter-spacing: -0.02em;
+    margin: 0;
   }
-  .ns-team-grid {
+
+  /* Layout: founders column + team photo */
+  .ns-team-layout {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
   }
+
+  /* Founders column */
+  .ns-team-founders {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ns-team-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
   .ns-team-card {
-    text-align: center;
-    padding: 40px 24px 32px;
+    padding: 20px 24px;
     background: var(--bg-card);
     border-radius: var(--radius-xl);
     transition: all var(--transition-base);
@@ -95,12 +128,19 @@ const team = [
     transform: translateY(-4px);
     box-shadow: 0 8px 32px rgba(230, 57, 70, 0.2);
   }
+
+  .ns-team-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   .ns-team-imgwrap {
-    width: 120px;
-    height: 120px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto 20px;
+    flex-shrink: 0;
     border: 3px solid var(--border-color);
     transition: border-color var(--transition-base);
   }
@@ -113,11 +153,17 @@ const team = [
     object-fit: cover;
     display: block;
   }
+
+  .ns-team-info {
+    flex: 1;
+    min-width: 0;
+  }
+
   .ns-team-name {
     font-size: var(--text-lg);
     font-weight: 700;
     color: var(--color-deep-blue);
-    margin-bottom: 4px;
+    margin: 0 0 2px 0;
   }
   .ns-team-role {
     display: block;
@@ -126,20 +172,104 @@ const team = [
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--color-electric-blue);
-    margin-bottom: 14px;
+    margin-bottom: 6px;
   }
   .ns-team-desc {
     font-size: var(--text-sm);
     color: var(--color-gray-500);
-    line-height: 1.7;
+    line-height: 1.6;
     margin: 0;
   }
+
+  /* Team photo */
+  .ns-team-photo {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .ns-team-photo-frame {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(10, 22, 40, 0.12);
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .ns-team-photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, #E62325, #1D5BF1);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .ns-team-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 100%;
+    max-height: 420px;
+  }
+
+  .ns-team-photo-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-deep-blue);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .ns-team-photo-badge svg {
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+  }
+
   @media (max-width: 1024px) {
-    .ns-team-grid { grid-template-columns: repeat(2, 1fr); }
+    .ns-team-layout {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .ns-team-photo-frame {
+      aspect-ratio: 16/9;
+      max-height: 400px;
+    }
+    .ns-team-photo-frame img {
+      min-height: auto;
+      height: 100%;
+    }
   }
   @media (max-width: 640px) {
     .ns-team { padding: 64px 0; }
-    .ns-team-grid { grid-template-columns: 1fr; gap: 20px; }
-    .ns-team-imgwrap { width: 100px; height: 100px; }
+    .ns-team-card-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .ns-team-imgwrap {
+      width: 90px;
+      height: 90px;
+    }
+    .ns-team-photo-frame {
+      aspect-ratio: 4/3;
+      max-height: 300px;
+    }
   }
 </style>
