@@ -1,3 +1,8 @@
+import { getCachedData } from '../../lib/cache';
+import { resolve } from 'node:path';
+
+const dep = (l: string) => resolve(process.cwd(), 'src/data/home', `${l}.ts`);
+
 export interface HeroSlide {
   image: string;
   alt: string;
@@ -17,7 +22,19 @@ export interface HeroSlidesData {
   fr: HeroSlide[];
 }
 
-export const heroSlides: HeroSlidesData = {
+let _heroSlidesCache: HeroSlidesData | null = null;
+
+export function getHeroSlides(locale: string): HeroSlide[] {
+  if (!_heroSlidesCache) {
+    _heroSlidesCache = heroSlidesRaw;
+  }
+  return getCachedData(
+    'hero-slides', locale, [dep('hero-slides')],
+    () => (_heroSlidesCache![locale as keyof HeroSlidesData] || _heroSlidesCache!.es)
+  );
+}
+
+const heroSlidesRaw: HeroSlidesData = {
   es: [
     {
       image: '/images/imagen.png',
@@ -259,3 +276,12 @@ export const heroSlides: HeroSlidesData = {
     },
   ],
 };
+
+export const heroSlides: HeroSlidesData = new Proxy(heroSlidesRaw, {
+  get(target, prop) {
+    if (typeof prop === 'string' && ['es', 'en', 'pt', 'fr'].includes(prop)) {
+      return getHeroSlides(prop);
+    }
+    return Reflect.get(target, prop);
+  }
+});

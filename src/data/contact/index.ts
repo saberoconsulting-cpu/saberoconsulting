@@ -3,6 +3,10 @@ import { contactEs } from './es';
 import { contactEn } from './en';
 import { contactPt } from './pt';
 import { contactFr } from './fr';
+import { getCachedData } from '../../lib/cache';
+import { resolve } from 'node:path';
+
+const dep = (l: string) => resolve(process.cwd(), 'src/data/contact', `${l}.ts`);
 
 const contactMap: Record<SupportedLocale, ContactData> = {
   es: contactEs,
@@ -12,5 +16,8 @@ const contactMap: Record<SupportedLocale, ContactData> = {
 };
 
 export function getContact(locale: SupportedLocale): ContactData {
-  return contactMap[locale] || contactMap.es;
+  return getCachedData(
+    'contact', locale, [dep(locale)],
+    () => contactMap[locale] || contactMap.es
+  );
 }

@@ -1,3 +1,8 @@
+import { getCachedData } from '../../lib/cache';
+import { resolve } from 'node:path';
+
+const dep = (l: string) => resolve(process.cwd(), 'src/data/search', `${l}.ts`);
+
 export interface SearchItem {
   label: string;
   labelEn: string;
@@ -293,3 +298,15 @@ export const searchData: SearchItem[] = [
     categoryPt: 'Contato',
   },
 ];
+
+let _searchCache: SearchItem[] | null = null;
+
+export function getSearchData(): SearchItem[] {
+  if (!_searchCache) {
+    _searchCache = searchData;
+  }
+  return getCachedData(
+    'search', 'all', [dep('index')],
+    () => _searchCache!
+  );
+}

@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { SupportedLocale } from '../../i18n/utils/types';
-import { heroSlides, type HeroSlide } from '../../data/home/hero-slides';
+import { getHeroSlides, type HeroSlide } from '../../data/home/hero-slides';
 import { localizeNavHref } from '../../i18n/routes/map';
 import heroImg from '../../assets/images/imagen.png';
 import heroImg1 from '../../assets/images/imagen1.png';
@@ -22,33 +22,37 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const slides: HeroSlide[] = heroSlides[locale] || heroSlides.es;
+const slides: HeroSlide[] = getHeroSlides(locale);
 const slidesCount = slides.length;
+const extended = [slides[slidesCount - 1], ...slides, slides[0]];
 ---
 
-<section class="hero-carousel" aria-label="Hero carousel" data-carousel>
+<section class="hero-carousel" aria-label="Hero carousel" data-carousel data-total={slidesCount}>
   <div class="carousel-viewport">
-    <div class="carousel-track" data-track>
-      {slides.map((slide, index) => {
+    <div class="carousel-track" data-track style="transform: translateX(-100%)">
+      {extended.map((slide, index) => {
+        const realIndex = index - 1;
+        const isClone = index === 0 || index === extended.length - 1;
+        const isActive = index === 1;
         const imgSrc = heroImages[slide.image];
         return (
           <article
             class="carousel-slide"
-            data-slide={index}
+            data-slide={realIndex}
             aria-roledescription="slide"
-            aria-label={`Slide ${index + 1} of ${slidesCount}`}
-            aria-hidden={index !== 0}
+            aria-label={isClone ? '' : `Slide ${realIndex + 1} of ${slidesCount}`}
+            aria-hidden={!isActive || isClone}
           >
             <Image
               src={imgSrc || slide.image}
-              alt={slide.alt}
+              alt={isClone ? '' : slide.alt}
               class="carousel-image"
-              loading={index === 0 ? 'eager' : 'lazy'}
+              loading={index === 1 ? 'eager' : 'lazy'}
               decoding="async"
               width={1920}
               height={900}
               format="webp"
-              fetchpriority={index === 0 ? 'high' : 'auto'}
+              fetchpriority={index === 1 ? 'high' : 'auto'}
             />
             <div class="carousel-overlay" aria-hidden="true"></div>
             <div class="carousel-content">
@@ -110,59 +114,91 @@ const slidesCount = slides.length;
 <script>
   // @ts-nocheck
   (function () {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const AUTOPLAY_INTERVAL = 3000;
-    const TRANSITION_DURATION = 600;
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var AUTOPLAY_INTERVAL = 3000;
+    var TRANSITION_DURATION = 600;
 
-    const carousel = document.querySelector('[data-carousel]');
+    var carousel = document.querySelector('[data-carousel]');
     if (!carousel) return;
 
-    const track = carousel.querySelector('[data-track]');
+    var track = carousel.querySelector('[data-track]');
     if (!track) return;
 
-    const slides = Array.from(carousel.querySelectorAll('[data-slide]'));
-    const dots = Array.from(carousel.querySelectorAll('[data-dot]'));
-    const prevBtn = carousel.querySelector('[data-prev]');
-    const nextBtn = carousel.querySelector('[data-next]');
+    var slideEls = Array.from(carousel.querySelectorAll('[data-slide]'));
+    var dots = Array.from(carousel.querySelectorAll('[data-dot]'));
+    var prevBtn = carousel.querySelector('[data-prev]');
+    var nextBtn = carousel.querySelector('[data-next]');
 
-    const totalSlides = slides.length;
-    if (totalSlides < 2) return;
+    var totalReal = parseInt(carousel.getAttribute('data-total') || '0', 10);
+    if (totalReal < 2) return;
 
-    let currentIndex = 0;
-    let autoplayTimer = null;
-    let isTransitioning = false;
+    var currentIndex = 1; // starts at first real slide
+    var autoplayTimer = null;
+    var isAnimating = false;
 
-    function goToSlide(index) {
-      if (isTransitioning) return;
-      if (index === currentIndex) return;
-
-      isTransitioning = true;
-
+    function jumpTo(index) {
+      track.style.transition = 'none';
       track.style.transform = 'translateX(-' + (index * 100) + '%)';
-
-      slides.forEach(function (slide, i) {
-        slide.setAttribute('aria-hidden', i !== index ? 'true' : 'false');
-      });
-
-      dots.forEach(function (dot, i) {
-        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-      });
-
+      // force reflow
+      void track.offsetHeight;
+      track.style.transition = '';
       currentIndex = index;
+    }
+
+    function updateSlidesAndDots(realIndex) {
+      slideEls.forEach(function (el) {
+        var ri = parseInt(el.getAttribute('data-slide'), 10);
+        el.setAttribute('aria-hidden', ri !== realIndex ? 'true' : 'false');
+      });
+      dots.forEach(function (dot, i) {
+        dot.setAttribute('aria-selected', i === realIndex ? 'true' : 'false');
+      });
+    }
+
+    function goToSlide(target, animate) {
+      if (animate === undefined) animate = true;
+      if (isAnimating && animate) return;
+      if (target === currentIndex) return;
+
+      if (!animate) {
+        jumpTo(target);
+        var real = target - 1;
+        if (real < 0) real = totalReal - 1;
+        if (real >= totalReal) real = 0;
+        updateSlidesAndDots(real);
+        return;
+      }
+
+      isAnimating = true;
+      track.style.transform = 'translateX(-' + (target * 100) + '%)';
+      currentIndex = target;
+
+      var realIndex = target - 1;
+      if (realIndex < 0) realIndex = totalReal - 1;
+      if (realIndex >= totalReal) realIndex = 0;
+      updateSlidesAndDots(realIndex);
 
       setTimeout(function () {
-        isTransitioning = false;
+        isAnimating = false;
+        if (currentIndex === 0) {
+          jumpTo(totalReal);
+        } else if (currentIndex === totalReal + 1) {
+          jumpTo(1);
+        }
       }, TRANSITION_DURATION);
     }
 
     function nextSlide() {
-      var next = (currentIndex + 1) % totalSlides;
-      goToSlide(next);
+      goToSlide(currentIndex + 1, true);
     }
 
     function prevSlide() {
-      var prev = (currentIndex - 1 + totalSlides) % totalSlides;
-      goToSlide(prev);
+      goToSlide(currentIndex - 1, true);
+    }
+
+    function goToReal(index) {
+      var offset = index + 1;
+      goToSlide(offset, true);
     }
 
     function startAutoplay() {
@@ -200,7 +236,7 @@ const slidesCount = slides.length;
     dots.forEach(function (dot) {
       dot.addEventListener('click', function () {
         var index = parseInt(dot.getAttribute('data-dot') || '0', 10);
-        goToSlide(index);
+        goToReal(index);
         resetAutoplay();
       });
     });
@@ -311,6 +347,7 @@ const slidesCount = slides.length;
     margin: 0 auto;
     padding: 0 var(--space-6);
     padding-top: var(--header-height);
+    padding-bottom: var(--space-16);
   }
 
   .carousel-text {
@@ -523,6 +560,10 @@ const slidesCount = slides.length;
 
     .carousel-text {
       max-width: 100%;
+    }
+
+    .carousel-content {
+      padding-bottom: var(--space-12);
     }
 
     .carousel-arrow {

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { data, locale } = Astro.props;
-const contactHref = locale === 'es' ? '/contacto' : `/${locale}/contacto`;
+const contactHref = locale === 'es' ? '/contacto/' : `/${locale}/contacto`;
 ---
 
 <section class="opportunities-section section" id="oportunidades" aria-label={data.title}>

@@ -2,7 +2,7 @@
 import type { SupportedLocale } from '../../i18n/utils/types';
 import { LOCALES } from '../../i18n/utils/types';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { insightsData } from '../../data/insights';
+import { getInsightsData } from '../../data/insights';
 import InsightsHero from '../../components/sections/insights/InsightsHero.astro';
 import InsightsCTA from '../../components/sections/insights/InsightsCTA.astro';
 
@@ -24,7 +24,7 @@ const meta: Record<string, { title: string; description: string }> = {
 
 const pageMeta = meta[locale as string] || meta.es;
 const path = `/${locale}/insights`;
-const data = insightsData[locale as string] || insightsData.es;
+const data = getInsightsData(locale as string);
 
 const sections: Record<string, { id: string; label: string; type: string }[]> = {
   es: [

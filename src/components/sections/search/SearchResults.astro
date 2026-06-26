@@ -1,5 +1,5 @@
 ---
-import { searchData } from '../../../data/search/index';
+import { getSearchData } from '../../../data/search/index';
 
 interface Props {
   locale: string;
@@ -35,6 +35,8 @@ function normalize(text: string): string {
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s]/g, '');
 }
+
+const searchData = getSearchData();
 
 const q = normalize(query);
 const results = query
@@ -135,7 +137,7 @@ const allSectionsText = locale === 'es' ? 'Todas las secciones' : locale === 'fr
         <div class="search-all-sections">
           <h2 class="search-all-sections-title">{allSectionsText}</h2>
           <div class="search-all-sections-grid">
-            {searchData.map((item) => (
+            {getSearchData().map((item) => (
               <a href={item.href} class="search-all-section-item">
                 <span class="search-all-section-label">{getLabel(item)}</span>
                 <span class="search-all-section-category">{getCategory(item)}</span>
