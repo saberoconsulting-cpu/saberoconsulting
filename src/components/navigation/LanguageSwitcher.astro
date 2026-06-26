@@ -29,6 +29,7 @@ function getLocalizedHref(locale: SupportedLocale): string {
     segments.shift();
   }
   // Siempre con trailing slash para compatibilidad con trailingSlash: 'always'
+  if (segments.length === 0) return '/';
   return '/' + segments.join('/') + '/';
 }
 ---

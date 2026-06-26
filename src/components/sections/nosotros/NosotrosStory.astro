@@ -199,11 +199,7 @@ const c = content[locale] || content.es;
 
   <script>
     (() => {
-<<<<<<< HEAD
       const section = document.querySelector<HTMLElement>('.ns-story');
-=======
-      const section = document.querySelector('.ns-story') as HTMLElement | null;
->>>>>>> d5e0251dd4bc475382545fdb468badfe7fa7ec6f
       if (!section) return;
 
       const buttons = Array.from(section.querySelectorAll<HTMLElement>('.ns-story-gear-step'));
@@ -257,7 +253,7 @@ const c = content[locale] || content.es;
 
 <style>
   .ns-story {
-    padding: 40px 0;
+    padding: 60px 0;
     background: var(--color-white);
     position: relative;
   }
@@ -560,24 +556,6 @@ const c = content[locale] || content.es;
     height: 320px;
     object-fit: cover;
     display: block;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ns-story-gear {
-      transition: none;
-    }
-    .ns-story-gear-step {
-      transition: none;
-    }
-    .ns-story-step {
-      transition: none;
-    }
-    .ns-story .ns-story-gear-launch button {
-      transition: none;
-    }
-    .ns-story .ns-story-gear-launch button:hover {
-      transform: none;
-    }
   }
 
   @media (max-width: 900px) {
