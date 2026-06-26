@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEOLanding from '../components/sections/seo/SEOLanding.astro';
+
+const path = '/consultoras-software-peru';
+const title = 'Consultoras de Software en Perú | SABERO Consulting - Top Desarrollo';
+const description = 'SABERO Consulting es una de las mejores consultoras de software en Perú. Expertos en desarrollo de producto, IA, automatización, fábrica de software y arquitectura cloud. Equipo senior con presencia global.';
+---
+
+<BaseLayout {title} {description} locale="es" {path}>
+  <SEOLanding
+    locale="es"
+    title="Consultora de Software en Perú con Estándares Globales"
+    subtitle="Transformamos tu negocio con tecnología de clase mundial"
+    description="SABERO Consulting es una consultora de software en Perú que combina talento senior local con estándares internacionales. Ofrecemos servicios de fábrica de software, inteligencia artificial, automatización de procesos, desarrollo web y mobile, y arquitectura cloud. Nuestro equipo ha entregado proyectos para clientes en Perú, Estados Unidos y Europa, demostrando que el talento peruano compite al más alto nivel global."
+    keywords={[
+      "consultoras de software Perú",
+      "consultora de software",
+      "consultoría de software Perú",
+      "mejores consultoras de software",
+      "empresa consultora de software",
+      "consultoría tecnológica Perú",
+      "consultoría de desarrollo de software",
+      "consultora de tecnología Perú",
+      "servicios de consultoría de software",
+      "consultoría informática Perú"
+    ]}
+    features={[
+      {
+        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+        title: "Consultoría Estratégica",
+        description: "Te asesoramos en arquitectura tecnológica, selección de stack, metodologías ágiles y hoja de ruta de producto. Transformamos tu visión en un plan ejecutable."
+      },
+      {
+        icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+        title: "Fábrica de Software",
+        description: "Equipos senior multidisciplinarios listos para escalar tu producto. Metodología ágil, entregas iterativas y calidad garantizada con code reviews y testing automatizado."
+      },
+      {
+        icon: '<path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8S2 17 2 12 7 2 12 2z"/><path d="M12 6v6l4 2"/>',
+        title: "Inteligencia Artificial",
+        description: "Implementamos soluciones de IA: machine learning, NLP, visión computacional y chatbots inteligentes. Potenciamos tus procesos con datos."
+      },
+      {
+        icon: '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>',
+        title: "Automatización Inteligente",
+        description: "Automatizamos procesos empresariales con RPA e IA. Reducimos costos operativos hasta 70% y eliminamos errores manuales."
+      },
+      {
+        icon: '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+        title: "Desarrollo Web y Mobile",
+        description: "Creamos plataformas web, PWAs y apps nativas con tecnologías modernas: React, Next.js, Flutter, Swift, Kotlin. Experiencia de usuario excepcional."
+      },
+      {
+        icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+        title: "Arquitectura Cloud",
+        description: "Diseñamos arquitecturas cloud-native en AWS, GCP y Azure. Microservicios, serverless, alta disponibilidad y seguridad desde el diseño."
+      }
+    ]}
+    ctaText="Consulta con nuestros expertos"
+    ctaHref="/contacto"
+  />
+</BaseLayout>
