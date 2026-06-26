@@ -62,7 +62,7 @@ function renderHeadline(text: string, highlights: string[]): string {
   <div class="container">
     <div class="hero-top">
       <div class="hero-left">
-        <h1 class="hero-headline" set:html={renderHeadline(data.headline, data.highlightWords)}></h1>
+        <h2 class="hero-headline" set:html={renderHeadline(data.headline, data.highlightWords)}></h2>
         <p class="hero-paragraph">{data.paragraph}</p>
         <a href={data.ctaLink} class="hero-cta">
           {data.cta}
@@ -74,7 +74,10 @@ function renderHeadline(text: string, highlights: string[]): string {
           src="https://i.ibb.co/Zz3DFnkM/a.png"
           alt="SABERO Consulting - Digital Platform Engineering"
           class="hero-image"
+          width="600"
+          height="450"
           loading="eager"
+          decoding="async"
         />
       </div>
     </div>

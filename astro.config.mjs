@@ -19,7 +19,9 @@ export default defineConfig({
   trailingSlash: 'always',
   build: {
     format: 'directory',
+    inlineStylesheets: 'auto',
   },
+  compressHTML: true,
   image: {
     // Optimizar imágenes automáticamente en build
     service: {

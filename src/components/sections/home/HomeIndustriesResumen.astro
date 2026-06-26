@@ -26,7 +26,7 @@ const visibleSectors = sectors.filter(s => s.image);
 
   <div class="home-industries-tabs container" id="industriesTabs">
     {visibleSectors.map((sector, i) => (
-      <button
+      <button type="button"
         class="home-industries-tab"
         data-index={i}
         role="tab"
@@ -50,7 +50,7 @@ const visibleSectors = sectors.filter(s => s.image);
           <p class="home-industry-card-text">{sector.context}</p>
         </div>
         <div class="home-industry-card-image">
-          <img src={sector.image} alt={sector.title} loading={i === 0 ? 'eager' : 'lazy'} />
+          <img src={sector.image} alt={sector.title} width="600" height="400" loading="lazy" />
         </div>
       </article>
     ))}
@@ -66,7 +66,8 @@ const visibleSectors = sectors.filter(s => s.image);
   </div>
 </section>
 
-<script is:inline>
+<script>
+  // @ts-nocheck
   (function() {
     var tabs = document.querySelectorAll('#industriesTabs .home-industries-tab');
     var cards = document.querySelectorAll('#industriesCards .home-industry-card');
@@ -79,7 +80,6 @@ const visibleSectors = sectors.filter(s => s.image);
       cards.forEach(function(c, i) {
         var isActive = i === index;
         c.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-        // Prevent focus on hidden cards
         var focusables = c.querySelectorAll('a, button, input, select, textarea, [tabindex]');
         focusables.forEach(function(el) {
           el.setAttribute('tabindex', isActive ? '0' : '-1');
