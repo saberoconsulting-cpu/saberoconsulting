@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEOLanding from '../components/sections/seo/SEOLanding.astro';
+
+const path = '/mejores-fabricas-software';
+const title = 'Mejores Fábricas de Software | SABERO Consulting - Top Desarrollo Perú';
+const description = 'Descubre por qué SABERO Consulting está entre las mejores fábricas de software. Desarrollo de producto, IA, automatización y cloud con talento senior en Perú.';
+---
+
+<BaseLayout {title} {description} locale="es" {path}>
+  <SEOLanding
+    locale="es"
+    title="Entre las Mejores Fábricas de Software"
+    subtitle="Excelencia en desarrollo de software desde Perú"
+    description="SABERO Consulting se posiciona como una de las mejores fábricas de software con operaciones en Perú, Estados Unidos y Europa. Nuestro modelo de fábrica de software combina talento senior, metodologías ágiles, automatización de calidad y entregas iterativas para producir software de clase mundial. Trabajamos con startups, scale-ups y corporaciones que buscan velocidad, calidad y escalabilidad en sus productos digitales."
+    keywords={[
+      "mejores fábricas de software",
+      "fábrica de software",
+      "top fábricas de software",
+      "mejores empresas de desarrollo de software",
+      "fábrica de software Perú",
+      "desarrollo de software",
+      "mejores desarrolladores de software",
+      "software factory Perú",
+      "empresa de desarrollo de software Perú",
+      "fábrica de software ágil"
+    ]}
+    features={[
+      {
+        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+        title: "Talento Senior",
+        description: "Ingenieros con experiencia en FAANG, unicornios y corporaciones globales. Equipo multidisciplinario con estándares internacionales de calidad."
+      },
+      {
+        icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+        title: "Metodología Ágil a Escala",
+        description: "Scrum, Kanban, SAFe. Entregas cada 2 semanas, retrospectivas continuas y mejora constante. Transparencia total con el cliente."
+      },
+      {
+        icon: '<path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8S2 17 2 12 7 2 12 2z"/><path d="M12 6v6l4 2"/>',
+        title: "Calidad Automatizada",
+        description: "CI/CD, testing automatizado, code reviews, análisis estático de código y métricas de calidad. Software robusto desde el primer commit."
+      },
+      {
+        icon: '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>',
+        title: "Entregas Rápidas",
+        description: "Time-to-market reducido con equipos dedicados, sprints cortos y despliegue continuo. De la idea a producción en semanas, no meses."
+      },
+      {
+        icon: '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+        title: "Stack Moderno",
+        description: "React, Next.js, Node.js, Python, Go, Flutter, Swift, Kotlin. Tecnologías modernas que garantizan performance, escalabilidad y mantenibilidad."
+      },
+      {
+        icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+        title: "Cloud-Native",
+        description: "Arquitecturas en AWS, GCP y Azure. Microservicios, serverless, contenedores y orquestación con Kubernetes. Escalabilidad elástica."
+      }
+    ]}
+    ctaText="Trabaja con nuestra fábrica de software"
+    ctaHref="/contacto"
+  />
+</BaseLayout>

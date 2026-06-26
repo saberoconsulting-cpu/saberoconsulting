@@ -1,0 +1,84 @@
+[2m11:45:09[22m [34m[types][39m Generated [2m164ms[22m
+[2m11:45:09[22m [34m[build][39m output: [34m"static"[39m
+[2m11:45:09[22m [34m[build][39m mode: [34m"static"[39m
+[2m11:45:09[22m [34m[build][39m directory: [34mC:\Users\saberoconsultinglanding-1\sabero-consulting\dist\[39m
+[2m11:45:09[22m [34m[build][39m Collecting build info...
+[2m11:45:09[22m [34m[build][39m [32m✓ Completed in 262ms.[39m
+[2m11:45:10[22m [34m[build][39m Building static entrypoints...
+[2m11:45:17[22m [34m[vite][39m [32m✓ built in 6.92s[39m
+[2m11:45:17[22m [34m[vite][39m [32m✓ built in 225ms[39m
+[2m11:45:17[22m [34m[build][39m Rearranging server assets...
+
+[42m[30m generating static routes [39m[49m
+[2m11:45:17[22m   [34m├─[39m [2m/automatizaciones/index.html[22m [2m(+25ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/buscar/index.html[22m [2m(+10ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/careers/index.html[22m [2m(+12ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/casos/index.html[22m [2m(+9ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/consultoras-software-peru/index.html[22m [2m(+7ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/contacto/index.html[22m [2m(+10ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/desarrollo-tecnologico-peru/index.html[22m [2m(+8ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fabrica-de-software/index.html[22m [2m(+8ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/industrias/index.html[22m [2m(+11ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/insights/index.html[22m [2m(+10ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/inteligencia-artificial/index.html[22m [2m(+9ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/mejores-companias-software/index.html[22m [2m(+10ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/mejores-empresas-desarrollo-web/index.html[22m [2m(+7ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/mejores-fabricas-software/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/nosotros/index.html[22m [2m(+7ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/oferta/index.html[22m [2m(+9ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/servicios-web/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/buscar/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/buscar/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/buscar/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fr/buscar/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/careers/index.html[22m [2m(+7ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/careers/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/careers/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fr/careers/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/casos/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/casos/index.html[22m [2m(+4ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/casos/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fr/casos/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/contacto/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/contacto/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/contacto/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fr/contacto/index.html[22m [2m(+4ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/industrias/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/industrias/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/industrias/index.html[22m [2m(+4ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fr/industrias/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/insights/index.html[22m [2m(+7ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/insights/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/insights/index.html[22m [2m(+6ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/fr/insights/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/es/nosotros/index.html[22m [2m(+5ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/en/nosotros/index.html[22m [2m(+4ms)[22m 
+[2m11:45:17[22m   [34m├─[39m [2m/pt/nosotros/index.html[22m [2m(+12ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/fr/nosotros/index.html[22m [2m(+7ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/es/oferta/index.html[22m [2m(+7ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/en/oferta/index.html[22m [2m(+6ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/pt/oferta/index.html[22m [2m(+17ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/fr/oferta/index.html[22m [2m(+9ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/es/privacidad/index.html[22m [2m(+5ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/en/privacidad/index.html[22m [2m(+5ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/pt/privacidad/index.html[22m [2m(+4ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/fr/privacidad/index.html[22m [2m(+4ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/es/index.html[22m [2m(+15ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/en/index.html[22m [2m(+6ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/pt/index.html[22m [2m(+6ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/fr/index.html[22m [2m(+5ms)[22m 
+[2m11:45:18[22m   [34m├─[39m [2m/index.html[22m [2m(+10ms)[22m 
+[2m11:45:18[22m [32m✓ Completed in 512ms.
+[39m
+[42m[30m generating optimized images [39m[49m
+[2m11:45:18[22m   [32m▶[39m /_astro/imagen.C1jD5m2Q_28hm3u.webp [2m(reused cache entry)[22m [2m(+6ms)[22m [2m(1/5)[22m
+[2m11:45:18[22m   [32m▶[39m /_astro/imagen3.CQkVRX5u_2m4dE5.webp [2m(reused cache entry)[22m [2m(+5ms)[22m [2m(2/5)[22m
+[2m11:45:18[22m   [32m▶[39m /_astro/imagen1.Dlo62ryX_7QFR8.webp [2m(reused cache entry)[22m [2m(+6ms)[22m [2m(3/5)[22m
+[2m11:45:18[22m   [32m▶[39m /_astro/imagen4.Dvfk37cs_ZNnCeS.webp [2m(reused cache entry)[22m [2m(+6ms)[22m [2m(4/5)[22m
+[2m11:45:18[22m   [32m▶[39m /_astro/imagen2.DQ9j2ZPX_Z19gBjw.webp [2m(reused cache entry)[22m [2m(+6ms)[22m [2m(5/5)[22m
+[2m11:45:18[22m [32m✓ Completed in 10ms.
+[39m
+[2m11:45:18[22m [34m[build][39m [32m✓ Completed in 8.04s.[39m
+[2m11:45:18[22m [34m[@astrojs/sitemap][39m `sitemap-index.xml` created at `dist`
+[2m11:45:18[22m [34m[build][39m 58 page(s) built in [1m8.46s[22m
+[2m11:45:18[22m [34m[build][39m [1mComplete![22m
