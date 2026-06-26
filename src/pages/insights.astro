@@ -1,11 +1,11 @@
 ---
 // Root insights route - redirects to Spanish version
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { insightsData } from '../data/insights';
+import { getInsightsData } from '../data/insights';
 import InsightsHero from '../components/sections/insights/InsightsHero.astro';
 import InsightsCTA from '../components/sections/insights/InsightsCTA.astro';
 
-const data = insightsData.es;
+const data = getInsightsData('es');
 
 const sections = [
   { id: 'articles', label: 'Articulos', type: 'article' },

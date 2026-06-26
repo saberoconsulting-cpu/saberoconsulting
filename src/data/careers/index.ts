@@ -4,6 +4,10 @@ import { careersEs } from './es';
 import { careersEn } from './en';
 import { careersPt } from './pt';
 import { careersFr } from './fr';
+import { getCachedData } from '../../lib/cache';
+import { resolve } from 'node:path';
+
+const dep = (l: string) => resolve(process.cwd(), 'src/data/careers', `${l}.ts`);
 
 const careersMap: Record<SupportedLocale, CareersData> = {
   es: careersEs,
@@ -13,5 +17,8 @@ const careersMap: Record<SupportedLocale, CareersData> = {
 };
 
 export function getCareersData(locale: SupportedLocale): CareersData {
-  return careersMap[locale] || careersMap.es;
+  return getCachedData(
+    'careers', locale, [dep(locale)],
+    () => careersMap[locale] || careersMap.es
+  );
 }
