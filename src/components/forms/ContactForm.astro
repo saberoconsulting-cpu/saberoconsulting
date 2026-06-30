@@ -96,7 +96,7 @@ const { data, locale } = Astro.props;
               <div class="form-field">
                 <label for="companySize" class="form-label">{data.form.companySize}</label>
                 <div class="form-select-wrap">
-                  <select id="companySize" name="tamano_empresa" class="form-input form-select">
+                  <select id="companySize" name="tamano_empresa" required class="form-input form-select">
                     <option value="">Seleccionar</option>
                     {data.companySizes.map((size) => (
                       <option value={size.value}>{size.label}</option>
@@ -129,7 +129,7 @@ const { data, locale } = Astro.props;
 
             <div class="form-field">
               <label for="message" class="form-label">{data.form.message}</label>
-              <textarea id="message" name="mensaje" rows="4" class="form-input form-textarea" placeholder={data.form.message}></textarea>
+              <textarea id="message" name="mensaje" rows="4" required class="form-input form-textarea" placeholder={data.form.message}></textarea>
               <span class="form-line"></span>
             </div>
 
@@ -196,6 +196,119 @@ const { data, locale } = Astro.props;
     hiddenCat.name = 'categoria';
     hiddenCat.value = '';
     form.appendChild(hiddenCat);
+
+    // --- Elementos a validar ---
+    const requiredInputs = form.querySelectorAll<HTMLInputElement>('input[required], textarea[required], select[required]');
+    const privacyCheckbox = form.querySelector<HTMLInputElement>('input[name="privacidad"]');
+    const emailInput = form.querySelector<HTMLInputElement>('input[type="email"]');
+
+    // --- Función para marcar/desmarcar error ---
+    function markError(el: Element, valid: boolean) {
+      // Buscar el contenedor: .form-field para inputs/selects/textarea, .form-checkbox para checkboxes
+      const field = el.closest('.form-field') || el.closest('.form-checkbox');
+      if (!field) return;
+
+      if (field.classList.contains('form-checkbox')) {
+        field.classList.toggle('form-checkbox--error', !valid);
+      } else {
+        field.classList.toggle('form-field--error', !valid);
+      }
+    }
+
+    // --- Validación de email ---
+    function isValidEmail(value: string): boolean {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    // --- Validar un campo individual ---
+    function validateField(el: Element): boolean {
+      const input = el as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+      // Si es un select, validar que no esté en valor vacío
+      if (el.tagName === 'SELECT') {
+        const valid = input.value !== '';
+        markError(el, valid);
+        return valid;
+      }
+
+      // Si es un checkbox (solo privacidad)
+      if (el.getAttribute('type') === 'checkbox') {
+        const valid = (el as HTMLInputElement).checked;
+        markError(el, valid);
+        return valid;
+      }
+
+      // Si es email, validar formato
+      if (el.getAttribute('type') === 'email' && input.value.trim() !== '') {
+        const valid = isValidEmail(input.value.trim());
+        markError(el, valid);
+        return valid;
+      }
+
+      // Para los demás campos requeridos
+      const valid = input.value.trim() !== '';
+      markError(el, valid);
+      return valid;
+    }
+
+    // --- Evento submit ---
+    form.addEventListener('submit', (e) => {
+      let hasError = false;
+
+      // Validar campos requeridos (input, textarea, select)
+      requiredInputs.forEach((el) => {
+        if (!validateField(el)) hasError = true;
+      });
+
+      // Validar checkbox de privacidad
+      if (privacyCheckbox && !privacyCheckbox.checked) {
+        markError(privacyCheckbox, false);
+        hasError = true;
+      }
+
+      // Validar email (aunque no sea required, si tiene contenido debe ser válido)
+      if (emailInput && emailInput.value.trim() !== '' && !isValidEmail(emailInput.value.trim())) {
+        markError(emailInput, false);
+        hasError = true;
+      }
+
+      if (hasError) {
+        e.preventDefault();
+        // Enfocar el primer campo con error
+        const firstError = form.querySelector<HTMLElement>('.form-field--error, .form-checkbox--error');
+        if (firstError) {
+          const focusable = firstError.querySelector<HTMLElement>('input, textarea, select');
+          if (focusable) focusable.focus();
+        }
+      }
+    });
+
+    // --- Limpiar errores en tiempo real ---
+    form.querySelectorAll<HTMLInputElement>('input, textarea, select').forEach((el) => {
+      el.addEventListener('input', () => {
+        // Solo validar si tiene la clase de error, para no molestar al usuario mientras escribe
+        const field = el.closest('.form-field') || el.closest('.form-checkbox');
+        if (field && (field.classList.contains('form-field--error') || field.classList.contains('form-checkbox--error'))) {
+          validateField(el);
+        }
+      });
+      el.addEventListener('change', () => {
+        validateField(el);
+      });
+      el.addEventListener('blur', () => {
+        // Al perder el foco, si está vacío y es requerido, marcar error
+        if (el.hasAttribute('required') || el.getAttribute('type') === 'email') {
+          validateField(el);
+        }
+      });
+    });
+
+    // --- Evento change para checkbox de privacidad ---
+    if (privacyCheckbox) {
+      privacyCheckbox.addEventListener('change', () => {
+        markError(privacyCheckbox, privacyCheckbox.checked);
+      });
+    }
   }
 </script>
 
@@ -511,6 +624,24 @@ const { data, locale } = Astro.props;
     line-height: 1.6;
   }
 
+  /* Error state for form fields */
+  .form-field--error .form-label {
+    color: #E53935;
+  }
+
+  .form-field--error .form-input {
+    border-bottom-color: #E53935;
+  }
+
+  .form-field--error .form-line {
+    background: #E53935;
+    width: 100%;
+  }
+
+  .form-field--error .form-select-icon {
+    color: #E53935;
+  }
+
   /* Checkboxes */
   .form-checkboxes {
     display: flex;
@@ -567,6 +698,21 @@ const { data, locale } = Astro.props;
     font-size: 0.82rem;
     color: #5E6472;
     line-height: 1.5;
+  }
+
+  /* Error state for checkboxes */
+  .form-checkbox--error .checkbox-box {
+    border-color: #E53935;
+    background: #FFF0F0;
+  }
+
+  .form-checkbox--error .checkbox-text {
+    color: #E53935;
+  }
+
+  .form-checkbox--error .checkbox-input:checked + .checkbox-box {
+    background: #E53935;
+    border-color: #E53935;
   }
 
   /* Submit button */
