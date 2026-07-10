@@ -43,6 +43,7 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
                 class="nav-link"
                 aria-haspopup={megaSection ? 'true' : undefined}
                 aria-expanded={megaSection ? 'false' : undefined}
+                aria-current={path === item.href || path.endsWith(item.href) ? 'page' : undefined}
               >
                 {item.label}
               </a>
@@ -62,7 +63,7 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
       <a href={localizeNavHref('/contacto', currentLocale)} class="header-cta-btn">
         {t(currentLocale, 'header.cta')}
       </a>
-      <button class="hamburger" aria-label={t(currentLocale, 'header.menu')} data-toggle-mobile>
+      <button type="button" class="hamburger" aria-label={t(currentLocale, 'header.menu')} data-toggle-mobile>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -143,12 +144,17 @@ const megaMenuKeys = Object.keys(navigation.megaMenus);
 
   window.addEventListener('scroll', updateHeaderVisibility, { passive: true });
 
-  // Close mega menus on escape
+  // Close mega menus and mobile menu on escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.mega-menu.open').forEach((m) => m.classList.remove('open'));
       document.querySelectorAll('.nav-link[aria-expanded="true"]').forEach((l) => l.setAttribute('aria-expanded', 'false'));
       activeMega = null;
+      const mobileMenu = document.querySelector('.mobile-menu');
+      if (mobileMenu?.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        document.querySelector('.hamburger')?.setAttribute('aria-expanded', 'false');
+      }
     }
   });
 

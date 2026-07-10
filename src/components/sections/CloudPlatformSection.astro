@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+import '../../styles/components/cloud-platform.css';
 
 const content = {
   es: {
@@ -131,6 +132,9 @@ const content = {
         <article
           class="cloud-feature-card"
           data-index={i}
+          tabindex="0"
+          role="button"
+          aria-label={`${feature.title} - ${feature.desc}`}
         >
           <div class="cloud-card-image-wrap">
             <img src={feature.img} alt={feature.title} class="cloud-card-img" loading="lazy" width="400" height="180" />
@@ -146,7 +150,7 @@ const content = {
     <!-- Book reader (oculto inicialmente) -->
     <div class="cloud-book" id="cloudBook" aria-hidden="true">
       <div class="cloud-book-inner">
-        <button class="cloud-book-close" id="bookClose" aria-label="Cerrar libro">
+        <button type="button" class="cloud-book-close" id="bookClose" aria-label="Cerrar libro">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 6L6 18M6 6l12 12"/>
           </svg>
@@ -155,7 +159,7 @@ const content = {
         <div class="cloud-book-layout">
           <!-- Lado izquierdo: imagen -->
           <div class="cloud-book-image-side">
-            <img id="bookImg" src="" alt="" class="cloud-book-img" />
+            <img id="bookImg" src="" alt="" class="cloud-book-img" width="450" height="380" />
           </div>
           <!-- Lado derecho: texto -->
           <div class="cloud-book-text-side">
@@ -167,14 +171,14 @@ const content = {
 
         <!-- Navegación tipo libro -->
         <div class="cloud-book-nav">
-          <button class="cloud-book-nav-btn" id="bookPrev" aria-label="Página anterior">
+          <button type="button" class="cloud-book-nav-btn" id="bookPrev" aria-label="Página anterior">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M15 18l-6-6 6-6"/>
             </svg>
             <span class="cloud-book-nav-label" id="prevLabel"></span>
           </button>
           <div class="cloud-book-dots" id="bookDots"></div>
-          <button class="cloud-book-nav-btn" id="bookNext" aria-label="Página siguiente">
+          <button type="button" class="cloud-book-nav-btn" id="bookNext" aria-label="Página siguiente">
             <span class="cloud-book-nav-label" id="nextLabel"></span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 18l6-6-6-6"/>
@@ -220,11 +224,12 @@ const content = {
     bookDetail.textContent = f.detail;
     bookCounter.textContent = (index + 1) + ' / ' + totalPages;
 
-    var dotsHtml = '';
+    bookDots.textContent = '';
     for (var i = 0; i < totalPages; i++) {
-      dotsHtml += '<span class="cloud-book-dot' + (i === index ? ' cloud-book-dot--active' : '') + '"></span>';
+      var dot = document.createElement('span');
+      dot.className = 'cloud-book-dot' + (i === index ? ' cloud-book-dot--active' : '');
+      bookDots.appendChild(dot);
     }
-    bookDots.innerHTML = dotsHtml;
 
     prevLabel.textContent = index > 0 ? features[index - 1].title : '';
     nextLabel.textContent = index < totalPages - 1 ? features[index + 1].title : '';
@@ -275,321 +280,4 @@ const content = {
 })();
 </script>
 
-<style>
-  .cloud-platform {
-    position: relative;
-    padding: 60px 0;
-    background: #FFFFFF;
-  }
 
-  .cloud-platform :global(.container) {
-    max-width: 1280px;
-  }
-
-  .cloud-platform-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .cloud-feature-card {
-    position: relative;
-    background: #FFFFFF;
-    border: 1px solid #E8ECF2;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    overflow: hidden;
-  }
-
-  .cloud-feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #0B2F7D, #E53935, #0B2F7D);
-    background-size: 200% 100%;
-    animation: cloudAccentMove 3s ease-in-out infinite;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-    z-index: 2;
-  }
-
-  @keyframes cloudAccentMove {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cloud-feature-card::before {
-      animation: none;
-    }
-  }
-
-  .cloud-feature-card:hover {
-    transform: translateY(-4px);
-    border-color: #C8D0DC;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-  }
-
-  .cloud-feature-card:hover::before {
-    opacity: 1;
-  }
-
-  .cloud-card-image-wrap {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-  }
-
-  .cloud-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .cloud-feature-card:hover .cloud-card-img {
-    transform: scale(1.05);
-  }
-
-  .cloud-card-body {
-    padding: 24px 22px 28px;
-  }
-
-  .cloud-feature-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #0A1628;
-    margin-bottom: 8px;
-  }
-
-  .cloud-feature-desc {
-    font-size: 0.85rem;
-    color: #5E6472;
-    line-height: 1.7;
-    margin-bottom: 0;
-  }
-
-  /* ===== BOOK READER ===== */
-  .cloud-book {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-    background: rgba(10, 22, 40, 0.88);
-    backdrop-filter: blur(6px);
-  }
-
-  .cloud-book.cloud-book--open {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .cloud-book-inner {
-    position: relative;
-    width: 92%;
-    max-width: 900px;
-    max-height: 82vh;
-    background: #FFFFFF;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
-    transform: translateY(30px) scale(0.95);
-    transition: transform 0.4s ease;
-  }
-
-  .cloud-book--open .cloud-book-inner {
-    transform: translateY(0) scale(1);
-  }
-
-  .cloud-book-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 10;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #0A1628;
-    transition: background 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .cloud-book-close:hover {
-    background: #FFFFFF;
-  }
-
-  .cloud-book-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 380px;
-    flex: 1;
-  }
-
-  .cloud-book-image-side {
-    overflow: hidden;
-    background: #F0F2F5;
-  }
-
-  .cloud-book-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .cloud-book-text-side {
-    padding: 48px 40px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-  }
-
-  .cloud-book-counter {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #A3A9B4;
-    letter-spacing: 1px;
-  }
-
-  .cloud-book-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #0A1628;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
-  }
-
-  .cloud-book-detail {
-    font-size: 0.95rem;
-    color: #5E6472;
-    line-height: 1.8;
-    margin-bottom: 0;
-  }
-
-  /* ===== NAVEGACIÓN ===== */
-  .cloud-book-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 32px;
-    border-top: 1px solid #E8ECF2;
-    background: #FAFBFC;
-  }
-
-  .cloud-book-nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #0A1628;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: color 0.2s ease;
-    padding: 6px 12px;
-    border-radius: 8px;
-  }
-
-  .cloud-book-nav-btn:hover {
-    color: #0B2F7D;
-    background: rgba(11, 47, 125, 0.05);
-  }
-
-  .cloud-book-nav-label {
-    max-width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .cloud-book-dots {
-    display: flex;
-    gap: 8px;
-  }
-
-  .cloud-book-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #D0D4DC;
-    transition: background 0.3s ease;
-  }
-
-  .cloud-book-dot--active {
-    background: #0B2F7D;
-    width: 24px;
-    border-radius: 4px;
-  }
-
-  @media (max-width: 1100px) {
-    .cloud-platform-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .cloud-platform {
-      padding: 40px 0;
-    }
-
-    .cloud-platform-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .cloud-card-image-wrap {
-      height: 160px;
-    }
-
-    .cloud-card-body {
-      padding: 20px 18px 24px;
-    }
-
-    .cloud-book-layout {
-      grid-template-columns: 1fr;
-    }
-
-    .cloud-book-image-side {
-      height: 200px;
-    }
-
-    .cloud-book-text-side {
-      padding: 28px 24px 20px;
-    }
-
-    .cloud-book-title {
-      font-size: 1.2rem;
-    }
-
-    .cloud-book-nav {
-      padding: 12px 16px;
-    }
-
-    .cloud-book-nav-label {
-      display: none;
-    }
-  }
-</style>

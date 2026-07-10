@@ -65,7 +65,7 @@ const labels = ui[locale as string] || ui.es;
        ============================================ -->
   <section class="industries-cta-final">
     <div class="industries-cta-final-bg">
-      <img src="/images/industries-cta-bg.jpg" alt="" class="industries-cta-final-img" loading="lazy" />
+      <img src="/images/industries-cta-bg.jpg" alt="" class="industries-cta-final-img" width="1920" height="600" loading="lazy" />
     </div>
     <div class="industries-cta-final-overlay"></div>
     <div class="container">
@@ -147,7 +147,7 @@ const labels = ui[locale as string] || ui.es;
     track.addEventListener('mouseenter', stopAutoScroll);
     track.addEventListener('mouseleave', startAutoScroll);
     track.addEventListener('touchstart', stopAutoScroll, { passive: true });
-    track.addEventListener('touchend', startAutoScroll);
+    track.addEventListener('touchend', startAutoScroll, { passive: true });
 
     // Init
     update();

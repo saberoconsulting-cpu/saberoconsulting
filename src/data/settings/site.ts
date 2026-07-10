@@ -30,7 +30,7 @@ function getContactEmail(): string {
   if (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_CONTACT_EMAIL) {
     return import.meta.env.PUBLIC_CONTACT_EMAIL;
   }
-  return 'contacto@saberoconsulting.com';
+  return 'saberoconsulting@gmail.com';
 }
 
 function getWhatsApp(): string {

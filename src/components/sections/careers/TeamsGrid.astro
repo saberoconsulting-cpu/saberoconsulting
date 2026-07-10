@@ -56,7 +56,7 @@ const teamIcons = [
 
     <div class="teams-icons-row">
       {data.list.map((team, i) => (
-        <button class="team-icon-btn" data-team-id={team.id} aria-label={team.title}>
+        <button type="button" class="team-icon-btn" data-team-id={team.id} aria-label={team.title}>
           <div class="team-icon-wrap">
             <svg class="team-icon-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               {teamIcons[i].paths.map((path) => (

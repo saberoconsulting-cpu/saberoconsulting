@@ -73,7 +73,9 @@ const allTechs = [...technologies, ...technologies];
               src={tech.icon}
               alt={tech.name}
               class="home-techstack-icon"
-              loading={i < 14 ? 'eager' : 'lazy'}
+              width="48" height="48"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <span class="home-techstack-name">{tech.name}</span>

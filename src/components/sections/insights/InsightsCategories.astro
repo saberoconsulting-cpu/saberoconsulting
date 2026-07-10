@@ -12,11 +12,11 @@ const { categories, activeCategory } = Astro.props;
 <nav class="categories-nav" aria-label="Categorias de contenido">
   <div class="container">
     <div class="categories-row">
-      <button class="category-chip" data-category="all" class:list={{ active: activeCategory === 'all' }}>
+      <button type="button" class="category-chip" data-category="all" class:list={{ active: activeCategory === 'all' }}>
         Todos
       </button>
       {categories.map((cat) => (
-        <button
+        <button type="button"
           class="category-chip"
           data-category={cat.id}
           class:list={{ active: activeCategory === cat.id }}
