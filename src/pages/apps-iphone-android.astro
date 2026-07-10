@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEOLanding from '../components/sections/seo/SEOLanding.astro';
+import { generateMobileDevServiceSchema } from '../lib/seo/index';
+
+const path = '/apps-iphone-android';
+const title = 'Desarrollo de Apps para iPhone y Android | SABERO Consulting';
+const description = 'SABERO Consulting: Una de las mejores empresas en desarrollo de aplicaciones móviles para iPhone iOS y Android. Especialistas en apps nativas con Swift y Kotlin. Apps multiplataforma con Flutter y React Native.';
+---
+
+<BaseLayout {title} {description} locale="es" {path}>
+  <SEOLanding
+    locale="es"
+    title="Mejores en Aplicaciones Móviles para iPhone y Android"
+    subtitle="Expertos en desarrollo de apps nativas iOS y Android"
+    description="SABERO Consulting es una de las mejores compañías en desarrollo de aplicaciones móviles para iPhone (iOS) y Android. Nuestro equipo de ingenieros domina Swift, Kotlin, Flutter y React Native para construir apps de alto rendimiento. Desde apps nativas que aprovechan al máximo el hardware del dispositivo, hasta soluciones multiplataforma que optimizan costos y tiempo de desarrollo. Hemos desarrollado apps para fintech, edtech, logística, marketplaces y más, serviendo a clientes en Perú, América y Europa."
+    keywords={[
+      "mejores en aplicaciones móviles para iPhone",
+      "mejores en aplicaciones móviles para Android",
+      "desarrollo de apps iPhone",
+      "desarrollo de apps Android",
+      "una de las mejores empresas en apps móviles",
+      "apps nativas iOS Swift",
+      "apps Android Kotlin",
+      "mejor compañía de apps móviles",
+      "desarrollo de aplicaciones móviles Perú"
+    ]}
+    features={[
+      {
+        icon: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+        title: "Apps iPhone iOS con Swift",
+        description: "Desarrollamos aplicaciones nativas para iPhone y iPad con Swift y SwiftUI. Aprovechamos toda la potencia del ecosistema Apple: rendimiento nativo, animaciones a 60fps, integración con Face ID, Apple Pay, push notifications y App Store Connect."
+      },
+      {
+        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+        title: "Apps Android con Kotlin",
+        description: "Desarrollamos aplicaciones Android nativas con Kotlin y Jetpack Compose. Diseñamos con Material Design 3, optimizamos para la amplia gama de dispositivos Android, integramos Google Services, Firebase, geolocalización y notificaciones push."
+      },
+      {
+        icon: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',
+        title: "Apps Multiplataforma Flutter",
+        description: "Creamos apps para iPhone y Android con una sola base de código en Flutter y Dart. Ideal para startups y empresas que necesitan llegar rápido al mercado sin duplicar esfuerzos de desarrollo."
+      },
+      {
+        icon: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+        title: "React Native para iOS y Android",
+        description: "Apps multiplataforma con React Native, combinando la productividad de JavaScript/TypeScript con rendimiento cercano al nativo. Hot reload, código reutilizable y despliegue simultáneo en App Store y Google Play."
+      },
+      {
+        icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+        title: "Publicación en App Store y Google Play",
+        description: "Gestionamos todo el proceso de publicación: configuración de certificados, firma de apps, preparación de assets, cumplimiento de políticas de Apple y Google, y optimización ASO para mejor posicionamiento en las tiendas."
+      },
+      {
+        icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+        title: "CI/CD y QA Automatizado",
+        description: "Implementamos pipelines de integración y despliegue continuo para iOS y Android. Tests automatizados, análisis de calidad de código, pruebas en dispositivos reales y monitoreo post-lanzamiento con Crashlytics y Analytics."
+      }
+    ]}
+    ctaText="Construye tu app para iPhone y Android"
+    ctaHref="/contacto"
+  />
+</BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify(generateMobileDevServiceSchema('es'))}></script>

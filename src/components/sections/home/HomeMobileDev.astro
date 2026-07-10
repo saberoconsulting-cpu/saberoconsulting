@@ -1,0 +1,342 @@
+---
+// ============================================
+// SABERO Consulting - Home: Mobile Development
+// 4 cards: Swift, Kotlin, Flutter, React Native
+// with official icons and corporate styling
+// ============================================
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const content: Record<string, { tag: string; title: string; desc: string }> = {
+  es: {
+    tag: 'Desarrollo móvil',
+    title: 'Especialistas en aplicaciones móviles',
+    desc: 'Construimos apps nativas y multiplataforma con las tecnologías más modernas del mercado.',
+  },
+  en: {
+    tag: 'Mobile development',
+    title: 'Specialists in mobile applications',
+    desc: 'We build native and cross-platform apps with the most modern technologies on the market.',
+  },
+  pt: {
+    tag: 'Desenvolvimento móvel',
+    title: 'Especialistas em aplicações móveis',
+    desc: 'Construímos apps nativas e multiplataforma com as tecnologias mais modernas do mercado.',
+  },
+  fr: {
+    tag: 'Développement mobile',
+    title: 'Spécialistes des applications mobiles',
+    desc: 'Nous construisons des apps natives et multiplateformes avec les technologies les plus modernes du marché.',
+  },
+};
+
+const data = content[locale] || content.es;
+
+interface TechCard {
+  name: string;
+  desc: string;
+  icon: string;
+}
+
+const cards: Record<string, TechCard[]> = {
+  es: [
+    {
+      name: 'Swift',
+      desc: 'Apps nativas iOS con SwiftUI, rendimiento y fluidez nativa para ecosistema Apple.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+    },
+    {
+      name: 'Kotlin',
+      desc: 'Apps Android modernas con Jetpack Compose, tipado seguro y máximo rendimiento.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+    },
+    {
+      name: 'Flutter',
+      desc: 'Apps multiplataforma con Dart, una sola base de código para iOS, Android y web.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+    },
+    {
+      name: 'React Native',
+      desc: 'Apps multiplataforma con JavaScript/TypeScript, rendimiento nativo y hot reload.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+    },
+  ],
+  en: [
+    {
+      name: 'Swift',
+      desc: 'Native iOS apps with SwiftUI, native performance and fluidity for the Apple ecosystem.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+    },
+    {
+      name: 'Kotlin',
+      desc: 'Modern Android apps with Jetpack Compose, type-safe and maximum performance.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+    },
+    {
+      name: 'Flutter',
+      desc: 'Cross-platform apps with Dart, single codebase for iOS, Android and web.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+    },
+    {
+      name: 'React Native',
+      desc: 'Cross-platform apps with JavaScript/TypeScript, native performance and hot reload.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+    },
+  ],
+  pt: [
+    {
+      name: 'Swift',
+      desc: 'Apps nativas iOS com SwiftUI, desempenho e fluência nativa para ecossistema Apple.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+    },
+    {
+      name: 'Kotlin',
+      desc: 'Apps Android modernas com Jetpack Compose, tipagem segura e máximo desempenho.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+    },
+    {
+      name: 'Flutter',
+      desc: 'Apps multiplataforma com Dart, base de código única para iOS, Android e web.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+    },
+    {
+      name: 'React Native',
+      desc: 'Apps multiplataforma com JavaScript/TypeScript, desempenho nativo e hot reload.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+    },
+  ],
+  fr: [
+    {
+      name: 'Swift',
+      desc: 'Apps natives iOS avec SwiftUI, performances et fluidité natives pour l\'écosystème Apple.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+    },
+    {
+      name: 'Kotlin',
+      desc: 'Apps Android modernes avec Jetpack Compose, typage sécurisé et performances maximales.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+    },
+    {
+      name: 'Flutter',
+      desc: 'Apps multiplateformes avec Dart, codebase unique pour iOS, Android et web.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+    },
+    {
+      name: 'React Native',
+      desc: 'Apps multiplateformes avec JavaScript/TypeScript, performances natives et hot reload.',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+    },
+  ],
+};
+
+const techCards = cards[locale] || cards.es;
+---
+
+<section class="home-mobiledev" id="mobile-dev" data-reveal>
+  <div class="container">
+    <div class="home-mobiledev-header">
+      <span class="home-mobiledev-tag">{data.tag}</span>
+      <h2 class="home-mobiledev-title">{data.title}</h2>
+      <p class="home-mobiledev-desc">{data.desc}</p>
+    </div>
+    <div class="home-mobiledev-grid">
+      {techCards.map((card) => (
+        <article class="home-mobiledev-card">
+          <div class="home-mobiledev-card-border"></div>
+          <div class="home-mobiledev-icon-wrap">
+            <img src={card.icon} alt={card.name} class="home-mobiledev-icon" loading="lazy" />
+          </div>
+          <div class="home-mobiledev-card-body">
+            <h3 class="home-mobiledev-card-title">{card.name}</h3>
+            <p class="home-mobiledev-card-desc">{card.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-mobiledev {
+    padding: 80px 0;
+    background: #FFFFFF;
+    position: relative;
+  }
+
+  .home-mobiledev::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #E8ECF2, transparent);
+  }
+
+  .home-mobiledev-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .home-mobiledev-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-electric-blue, #0B2F7D);
+    background: rgba(11, 47, 125, 0.06);
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+  }
+
+  .home-mobiledev-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #0A1628;
+    margin: 0 0 16px;
+  }
+
+  .home-mobiledev-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5E6472;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .home-mobiledev-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .home-mobiledev-card {
+    position: relative;
+    background: #FAF9F5;
+    border: 1px solid #E8ECF2;
+    border-radius: 16px;
+    padding: 32px 24px;
+    overflow: hidden;
+    transition: all 400ms ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .home-mobiledev-card-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0B2F7D, #E53935, #0B2F7D);
+    background-size: 200% 100%;
+    animation: mobiledevAccent 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes mobiledevAccent {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .home-mobiledev-card:hover {
+    transform: translateY(-4px);
+    border-color: #B8C4D4;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+    background: #FFFFFF;
+  }
+
+  .home-mobiledev-icon-wrap {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #E8ECF2;
+    transition: all 400ms ease;
+    flex-shrink: 0;
+  }
+
+  .home-mobiledev-card:hover .home-mobiledev-icon-wrap {
+    border-color: #B8C4D4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .home-mobiledev-icon {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    display: block;
+    transition: transform 400ms ease;
+  }
+
+  .home-mobiledev-card:hover .home-mobiledev-icon {
+    transform: scale(1.1);
+  }
+
+  .home-mobiledev-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .home-mobiledev-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0A1628;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .home-mobiledev-card-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #5E6472;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .home-mobiledev-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-mobiledev {
+      padding: 56px 0;
+    }
+    .home-mobiledev-header {
+      margin-bottom: 40px;
+    }
+    .home-mobiledev-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .home-mobiledev-card {
+      padding: 24px 20px;
+      flex-direction: row;
+      align-items: center;
+    }
+    .home-mobiledev-icon-wrap {
+      width: 64px;
+      height: 64px;
+    }
+    .home-mobiledev-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>

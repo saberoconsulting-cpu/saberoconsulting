@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEOLanding from '../components/sections/seo/SEOLanding.astro';
+import { generateMobileDevServiceSchema } from '../lib/seo/index';
+
+const path = '/mejores-aplicaciones-moviles';
+const title = 'Mejores en Aplicaciones Móviles | SABERO Consulting';
+const description = 'SABERO Consulting: Una de las mejores empresas en desarrollo de aplicaciones móviles para iPhone iOS y Android. Especialistas en Swift, Kotlin, Flutter y React Native. Apps nativas y multiplataforma desde Perú para el mundo.';
+---
+
+<BaseLayout {title} {description} locale="es" {path}>
+  <SEOLanding
+    locale="es"
+    title="Entre los Mejores en Aplicaciones Móviles"
+    subtitle="Expertos en desarrollo de apps nativas y multiplataforma"
+    description="SABERO Consulting se posiciona como una de las mejores compañías en desarrollo de aplicaciones móviles, con presencia en Perú, América y Europa. Nuestro equipo de ingenieros especializados construye apps nativas iOS con Swift, apps Android con Kotlin, y apps multiplataforma con Flutter y React Native. Hemos entregado aplicaciones móviles para startups, scale-ups y corporaciones multinacionales en sectores como fintech, edtech, logística y marketplaces."
+    keywords={[
+      "mejores en aplicaciones móviles",
+      "mejor compañía en aplicaciones móviles",
+      "una de las mejores empresas en apps móviles",
+      "desarrollo de aplicaciones móviles",
+      "especialistas en apps móviles",
+      "mejores desarrolladores de apps",
+      "empresa de apps móviles Perú",
+      "top mobile app development",
+      "consultora de aplicaciones móviles"
+    ]}
+    features={[
+      {
+        icon: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+        title: "Apps iOS Nativas con Swift",
+        description: "Desarrollamos aplicaciones iPhone y iPad nativas con Swift y SwiftUI, aprovechando todo el potencial del ecosistema Apple: rendimiento nativo, animaciones fluidas, integración con Face ID, Apple Pay, push notifications y más."
+      },
+      {
+        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+        title: "Apps Android con Kotlin",
+        description: "Construimos aplicaciones Android modernas con Kotlin y Jetpack Compose, optimizadas para el ecosistema Google. Material Design, notificaciones push, geolocalización y máximo rendimiento en dispositivos Android."
+      },
+      {
+        icon: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',
+        title: "Apps Multiplataforma con Flutter",
+        description: "Creamos apps multiplataforma con Flutter y Dart: una sola base de código para iOS, Android y web. Reducción de costos y tiempo de desarrollo sin sacrificar calidad ni rendimiento."
+      },
+      {
+        icon: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+        title: "React Native Multiplataforma",
+        description: "Desarrollamos aplicaciones con React Native, combinando JavaScript/TypeScript con rendimiento nativo. Hot reload, código reutilizable y despliegue simultáneo en iOS y Android."
+      },
+      {
+        icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+        title: "Seguridad y Calidad Enterprise",
+        description: "Aseguramos calidad enterprise en cada app: pruebas automatizadas, CI/CD, análisis de seguridad OWASP, cumplimiento GDPR y SOC2. Apps que cumplen con los más altos estándares."
+      },
+      {
+        icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+        title: "Arquitectura Modular y Escalable",
+        description: "Diseñamos arquitecturas modulares, escalables y mantenibles. Patrones como MVVM, Clean Architecture, inyección de dependencias y testing garantizan apps que evolucionan con el negocio."
+      }
+    ]}
+    ctaText="Construye tu app móvil"
+    ctaHref="/contacto"
+  />
+</BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify(generateMobileDevServiceSchema('es'))}></script>

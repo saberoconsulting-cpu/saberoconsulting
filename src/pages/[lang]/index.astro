@@ -3,6 +3,7 @@ import type { SupportedLocale } from '../../i18n/utils/types';
 import { LOCALES } from '../../i18n/utils/types';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroCarousel from '../../components/sections/HeroCarousel.astro';
+import HomeMobileDev from '../../components/sections/home/HomeMobileDev.astro';
 import HomeHeroSection from '../../components/sections/home/HomeHeroSection.astro';
 import CloudPlatformSection from '../../components/sections/CloudPlatformSection.astro';
 import HomeOfertaResumen from '../../components/sections/home/HomeOfertaResumen.astro';
@@ -10,6 +11,7 @@ import HomeIndustriesResumen from '../../components/sections/home/HomeIndustries
 import HomeCareersResumen from '../../components/sections/home/HomeCareersResumen.astro';
 import HomeTechStack from '../../components/sections/home/HomeTechStack.astro';
 import CTASection from '../../components/sections/CTASection.astro';
+import { generateMobileDevServiceSchema } from '../../lib/seo/index';
 
 export function getStaticPaths() {
   return LOCALES.map((locale) => ({
@@ -22,26 +24,27 @@ const { locale } = Astro.props;
 
 const meta: Record<string, { title: string; description: string }> = {
   es: {
-    title: 'SABERO Consulting - Ingenieria de Productos Digitales y Evolucion de Plataformas',
-    description: 'SABERO Consulting disena, desarrolla y evoluciona plataformas digitales para empresas que necesitan escalar procesos, productos y operaciones en America y Europa.',
+    title: 'SABERO Consulting - Especialistas en Apps Móviles y Plataformas Digitales',
+    description: 'SABERO Consulting: Una de las mejores empresas en desarrollo de aplicaciones móviles para iPhone iOS y Android. Especialistas en Swift, Kotlin, Flutter y React Native. Plataformas digitales en América y Europa.',
   },
   en: {
-    title: 'SABERO Consulting - Digital Product Engineering & Platform Evolution',
-    description: 'SABERO Consulting designs, develops and evolves digital platforms for companies that need to scale processes, products and operations across America and Europe.',
+    title: 'SABERO Consulting - Mobile App Specialists & Digital Platform Engineering',
+    description: 'SABERO Consulting: One of the best mobile app development companies for iPhone iOS and Android. Specialists in Swift, Kotlin, Flutter and React Native. Digital platform engineering across America and Europe.',
   },
   pt: {
-    title: 'SABERO Consulting - Engenharia de Produtos Digitais & Evolucao de Plataformas',
-    description: 'A SABERO Consulting projeta, desenvolve e evolui plataformas digitais para empresas que precisam escalar processos, produtos e operacoes na America e Europa.',
+    title: 'SABERO Consulting - Especialistas em Apps Móveis e Plataformas Digitais',
+    description: 'SABERO Consulting: Uma das melhores empresas em desenvolvimento de aplicações móveis para iPhone iOS e Android. Especialistas em Swift, Kotlin, Flutter e React Native. Plataformas digitais na América e Europa.',
   },
   fr: {
-    title: 'SABERO Consulting - Ingenierie de Produits Numeriques & Evolution de Plateformes',
-    description: 'SABERO Consulting concoit, developpe et fait evoluer des plateformes numeriques pour les entreprises qui doivent passer a l\'echelle leurs processus, produits et operations en Amerique et en Europe.',
+    title: 'SABERO Consulting - Spécialistes des Apps Mobiles et Plateformes Numériques',
+    description: 'SABERO Consulting: L\'une des meilleures entreprises en développement d\'applications mobiles pour iPhone iOS et Android. Spécialistes en Swift, Kotlin, Flutter et React Native. Plateformes numériques en Amérique et Europe.',
   },
 };
 
 const pageMeta = meta[locale as string] || meta.es;
 const path = '/';
 
+const mobileDevSchema = generateMobileDevServiceSchema(locale as string);
 ---
 
 <BaseLayout
@@ -54,8 +57,11 @@ const path = '/';
   <HomeHeroSection locale={locale as string} />
   <HomeCareersResumen locale={locale as string} />
   <HomeTechStack locale={locale as string} />
+  <HomeMobileDev locale={locale as string} />
   <CloudPlatformSection locale={locale as string} />
   <HomeOfertaResumen locale={locale as string} />
   <HomeIndustriesResumen locale={locale as SupportedLocale} />
   <CTASection locale={locale as string} />
 </BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify(mobileDevSchema)}></script>

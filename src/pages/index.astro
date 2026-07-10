@@ -3,6 +3,7 @@
 // Spanish is the default language, served at /es/
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroCarousel from '../components/sections/HeroCarousel.astro';
+import HomeMobileDev from '../components/sections/home/HomeMobileDev.astro';
 import HomeHeroSection from '../components/sections/home/HomeHeroSection.astro';
 import CloudPlatformSection from '../components/sections/CloudPlatformSection.astro';
 import HomeOfertaResumen from '../components/sections/home/HomeOfertaResumen.astro';
@@ -10,11 +11,12 @@ import HomeIndustriesResumen from '../components/sections/home/HomeIndustriesRes
 import HomeCareersResumen from '../components/sections/home/HomeCareersResumen.astro';
 import HomeTechStack from '../components/sections/home/HomeTechStack.astro';
 import CTASection from '../components/sections/CTASection.astro';
+import { generateMobileDevServiceSchema } from '../lib/seo/index';
 ---
 
 <BaseLayout
-  title="SABERO Consulting - Ingenieria de Productos Digitales y Evolucion de Plataformas"
-  description="SABERO Consulting disena, desarrolla y evoluciona plataformas digitales para empresas que necesitan escalar procesos, productos y operaciones en America y Europa."
+  title="SABERO Consulting - Especialistas en Apps Móviles y Plataformas Digitales"
+  description="SABERO Consulting: Una de las mejores empresas en desarrollo de aplicaciones móviles para iPhone iOS y Android. Especialistas en Swift, Kotlin, Flutter y React Native. También diseñamos y evolucionamos plataformas digitales en América y Europa."
   locale="es"
   path="/"
 >
@@ -22,8 +24,11 @@ import CTASection from '../components/sections/CTASection.astro';
   <HomeHeroSection locale="es" />
   <HomeCareersResumen locale="es" />
   <HomeTechStack locale="es" />
+  <HomeMobileDev locale="es" />
   <CloudPlatformSection locale="es" />
   <HomeOfertaResumen locale="es" />
   <HomeIndustriesResumen locale="es" />
   <CTASection locale="es" />
 </BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify(generateMobileDevServiceSchema('es'))}></script>
