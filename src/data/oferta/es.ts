@@ -161,21 +161,21 @@ export const ofertaEs: OfertaData = {
       },
       {
         id: 'integraciones-automatizacion',
-        title: 'Integraciones y automatización',
+        title: 'Integraciones y automatización con IA',
         description:
-          'Integramos plataformas, servicios y procesos para eliminar tareas manuales, reducir errores y acelerar la operación.',
+          'Integramos plataformas, servicios y procesos, y sumamos IA para automatizar tareas que hoy consumen horas de trabajo manual: leer documentos, responder consultas, clasificar información y priorizar decisiones simples.',
         resolves:
-          'Elimina silos de información y automatiza flujos críticos. Tu equipo opera con datos en tiempo real y procesos sincronizados.',
+          'Ejemplos reales: chatbot con IA que resuelve hasta el 70% del soporte sin agente humano, OCR que lee facturas y las carga al ERP, y scoring que prioriza leads automáticamente en el CRM.',
         scope: [
-          'APIs',
-          'Webhooks',
-          'Pagos',
+          'Chatbots y agentes IA',
+          'OCR y extracción de documentos',
+          'Scoring y priorización con IA',
+          'APIs y Webhooks',
           'CRM/ERP',
           'Automatización de flujos',
-          'Sincronización de datos',
         ],
-        cta: 'Ver integraciones',
-        ctaHref: '/industrias',
+        cta: 'Ver integraciones y automatización con IA',
+        ctaHref: '/automatizaciones',
       },
       {
         id: 'cloud-devops',

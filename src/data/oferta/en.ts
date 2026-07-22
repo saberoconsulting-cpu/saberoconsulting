@@ -161,20 +161,20 @@ export const ofertaEn: OfertaData = {
       },
       {
         id: 'integraciones-automatizacion',
-        title: 'Integrations and automation',
+        title: 'Integrations and automation with AI',
         description:
-          'We integrate platforms, services and processes to eliminate manual tasks, reduce errors and accelerate operations.',
+          'We integrate platforms, services and processes, and add AI to automate tasks that today consume hours of manual work: reading documents, answering queries, classifying information and prioritizing simple decisions.',
         resolves:
-          'Eliminates information silos and automates critical flows. Your team operates with real-time data and synchronized processes.',
+          'Real examples: an AI chatbot that resolves up to 70% of support without a human agent, OCR that reads invoices straight into your ERP, and scoring that automatically prioritizes leads in the CRM.',
         scope: [
-          'APIs',
-          'Webhooks',
-          'Payments',
+          'AI chatbots and agents',
+          'OCR and document extraction',
+          'AI scoring and prioritization',
+          'APIs and Webhooks',
           'CRM/ERP',
           'Flow automation',
-          'Data synchronization',
         ],
-        cta: 'See integrations',
+        cta: 'See integrations and AI automation',
         ctaHref: '/en/industrias',
       },
       {

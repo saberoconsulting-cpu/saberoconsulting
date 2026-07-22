@@ -148,8 +148,21 @@
 
 .flip-card-back-content {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #C8D0DC transparent;
+}
+
+.flip-card-back-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.flip-card-back-content::-webkit-scrollbar-thumb {
+  background: #C8D0DC;
+  border-radius: 4px;
 }
 
 .flip-card-label {

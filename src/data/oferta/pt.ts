@@ -161,20 +161,20 @@ export const ofertaPt: OfertaData = {
       },
       {
         id: 'integracoes-automacao',
-        title: 'Integrações e automação',
+        title: 'Integrações e automação com IA',
         description:
-          'Integramos plataformas, serviços e processos para eliminar tarefas manuais, reduzir erros e acelerar a operação.',
+          'Integramos plataformas, serviços e processos, e somamos IA para automatizar tarefas que hoje consomem horas de trabalho manual: ler documentos, responder consultas, classificar informações e priorizar decisões simples.',
         resolves:
-          'Elimina silos de informação e automatiza fluxos críticos. Sua equipe opera com dados em tempo real e processos sincronizados.',
+          'Exemplos reais: chatbot com IA que resolve até 70% do suporte sem agente humano, OCR que lê faturas direto para o ERP, e scoring que prioriza leads automaticamente no CRM.',
         scope: [
-          'APIs',
-          'Webhooks',
-          'Pagamentos',
+          'Chatbots e agentes de IA',
+          'OCR e extração de documentos',
+          'Scoring e priorização com IA',
+          'APIs e Webhooks',
           'CRM/ERP',
           'Automação de fluxos',
-          'Sincronização de dados',
         ],
-        cta: 'Ver integrações',
+        cta: 'Ver integrações e automação com IA',
         ctaHref: '/pt/industrias',
       },
       {
