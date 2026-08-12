@@ -51,7 +51,7 @@ const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
           <input type="hidden" name="access_key" value={web3formsKey} />
           <input type="hidden" name="subject" value="Nuevo contacto SABERO Consulting" />
           <input type="hidden" name="from_name" value="SABERO Consulting Website" />
-          <input type="hidden" name="redirect" value={`${import.meta.env.PUBLIC_SITE_URL || ''}${locale === 'es' ? '/gracias' : `/${locale}/gracias`}`} />
+          <input type="hidden" name="redirect" value={`${import.meta.env.PUBLIC_SITE_URL || ''}${locale === 'es' ? '/gracias/' : `/${locale}/gracias/`}`} />
           <input type="hidden" name="idioma" value={locale} />
           <input type="checkbox" name="botcheck" class="web3forms-honeypot" style="display:none" tabindex="-1" autocomplete="off" />
 

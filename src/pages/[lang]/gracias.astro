@@ -1,0 +1,47 @@
+---
+import type { SupportedLocale } from '../../i18n/utils/types';
+import { LOCALES } from '../../i18n/utils/types';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThanksPage from '../../components/forms/ThanksPage.astro';
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+
+const meta: Record<string, { title: string; description: string }> = {
+  es: {
+    title: 'Gracias por escribirnos - SABERO Consulting',
+    description: 'Hemos recibido tu mensaje. Te responderemos en menos de 24 horas.',
+  },
+  en: {
+    title: 'Thank You - SABERO Consulting',
+    description: 'We have received your message. We will respond within 24 hours.',
+  },
+  pt: {
+    title: 'Obrigado - SABERO Consulting',
+    description: 'Recebemos sua mensagem. Responderemos em ate 24 horas.',
+  },
+  fr: {
+    title: 'Merci - SABERO Consulting',
+    description: 'Nous avons recu votre message. Nous vous repondrons sous 24 heures.',
+  },
+};
+
+const pageMeta = meta[locale as string] || meta.es;
+const path = '/gracias';
+---
+
+<BaseLayout
+  title={pageMeta.title}
+  description={pageMeta.description}
+  locale={locale as SupportedLocale}
+  path={path}
+  noIndex
+>
+  <ThanksPage locale={locale as string} />
+</BaseLayout>
