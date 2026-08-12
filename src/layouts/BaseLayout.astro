@@ -4,6 +4,7 @@ import { siteSettings } from '../data/settings/site';
 import { generateSEO, generateOrganizationSchema, generateWebSiteSchema, generateProfessionalServiceSchema } from '../lib/seo/index';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -109,6 +110,8 @@ const professionalServiceSchema = generateProfessionalServiceSchema();
     </main>
 
     <Footer currentLocale={locale} />
+
+    <WhatsAppFloat locale={locale} />
   </body>
 </html>
 

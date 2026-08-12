@@ -1,0 +1,81 @@
+---
+import { siteSettings } from '../../data/settings/site';
+import type { SupportedLocale } from '../../i18n/utils/types';
+
+export interface Props {
+  locale: SupportedLocale;
+}
+
+const { locale } = Astro.props;
+
+const messages: Record<SupportedLocale, string> = {
+  es: 'Hola, me gustaria conversar sobre un proyecto.',
+  en: 'Hi, I would like to talk about a project.',
+  pt: 'Ola, gostaria de conversar sobre um projeto.',
+  fr: 'Bonjour, je souhaiterais parler d\'un projet.',
+};
+
+const labels: Record<SupportedLocale, string> = {
+  es: 'Escribenos por WhatsApp',
+  en: 'Chat with us on WhatsApp',
+  pt: 'Fale conosco no WhatsApp',
+  fr: 'Contactez-nous sur WhatsApp',
+};
+
+const phone = siteSettings.contact.whatsapp.replace(/[^\d]/g, '');
+const message = messages[locale] ?? messages.es;
+const label = labels[locale] ?? labels.es;
+const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+---
+
+<a
+  class="whatsapp-float"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+  title={label}
+>
+  <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true">
+    <path d="M16.004 3C9.373 3 4 8.373 4 15.004c0 2.65.86 5.1 2.32 7.086L4.8 28.2l6.253-1.635a11.94 11.94 0 0 0 4.951 1.06h.005c6.63 0 12.003-5.373 12.003-12.004C28.012 8.373 22.639 3 16.004 3zm0 21.86h-.004a9.86 9.86 0 0 1-5.028-1.377l-.36-.214-3.71.97.99-3.617-.235-.372a9.86 9.86 0 0 1-1.51-5.246c0-5.455 4.44-9.895 9.86-9.895 2.635 0 5.112 1.028 6.977 2.895a9.793 9.793 0 0 1 2.886 6.986c0 5.455-4.44 9.87-9.866 9.87zm5.41-7.39c-.296-.148-1.75-.864-2.022-.963-.271-.099-.469-.148-.667.148-.198.297-.766.963-.939 1.161-.173.198-.346.223-.642.075-.297-.148-1.253-.462-2.386-1.472-.882-.787-1.478-1.759-1.651-2.056-.173-.297-.018-.457.13-.605.134-.133.297-.347.445-.52.148-.173.198-.297.297-.495.099-.198.05-.372-.025-.52-.074-.148-.667-1.61-.914-2.203-.24-.578-.485-.5-.667-.51-.173-.008-.371-.01-.569-.01a1.09 1.09 0 0 0-.79.372c-.271.297-1.038 1.014-1.038 2.474 0 1.46 1.063 2.87 1.211 3.068.148.198 2.093 3.196 5.073 4.482.709.306 1.262.489 1.693.626.711.226 1.358.194 1.87.118.57-.085 1.75-.716 1.997-1.407.247-.692.247-1.284.173-1.407-.074-.124-.271-.198-.568-.347z"/>
+  </svg>
+</a>
+
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .whatsapp-float:hover,
+  .whatsapp-float:focus-visible {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .whatsapp-float:focus-visible {
+    outline: 2px solid var(--color-electric-blue);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .whatsapp-float {
+      bottom: 16px;
+      right: 16px;
+      width: 52px;
+      height: 52px;
+    }
+  }
+</style>

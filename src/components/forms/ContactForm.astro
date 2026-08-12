@@ -8,6 +8,9 @@ interface Props {
 }
 
 const { data, locale } = Astro.props;
+
+// Web3Forms: clave gratuita en https://web3forms.com/ (250 envios/mes, sin activacion manual)
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
 ---
 
 <section class="contact-page" aria-label="Contact form">
@@ -44,13 +47,13 @@ const { data, locale } = Astro.props;
         <div class="contact-form-led" aria-hidden="true"></div>
         <div class="contact-form-accent" aria-hidden="true"></div>
 
-        <form class="contact-form" action={`https://formsubmit.co/${import.meta.env?.PUBLIC_CONTACT_EMAIL || 'saberoconsulting@gmail.com'}`} method="POST" data-form>
-          <input type="hidden" name="_subject" value="Nuevo contacto SABERO Consulting" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="true" />
-          <input type="hidden" name="_next" value={locale === 'es' ? '/gracias' : `/${locale}/gracias`} />
-          <input type="hidden" name="_autoresponse" value="Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos en menos de 24 horas." />
-          <input type="hidden" name="_idioma" value={locale} />
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" data-form>
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input type="hidden" name="subject" value="Nuevo contacto SABERO Consulting" />
+          <input type="hidden" name="from_name" value="SABERO Consulting Website" />
+          <input type="hidden" name="redirect" value={`${import.meta.env.PUBLIC_SITE_URL || ''}${locale === 'es' ? '/gracias' : `/${locale}/gracias`}`} />
+          <input type="hidden" name="idioma" value={locale} />
+          <input type="checkbox" name="botcheck" class="web3forms-honeypot" style="display:none" tabindex="-1" autocomplete="off" />
 
           <div class="form-body">
             <div class="form-row">
