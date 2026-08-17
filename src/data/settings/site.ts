@@ -56,7 +56,7 @@ export const siteSettings: SiteSettings = {
   logo: '/images/saberologo.png',
   location: 'Lima, Peru',
   social: {
-    linkedin: 'https://www.linkedin.com/in/saberoconsulting-sabero-844767418',
+    linkedin: 'https://www.linkedin.com/in/sabero-consulting',
     instagram: 'https://www.instagram.com/saberoconsulting/',
     youtube: 'https://www.youtube.com/@saberoconsulting',
     facebook: 'https://web.facebook.com/profile.php?id=61590813075379',
