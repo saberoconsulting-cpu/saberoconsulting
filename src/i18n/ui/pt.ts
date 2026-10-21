@@ -12,7 +12,6 @@ export const uiPt = {
   'footer.navigation.title': 'Navegacao',
   'footer.legal.title': 'Legal',
   'footer.dataDeletion.title': 'Exclusão de dados do usuário',
-  'footer.dataDeletion.description': 'Para solicitar a exclusão dos seus dados de usuário, escreva usando o e-mail associado aos seus dados para',
   'footer.legal.privacy': 'Politica de privacidade',
   'footer.legal.terms': 'Termos de servico',
   'footer.legal.cookies': 'Politica de cookies',

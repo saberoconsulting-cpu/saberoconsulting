@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteSettings } from '../../data/settings/site';
-interface Props { kind: 'privacidad' | 'terminos' | 'cookies' }
+interface Props { kind: 'privacidad' | 'terminos' | 'cookies' | 'eliminacion-de-datos' }
 const { kind } = Astro.props;
-const titles = { privacidad: 'Política de privacidad', terminos: 'Términos del servicio', cookies: 'Política de cookies' };
+const titles = { 'eliminacion-de-datos': 'Eliminaci?n de datos de usuario', privacidad: 'Política de privacidad', terminos: 'Términos del servicio', cookies: 'Política de cookies' };
 const title = titles[kind];
 ---
 <BaseLayout title={`${title} - SABERO Consulting`} description={`${title} de SABERO Consulting. Información sobre el uso del sitio, tus datos y tus preferencias.`} locale="es" path={`/${kind}`}>
@@ -13,6 +13,9 @@ const title = titles[kind];
       {Object.entries(titles).map(([slug, label]) => <a href={`/${slug}/`} aria-current={slug === kind ? 'page' : undefined}>{label}</a>)}
       <a href="/nosotros/#cookies-prefs">Preferencias de cookies</a>
     </nav>
+    {kind === 'eliminacion-de-datos' && <>
+      <section><h2>C?mo solicitar la eliminaci?n</h2><p>Para solicitar la eliminaci?n de tus datos de usuario, escr?benos desde el correo asociado a tus datos a <a href={`mailto:${siteSettings.contact.email}?subject=${encodeURIComponent(title)}`}>{siteSettings.contact.email}</a>.</p><p>Indica qu? datos deseas eliminar y el servicio o canal en el que los compartiste para que podamos identificar tu solicitud.</p></section>
+    </>}
     {kind === 'privacidad' && <>
       <section><h2>1. Contacto y alcance</h2><p>Esta política explica el tratamiento de datos relacionado con el sitio web de SABERO Consulting, en Lima, Perú. Para consultas de privacidad, escribe a <a href={`mailto:${siteSettings.contact.email}`}>{siteSettings.contact.email}</a>. Los servicios contratados pueden contar con condiciones de tratamiento adicionales acordadas por escrito.</p></section>
       <section><h2>2. Información que nos proporcionas</h2><p>Al contactarnos podemos recibir tu nombre, apellidos, correo electrónico, empresa y los datos que incluyas en tu consulta. Si utilizas WhatsApp o redes sociales, recibimos la información que compartas por esos canales. Evita enviar datos sensibles o información confidencial de terceros.</p></section>

@@ -12,7 +12,6 @@ export const uiEs = {
   'footer.navigation.title': 'Navegacion',
   'footer.legal.title': 'Legal',
   'footer.dataDeletion.title': 'Eliminación de datos de usuario',
-  'footer.dataDeletion.description': 'Para solicitar la eliminación de tus datos de usuario, escríbenos desde el correo asociado a tus datos a',
   'footer.legal.privacy': 'Politica de privacidad',
   'footer.legal.terms': 'Terminos del servicio',
   'footer.legal.cookies': 'Politica de cookies',

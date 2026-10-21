@@ -12,7 +12,6 @@ export const uiEn = {
   'footer.navigation.title': 'Navigation',
   'footer.legal.title': 'Legal',
   'footer.dataDeletion.title': 'User data deletion',
-  'footer.dataDeletion.description': 'To request deletion of your user data, email us from the address associated with your data at',
   'footer.legal.privacy': 'Privacy policy',
   'footer.legal.terms': 'Terms of service',
   'footer.legal.cookies': 'Cookie policy',
