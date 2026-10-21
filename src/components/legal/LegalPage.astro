@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteSettings } from '../../data/settings/site';
+interface Props { kind: 'privacidad' | 'terminos' | 'cookies' }
+const { kind } = Astro.props;
+const titles = { privacidad: 'Política de privacidad', terminos: 'Términos del servicio', cookies: 'Política de cookies' };
+const title = titles[kind];
+---
+<BaseLayout title={`${title} - SABERO Consulting`} description={`${title} de SABERO Consulting. Información sobre el uso del sitio, tus datos y tus preferencias.`} locale="es" path={`/${kind}`}>
+  <article class="legal-page" lang="es">
+    <header><p class="eyebrow">SABERO Consulting · Información legal</p><h1>{title}</h1><p>Última actualización: 21 de octubre de 2026</p></header>
+    <nav aria-label="Documentos legales">
+      {Object.entries(titles).map(([slug, label]) => <a href={`/${slug}/`} aria-current={slug === kind ? 'page' : undefined}>{label}</a>)}
+      <a href="/nosotros/#cookies-prefs">Preferencias de cookies</a>
+    </nav>
+    {kind === 'privacidad' && <>
+      <section><h2>1. Contacto y alcance</h2><p>Esta política explica el tratamiento de datos relacionado con el sitio web de SABERO Consulting, en Lima, Perú. Para consultas de privacidad, escribe a <a href={`mailto:${siteSettings.contact.email}`}>{siteSettings.contact.email}</a>. Los servicios contratados pueden contar con condiciones de tratamiento adicionales acordadas por escrito.</p></section>
+      <section><h2>2. Información que nos proporcionas</h2><p>Al contactarnos podemos recibir tu nombre, apellidos, correo electrónico, empresa y los datos que incluyas en tu consulta. Si utilizas WhatsApp o redes sociales, recibimos la información que compartas por esos canales. Evita enviar datos sensibles o información confidencial de terceros.</p></section>
+      <section><h2>3. Para qué utilizamos los datos</h2><p>Utilizamos la información para responder consultas, evaluar solicitudes de servicios, preparar propuestas y mantener comunicaciones relacionadas con tu solicitud. Las comunicaciones promocionales requieren una autorización independiente cuando corresponda; puedes solicitar dejar de recibirlas por correo.</p></section>
+      <section><h2>4. Proveedores y servicios externos</h2><p>El formulario de contacto envía la información a través de Web3Forms. El sitio también solicita fuentes e imágenes a proveedores externos, que pueden recibir tu dirección IP y datos técnicos de conexión. WhatsApp y las redes sociales aplican sus propias políticas al abrir sus enlaces. Estos servicios pueden tratar información fuera de Perú.</p><p>Consulta la <a href="https://web3forms.com/privacy">política de privacidad de Web3Forms</a> antes de enviar el formulario. No envíes datos que no sean necesarios para atender tu consulta.</p></section>
+      <section><h2>5. Conservación y seguridad</h2><p>La información de contacto se conserva durante la atención de la solicitud y mientras sea necesaria para la relación comercial o las obligaciones legales aplicables. Puedes solicitar su eliminación. El acceso debe limitarse a quienes necesiten atender la solicitud; ningún medio de transmisión por Internet garantiza seguridad absoluta.</p></section>
+      <section><h2>6. Tus derechos</h2><p>Puedes solicitar acceso, rectificación, cancelación u oposición al tratamiento de tus datos y retirar el consentimiento cuando sea aplicable. Escribe al correo indicado, describe tu solicitud y facilita los datos necesarios para verificar tu identidad, sin adjuntar documentos sensibles de forma innecesaria.</p><p>Si consideras que tu solicitud no ha sido atendida adecuadamente, puedes acudir a la <a href="https://www.gob.pe/9269-iniciar-procedimiento-para-el-ejercicio-de-derechos-de-acceso-rectificacion-cancelacion-y-oposicion">Autoridad Nacional de Protección de Datos Personales</a>.</p></section>
+      <section><h2>7. Almacenamiento en el navegador y cambios</h2><p>Consulta la <a href="/cookies/">política de cookies</a> para conocer el almacenamiento local del sitio. Publicaremos las modificaciones de esta política en esta página con su fecha de actualización.</p></section>
+    </>}
+    {kind === 'terminos' && <>
+      <section><h2>1. Uso del sitio</h2><p>Este sitio presenta los servicios y contenidos de SABERO Consulting. Al utilizarlo, debes respetar la legislación aplicable y los derechos de otras personas. Para consultas, escribe a <a href={`mailto:${siteSettings.contact.email}`}>{siteSettings.contact.email}</a>.</p></section>
+      <section><h2>2. Información y contratación</h2><p>El contenido es informativo. Enviar una consulta no constituye una contratación ni garantiza disponibilidad, precios o plazos. El alcance, entregables, pagos, confidencialidad y soporte de cada servicio se establecen en una propuesta o contrato aceptado por las partes.</p></section>
+      <section><h2>3. Uso permitido</h2><p>No utilices el sitio para enviar contenido ilícito, suplantar identidades, distribuir código malicioso, intentar acceder sin autorización a sistemas o interferir con su funcionamiento. Proporciona información veraz y únicamente datos que tengas derecho a compartir.</p></section>
+      <section><h2>4. Propiedad intelectual</h2><p>Los textos, diseños, marcas y otros materiales están protegidos por los derechos de sus respectivos titulares. La navegación no transfiere derechos de propiedad intelectual. Para reproducir o utilizar materiales con fines comerciales, solicita la autorización correspondiente.</p></section>
+      <section><h2>5. Enlaces y disponibilidad</h2><p>Los enlaces externos llevan a servicios con sus propias condiciones. No controlamos su contenido ni su disponibilidad. Procuramos mantener la información actualizada, pero pueden existir errores o interrupciones; confirma con nosotros los detalles antes de tomar decisiones comerciales.</p></section>
+      <section><h2>6. Responsabilidad y derechos</h2><p>Las responsabilidades por servicios contratados se rigen por el acuerdo correspondiente y la legislación aplicable. Estas condiciones no excluyen responsabilidades ni derechos que legalmente no puedan limitarse.</p></section>
+      <section><h2>7. Privacidad y modificaciones</h2><p>El tratamiento de datos se describe en la <a href="/privacidad/">política de privacidad</a>. Podemos actualizar estos términos; la versión vigente y su fecha estarán disponibles aquí. Las consultas o controversias podrán comunicarse primero a nuestro correo, sin limitar el acceso a las autoridades competentes.</p></section>
+    </>}
+    {kind === 'cookies' && <>
+      <section><h2>1. Qué son las cookies</h2><p>Las cookies son pequeños archivos que un sitio puede guardar en tu navegador. El almacenamiento local (localStorage) es una tecnología distinta que permite recordar ajustes en el mismo navegador.</p></section>
+      <section><h2>2. Qué utiliza este sitio</h2><p>La implementación actual no incorpora herramientas de analítica ni publicidad que instalen cookies opcionales. No se cargan Google Analytics ni píxeles publicitarios. Las preferencias se guardan solo cuando pulsas guardar en el panel.</p><table><thead><tr><th>Nombre</th><th>Tecnología y finalidad</th><th>Duración</th></tr></thead><tbody><tr><td>sabero-cookie-preferences</td><td>localStorage propio para recordar que solo se utilizan funciones necesarias.</td><td>Hasta que borres los datos del sitio en tu navegador.</td></tr></tbody></table></section>
+      <section><h2>3. Recursos de terceros</h2><p>Las fuentes e imágenes externas implican conexiones con sus proveedores, que reciben datos técnicos como la dirección IP. Los servicios abiertos mediante enlaces, como WhatsApp y redes sociales, administran sus propias cookies fuera de este sitio. El formulario utiliza Web3Forms para enviar consultas.</p></section>
+      <section><h2>4. Cómo gestionar tus preferencias</h2><p>Abre las <a href="/nosotros/#cookies-prefs">preferencias de cookies</a> para consultar la configuración actual. También puedes borrar el almacenamiento local o bloquear cookies desde los ajustes de tu navegador. Si incorporamos cookies opcionales, actualizaremos esta política y solicitaremos la elección correspondiente antes de activarlas.</p></section>
+      <section><h2>5. Contacto</h2><p>Para consultas, escribe a <a href={`mailto:${siteSettings.contact.email}`}>{siteSettings.contact.email}</a>. Consulta también la <a href="/privacidad/">política de privacidad</a>.</p></section>
+    </>}
+  </article>
+</BaseLayout>
+<style>
+  .legal-page{max-width:960px;margin:auto;padding:80px 24px 100px;color:var(--text-primary);line-height:1.85}
+  header{margin-bottom:32px}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.15;margin:16px 0 24px}.eyebrow{color:#0052CC;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+  nav{display:flex;flex-wrap:wrap;gap:12px 24px;padding:24px 0;border-block:1px solid #1a1a2e30}a{color:#0052CC;text-underline-offset:4px}a[aria-current]{color:inherit;font-weight:700}section{margin-top:36px}h2{font-size:1.4rem;margin-bottom:12px}p{margin-bottom:16px}table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:12px;border:1px solid #1a1a2e30;overflow-wrap:anywhere}a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+</style>

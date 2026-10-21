@@ -56,7 +56,7 @@ const legalLinks = [
   { key: 'footer.legal.privacy', href: '/privacidad' },
   { key: 'footer.legal.terms', href: '/terminos' },
   { key: 'footer.legal.cookies', href: '/cookies' },
-  { key: 'footer.legal.cookiesPrefs', href: '#cookies-prefs' },
+  { key: 'footer.legal.cookiesPrefs', href: '/nosotros/#cookies-prefs' },
   { key: 'footer.legal.sitemap', href: '/sitemap-index.xml' },
 ];
 ---
@@ -173,7 +173,7 @@ const legalLinks = [
       <div class="footer-legal-links">
         {legalLinks.map((link) => (
           <a
-            href={link.href.startsWith('#') ? link.href : localizeNavHref(link.href, currentLocale)}
+            href={link.href === '/sitemap-index.xml' ? link.href : link.href === '/nosotros/#cookies-prefs' ? localizeNavHref(link.href, currentLocale) : `${link.href}/`}
             class="footer-legal-link"
           >
             {t(currentLocale, link.key)}

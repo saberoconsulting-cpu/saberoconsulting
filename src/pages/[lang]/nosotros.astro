@@ -4,6 +4,7 @@
 // ============================================
 import type { SupportedLocale } from '../../i18n/utils/types';
 import { LOCALES } from '../../i18n/utils/types';
+import CookiePreferences from '../../components/legal/CookiePreferences.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NosotrosHero from '../../components/sections/nosotros/NosotrosHero.astro';
 import NosotrosStats from '../../components/sections/nosotros/NosotrosStats.astro';
@@ -54,4 +55,5 @@ const path = '/nosotros';
   <NosotrosTeam locale={locale} />
   <NosotrosApproach locale={locale} />
   <NosotrosCTA locale={locale} />
+  <CookiePreferences />
 </BaseLayout>

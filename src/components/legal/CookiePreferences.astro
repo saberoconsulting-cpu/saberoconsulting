@@ -1,0 +1,25 @@
+<section id="cookies-prefs" class="cookie-preferences" lang="es" aria-labelledby="cookie-preferences-title">
+  <h2 id="cookie-preferences-title">Preferencias de cookies</h2>
+  <p>Este sitio no utiliza cookies de analítica ni publicidad. Solo puedes guardar esta configuración necesaria en tu navegador.</p>
+  <p><strong>Funciones necesarias:</strong> configuración del sitio. Siempre disponibles.</p>
+  <p><strong>Analítica y publicidad:</strong> no se utilizan.</p>
+  <button type="button" data-save-cookie-preferences>Guardar preferencias</button>
+  <p data-cookie-status role="status" aria-live="polite"></p>
+  <a href="/cookies/">Consultar la política de cookies</a>
+</section>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-save-cookie-preferences]');
+  const status = document.querySelector<HTMLElement>('[data-cookie-status]');
+  button?.addEventListener('click', () => {
+    if (!status) return;
+    try {
+      localStorage.setItem('sabero-cookie-preferences', JSON.stringify({ necessary: true, analytics: false, advertising: false, version: 1 }));
+      status.textContent = 'Preferencias guardadas. No se activan cookies opcionales.';
+    } catch {
+      status.textContent = 'Tu navegador no permite guardar preferencias. No se activan cookies opcionales.';
+    }
+  });
+</script>
+<style>
+  .cookie-preferences{max-width:960px;margin:0 auto;padding:64px 24px;scroll-margin-top:120px;line-height:1.8}h2{font-size:2rem;margin-bottom:20px}p{margin:12px 0}button{background:#2563eb;color:white;border:0;border-radius:6px;padding:12px 20px;font:inherit;cursor:pointer}a{color:#0052CC}button:focus-visible,a:focus-visible{outline:2px solid #0052CC;outline-offset:4px}
+</style>

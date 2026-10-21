@@ -23,11 +23,6 @@ export function localizedHref(path: string, locale: SupportedLocale): string {
   return cleanPath ? `/${locale}/${cleanPath}/` : `/${locale}/`;
 }
 
-/**
- * Converts a navigation data structure to use correct hrefs for a given locale.
- * Siempre con trailing slash para compatibilidad con trailingSlash: 'always'.
- * Preserva anchor fragments (#) para que los enlaces internos funcionen.
- */
 export function localizeNavHref(href: string, locale: SupportedLocale): string {
   // Preservar anchor fragment si existe
   const anchorIndex = href.indexOf('#');
@@ -47,8 +42,6 @@ export function localizeNavHref(href: string, locale: SupportedLocale): string {
     result = cleanPath ? `/${locale}/${cleanPath}/` : `/${locale}/`;
   }
 
-  // Si hay anchor, lo agregamos después del trailing slash
-  // Ejemplo: /oferta/ + #servicios = /oferta/#servicios
   if (anchor) {
     result = result + anchor;
   }
