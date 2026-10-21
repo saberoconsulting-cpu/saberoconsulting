@@ -168,6 +168,17 @@ const legalLinks = [
       </div>
     </div>
 
+    <section class="footer-data-deletion" aria-labelledby="footer-data-deletion-title">
+      <h3 id="footer-data-deletion-title" class="footer-block-title">{t(currentLocale, 'footer.dataDeletion.title')}</h3>
+      <p>
+        {t(currentLocale, 'footer.dataDeletion.description')}{' '}
+        <a
+          href={`mailto:${siteSettings.contact.email}?subject=${encodeURIComponent(t(currentLocale, 'footer.dataDeletion.title'))}`}
+          class="footer-link"
+        >{siteSettings.contact.email}</a>.
+      </p>
+    </section>
+
     <!-- Legal bottom bar -->
     <div class="footer-legal-bar">
       <div class="footer-legal-links">
@@ -434,6 +445,33 @@ const legalLinks = [
     color: rgba(255, 255, 255, 0.35);
     margin-top: 14px;
     margin-bottom: 0;
+  }
+
+  .footer-data-deletion {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer-data-deletion .footer-block-title {
+    margin-bottom: 12px;
+    padding-bottom: 0;
+    border-bottom: none;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .footer-data-deletion p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    overflow-wrap: anywhere;
+  }
+
+  .footer-data-deletion .footer-link {
+    display: inline;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   /* ---- Legal bar ---- */

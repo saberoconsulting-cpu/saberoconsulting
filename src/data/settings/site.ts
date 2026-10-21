@@ -1,17 +1,5 @@
 import type { SiteSettings } from '../../i18n/utils/types';
 
-/**
- * Site settings with environment variable support.
- *
- * LOCAL:   Uses .env file (PUBLIC_SITE_URL=http://localhost:4321)
- * PROD:    Uses .env.production (PUBLIC_SITE_URL=https://saberoconsulting.com)
- *
- * Build for production:
- *   npx astro build --mode production
- *
- * Or set NODE_ENV=production before build.
- */
-
 function getSiteUrl(): string {
   if (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_SITE_URL) {
     return import.meta.env.PUBLIC_SITE_URL;

@@ -11,6 +11,8 @@ export const uiFr = {
   'footer.social.title': 'Reseaux',
   'footer.navigation.title': 'Navigation',
   'footer.legal.title': 'Legal',
+  'footer.dataDeletion.title': 'Suppression des données utilisateur',
+  'footer.dataDeletion.description': 'Pour demander la suppression de vos données utilisateur, écrivez depuis l’adresse associée à vos données à',
   'footer.legal.privacy': 'Politique de confidentialite',
   'footer.legal.terms': "Conditions d'utilisation",
   'footer.legal.cookies': 'Politique de cookies',
